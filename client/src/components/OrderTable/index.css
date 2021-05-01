@@ -2,4 +2,22 @@
     position: absolute;
     top: 100%;
     font-size: 12px;
-  }
+}
+
+.pt-container {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+  border: 3px solid #f1f1f1;
+  background-color: azure;
+}
+
+.rm-form {
+  display:flex;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+  border: 3px solid #f1f1f1;
+}
