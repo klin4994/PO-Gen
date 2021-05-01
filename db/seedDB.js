@@ -19,15 +19,8 @@ let productsSeed = [
                 unit_price: 95,
                 unit: "kg",
                 coefficient: 150,
-                vendor: [
-                        {
-                            key: "VD001",
-                            name: "Company 1",
-                            address: "Address 1",
-                            email: "Email 1",
-                            phone: "Phone 1"
-                        }
-                    ]
+                vendor_name: "Company 1",
+                vendor_email: "company1@email.com",
             },
             {
                 key: "RM002",
@@ -35,15 +28,8 @@ let productsSeed = [
                 unit_price: 165,
                 unit: "kg",
                 coefficient: 500,
-                vendor: [
-                    {
-                        key: "VD002",
-                        name: "Company 2",
-                        address: "Address 2",
-                        email: "Email 2",
-                        phone: "Phone 2"
-                    }
-                ]
+                vendor_name: "Company 2",
+                vendor_email: "company2@email.com",
             },
             {
                 key: "RM003",
@@ -51,15 +37,8 @@ let productsSeed = [
                 unit_price: 80,
                 unit: "kg",
                 coefficient: 50,
-                vendor: [
-                    {
-                        key: "VD003",
-                        name: "Company 3",
-                        address: "Address 3",
-                        email: "Email 3",
-                        phone: "Phone 3"
-                    }
-                ]
+                vendor_name: "Company 3",
+                vendor_email: "company3@email.com",
             },
         ]
     },
@@ -71,19 +50,12 @@ let productsSeed = [
         formulation: [
             {
                 key: "RM003",
-                name: "Raw material 3",
+                name: "Raw material 1",
                 unit_price: 130,
                 unit: "kg",
                 coefficient: 700,
-                vendor: [
-                    {
-                        key: "VD003",
-                        name: "Company 3",
-                        address: "Address 3",
-                        email: "Email 3",
-                        phone: "Phone 3"
-                    }
-                ]
+                vendor_name: "Company 1",
+                vendor_email: "company1@email.com",
             },
             {
                 key: "RM004",
@@ -91,15 +63,8 @@ let productsSeed = [
                 unit_price: 30,
                 unit: "kg",
                 coefficient: 900,
-                vendor: [
-                    {
-                        key: "VD004",
-                        name: "Company 4",
-                        address: "Address 4",
-                        email: "Email 4",
-                        phone: "Phone 4"
-                    }
-                ]
+                vendor_name: "Company 1",
+                vendor_email: "company1@email.com",
             },
             {
                 key: "RM005",
@@ -107,15 +72,8 @@ let productsSeed = [
                 unit_price: 320,
                 unit: "kg",
                 coefficient: 40,
-                vendor: [
-                    {
-                        key: "VD006",
-                        name: "Company 6",
-                        address: "Address 6",
-                        email: "Email 6",
-                        phone: "Phone 6"
-                    }
-                ]
+                vendor_name: "Company 1",
+                vendor_email: "company1@email.com",
             },
             
         ]

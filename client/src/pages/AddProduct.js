@@ -18,7 +18,11 @@ export default function AddProduct () {
         required: '${label} is required!',
         types: {
           number: '${label} is not a valid number!',
+          email: '${label} is not a valid email!'
         },
+        // number: {
+        //     range: '${label} must be between ${min} and ${max}',
+        //   },
       };
       let coefficientTooltip = 
       <span>
@@ -33,11 +37,12 @@ export default function AddProduct () {
           };
 
           return (
+              
               //<Form {...layout} name="product-form" onFinish={onFinish} validateMessages={validateMessages}> 
         <Form.Provider> 
         <Form name="new-product-form" onFinish={onFinish} autoComplete="off" validateMessages={validateMessages}>
             
-            <div class = "form-container">
+            <div className = "form-container">
             <Form.Item
                 name={['product', 'key']}
                 label="Product Code"
@@ -98,7 +103,6 @@ export default function AddProduct () {
                     <Space key={key}  direction="vertical" className="form-container flex"  align="baseline">
                         <Form.Item 
                         
-                        {...restField}
                         name={[name, 'key']}
                         label="Raw Material Code"
                         rules={[
@@ -111,7 +115,6 @@ export default function AddProduct () {
                         <Input />
                         </Form.Item>
                         <Form.Item
-                        {...restField}
                         name={[name, 'name']}
                         label="Name/Description"
                         rules={[
@@ -121,12 +124,14 @@ export default function AddProduct () {
                             },
                             ]}
                         >
-                        <Input />
+                        <Input.TextArea style={{resize:"both"}}/>
+
                         </Form.Item>
+                        <Space>
                         <Form.Item
-                        {...restField}
                         name={[name, 'unit']}
                         label="Unit of Goods"
+                        tooltip="Note: weight in kg"
                         rules={[
                             {
                                 required: true,
@@ -136,9 +141,8 @@ export default function AddProduct () {
                         <Input />
                         </Form.Item>
                         <Form.Item
-                        {...restField}
                         name={[name, 'unit_price']}
-                        label="Unit Price ($AUD)"
+                        label="Unit Price (AUD)"
                         rules={[
                             {
                                 type: 'number',
@@ -147,13 +151,11 @@ export default function AddProduct () {
                             },
                             ]}
                         >
-                        <InputNumber />
+                        <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} minLength="14 em"/>
                         </Form.Item>
-                        
                         <Form.Item
-                        {...restField}
                         name={[name, 'coefficient']}
-                        label="Quantity per unit dosage"
+                        label="Quantity per Unit Dosage"
                         rules={[
                             {
                                 type: 'number',
@@ -161,12 +163,36 @@ export default function AddProduct () {
                                 required: true,
                             },
                             ]}
+                        tooltip={coefficientTooltip}
                         >
-                        <Tooltip title = {coefficientTooltip} data-html="true">
                         <InputNumber />
-                        <InfoCircleOutlined />
-                        </Tooltip>
                         </Form.Item>
+                        </Space>
+                        <Space>
+                        <Form.Item
+                        name={[name, 'vendor_name']}
+                        label="Vendor Company Name"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                            ]}
+                        >
+                        <Input />
+                        </Form.Item>
+                        <Form.Item
+                        name={[name, 'vendor_email']}
+                        label="Vendor Company Email"
+                        rules={[
+                            {
+                                type: 'email',
+                                required: true,
+                            },
+                            ]}
+                        >
+                        <Input />
+                        </Form.Item>
+                        </Space>
                         <Popconfirm title={"Are you sure? "}onConfirm={() => remove(name)} okText="Yes" cancelText="No" icon={<QuestionCircleOutlined style={{ color: 'red' }} />}>
                             <Button type="primary" danger placement="right" icon={<DeleteFilled />} >
                             Delete

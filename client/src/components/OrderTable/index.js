@@ -96,24 +96,12 @@ export default function ({children}) {
     {
       title: 'RM Code',
       dataIndex: 'key',
-      width: '25%',
-      editable: true,
-    },
-    {
-      title: 'Details',
-      dataIndex: 'coefficient',
       width: '5%',
-      render: (cell,row, index) => {
-        console.log(cell, row, index)
-        let tooltipText = 
-        <span>
-        Conversion coefficient: {cell}<br/>
-        Vendor: {row.vendor_name}<br/>
-        </span>
-        
+      editable: true,
+      render: (key, row) => {
         
         return (
-        <Tooltip title = {tooltipText} data-html="true">
+        <Tooltip title = {`Vendor: ${row.vendor_name}`}> {key}
         <InfoCircleOutlined />
         </Tooltip>
         )
@@ -122,7 +110,7 @@ export default function ({children}) {
     {
       title: 'Name and Description',
       dataIndex: 'name',
-      width: '40%',
+      width: '30',
       editable: true,
     },
     // {
@@ -154,24 +142,6 @@ export default function ({children}) {
       dataIndex: 'total_price',
       width: '5%',
       editable: true,
-    },
-    {
-      title: 'Details',
-      dataIndex: 'vendor_name',
-      width: '5%',
-      render: (vendor_name) => {
-        console.log(vendor_name)
-        const tooltipText = 
-        `
-        Vendor: ${vendor_name}
-        `
-        
-        return (
-        <Tooltip title = {tooltipText}>
-        <InfoCircleOutlined />
-        </Tooltip>
-        )
-      },
     },
     {
       title: 'operation',
