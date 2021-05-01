@@ -38,8 +38,13 @@ export default function AddProduct () {
             <Form.Item
                 name={['product', 'key']}
                 label="Product Code"
+                rules={[
+                    {
+                        required: true,
+                    },
+                    ]}
             >
-             <Input />
+                <Input />
             </Form.Item>
             <Form.Item
                 name={['product', 'qtyPerPack']}
@@ -53,7 +58,7 @@ export default function AddProduct () {
                 <Input />
             </Form.Item>
             <Form.Item
-                name={['product', 'address']}
+                name={['product', 'packType']}
                 label="Age"
                 rules={[
                 {

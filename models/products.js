@@ -50,11 +50,14 @@ const PTSchema = new Schema({
   key: {
     type: String
   },
+  dosageForm: {
+    type: String
+  },
   qtyPerPack: {
     type: Number,
     trim: true
   },
-  packType: {
+  packaging: {
     type: String,
     trim: true
   },

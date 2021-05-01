@@ -9,7 +9,9 @@ mongoose.connect("mongodb://localhost/products_db"), {
 let productsSeed = [
     {
         key: "PT001",
+        dosageForm: "Tablet",
         qtyPerPack: 20,
+        packaging: "Box(blisters)",
         formulation: [
             {
                 key: "RM001",
@@ -64,6 +66,8 @@ let productsSeed = [
     {
         key: "PT002",
         qtyPerPack: 60,
+        packaging: "Bottle",
+        dosageForm: "Capsule",
         formulation: [
             {
                 key: "RM003",
