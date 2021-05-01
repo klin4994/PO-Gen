@@ -105,12 +105,13 @@ export default function ({children}) {
       width: '5%',
       render: (cell,row, index) => {
         console.log(cell, row, index)
-        let tooltipText = (
+        let tooltipText = 
         <span>
         Conversion coefficient: {cell}<br/>
+        Vendor Code: {row.vendor[0].key}<br/>
         Vendor: {row.vendor[0].name}
         </span>
-        )
+        
         
         return (
         <Tooltip title = {tooltipText} data-html="true">
