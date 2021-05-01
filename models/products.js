@@ -1,28 +1,6 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-const VDSchema = new Schema ({
-  key : {
-    type: String,
-    trim: true
-  },  
-  name: {
-    type: String,
-    trim: true
-  },
-  address: {
-    type: String,
-    trim: true  
-  },
-  email: {
-    type: String,
-    trim: true
-  },
-  phone: {
-    type: String,
-    trim: true
-  }
-})
 
 const RMSchema = new Schema({
   key: {
@@ -43,7 +21,14 @@ const RMSchema = new Schema({
   coefficient: {
     type: Number
   },
-  vendor: [VDSchema]
+  vendor_name: {
+    type: String,
+    trim: true
+  },
+  vendor_email: {
+    type: String,
+    trim: true
+  }
 }, { _id : false })
 
 const PTSchema = new Schema({

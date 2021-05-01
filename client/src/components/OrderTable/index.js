@@ -108,8 +108,7 @@ export default function ({children}) {
         let tooltipText = 
         <span>
         Conversion coefficient: {cell}<br/>
-        Vendor Code: {row.vendor[0].key}<br/>
-        Vendor: {row.vendor[0].name}
+        Vendor: {row.vendor_name}<br/>
         </span>
         
         
@@ -157,14 +156,14 @@ export default function ({children}) {
       editable: true,
     },
     {
-      title: 'Detailss',
-      dataIndex: 'vendor',
+      title: 'Details',
+      dataIndex: 'vendor_name',
       width: '5%',
-      render: (vendor) => {
-        console.log(vendor[0].name)
+      render: (vendor_name) => {
+        console.log(vendor_name)
         const tooltipText = 
         `
-        Vendor: ${vendor[0].name}
+        Vendor: ${vendor_name}
         `
         
         return (
