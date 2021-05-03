@@ -47,7 +47,7 @@ const PTSchema = new Schema({
     trim: true
   },
   formulation: [RMSchema]
-});
+}, { collection: 'products' });
 
 const Products = mongoose.model("Products", PTSchema);
 

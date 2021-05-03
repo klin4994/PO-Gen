@@ -79,8 +79,25 @@ let productsSeed = [
         ]
     },
 ]
+
+let usersSeed = [
+    {
+        company: "Company 1",
+        email: "c1@email.com",
+        password: "111",
+        address: "Address 1"
+    },
+    {
+        company: "Company 2",
+        email: "c2@email.com",
+        password: "222",
+        address: "Address 2"
+    }
+]
 db.deleteMany({})
   .then(() => db.collection.insertMany(productsSeed))
+  .then(() => db.collection.insertMany(usersSeed))
+  
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

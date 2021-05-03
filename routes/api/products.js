@@ -5,7 +5,7 @@ const productsController = require("../../controller/productsController");
 router
     .route("/")
     .get(productsController.findAll)
-    // .post(productsController.create);
+    .post(productsController.create);
 
 // Matches with "/api/products/:id"
 // router

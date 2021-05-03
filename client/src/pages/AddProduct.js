@@ -1,10 +1,13 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
+import API from '../utils/API'
 import { Form, Input, InputNumber, Button, Space, Tooltip, Popconfirm, Radio } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, QuestionCircleOutlined, DeleteFilled, InfoCircleOutlined } from '@ant-design/icons';
 
 export default function AddProduct () {
+
+
     const layout = {
         labelCol: {
           span: 8,
@@ -32,9 +35,29 @@ export default function AddProduct () {
         For countable materials, divide by the dosage quantity in one package.<br/>
         E.g if 1 bottle per 20 capsules, enter 0.05;<br/>
       </span>
-        const onFinish = (values) => {
-            console.log(values);
-          };
+      // Handles updating component state when the user types into the input field
+    //    function handleInputChange(event) {
+    //     const { name, value } = event.target;
+    //     setFormObject({...formObject, [name]: value})
+    //   };
+    
+    
+        const onFinish = ({product, formulation, ...rest}) => {
+            // Initialize object to post
+            const mergeToPost = {
+                ...product,
+                formulation:formulation
+            };
+
+            // console.log(mergeToPost);
+            API.addProduct(mergeToPost)
+                // .then(() => setFormObject({
+
+                // }))
+                .then(() => console.log("done!"))
+                .catch(err => console.log(err));
+            }
+        
 
           return (
               
@@ -83,7 +106,7 @@ export default function AddProduct () {
                 </Radio.Group>
             </Form.Item>
             <Form.Item
-                name={['product', 'qtyPerPacks']}
+                name={['product', 'qtyPerPack']}
                 label="Dosage units per package"
                 rules={[
                     {
@@ -151,7 +174,7 @@ export default function AddProduct () {
                             },
                             ]}
                         >
-                        <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} minLength="14 em"/>
+                        <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/>
                         </Form.Item>
                         <Form.Item
                         name={[name, 'coefficient']}
