@@ -3,94 +3,94 @@ import 'antd/dist/antd.css';
 import './index.css';
 import {InfoCircleOutlined} from '@ant-design/icons';
 import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
-
-
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
+import {useUpdateEffect} from "react-use"
 
 export default function ({children}) {
+  console.log(children)
   console.log(children[0].formulation)
-  const rawMaterials = children[0].formulation
-    useEffect(() =>{
-        setData(rawMaterials)
-    },[children[0].formulation])
-  console.log("table:", rawMaterials)
-  const [form] = Form.useForm();
-  const [data, setData] = useState(rawMaterials);
-  const [editingKey, setEditingKey] = useState('');
+
+// const EditableCell = ({
+//   editing,
+//   dataIndex,
+//   title,
+//   inputType,
+//   record,
+//   index,
+//   children,
+//   ...restProps
+// }) => {
+//   const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+//   return (
+//     <td {...restProps}>
+//       {editing ? (
+//         <Form.Item
+//           name={dataIndex}
+//           style={{
+//             margin: 0,
+//           }}
+//           rules={[
+//             {
+//               required: true,
+//               message: `Please Input ${title}!`,
+//             },
+//           ]}
+//         >
+//           {inputNode}
+//         </Form.Item>
+//       ) : (
+//         children
+//       )}
+//     </td>
+//   );
+// };
 
 
-  const isEditing = (record) => record.key === editingKey;
 
-  const edit = (record) => {
-    form.setFieldsValue({
-      name: '',
-      age: '',
-      address: '',
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
+  const data = children[0].formulation
+   
+  // const [form] = Form.useForm();
+  // const [editingKey, setEditingKey] = useState('');
 
-  const cancel = () => {
-    setEditingKey('');
-  };
 
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
+  // const isEditing = (record) => record.key === editingKey;
 
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setData(newData);
-        data.length = 0;
-        data.push(newData)
-        setEditingKey('');
+  // const edit = (record) => {
+  //   form.setFieldsValue({
+  //     name: '',
+  //     age: '',
+  //     address: '',
+  //     ...record,
+  //   });
+  //   setEditingKey(record.key);
+  // };
 
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
+  // const cancel = () => {
+  //   setEditingKey('');
+  // };
+
+  // const save = async (key) => {
+  //   try {
+  //     const row = await form.validateFields();
+  //     const newData = [...data];
+  //     const index = newData.findIndex((item) => key === item.key);
+
+  //     if (index > -1) {
+  //       const item = newData[index];
+  //       newData.splice(index, 1, { ...item, ...row });
+  //       setData(newData);
+  //       data.length = 0;
+  //       data.push(newData)
+  //       setEditingKey('');
+
+  //     } else {
+  //       newData.push(row);
+  //       setData(newData);
+  //       setEditingKey('');
+  //     }
+  //   } catch (errInfo) {
+  //     console.log('Validate Failed:', errInfo);
+  //   }
+  // };
 
   const columns = [
     {
@@ -143,67 +143,71 @@ export default function ({children}) {
       width: '5%',
       editable: true,
     },
-    {
-      title: 'operation',
-      dataIndex: 'operation',
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <a
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-                color: "dodgerblue"
-              }}
-            >
-              Save
-            </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel} okText="Yes" cancelText="No">
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
-            Edit
-          </Typography.Link>
+    // {
+    //   title: 'operation',
+    //   dataIndex: 'operation',
+    //   render: (_, record) => {
+    //     const editable = isEditing(record);
+    //     return editable ? (
+    //       <span>
+    //         <a
+    //           // onClick={() => save(record.key)}
+    //           style={{
+    //             marginRight: 8,
+    //             color: "dodgerblue"
+    //           }}
+    //         >
+    //           Save
+    //         </a>
+    //         <Popconfirm title="Sure to cancel?" onConfirm={cancel} okText="Yes" cancelText="No">
+    //           <a>Cancel</a>
+    //         </Popconfirm>
+    //       </span>
+    //     ) : (
+    //       <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
+    //         Edit
+    //       </Typography.Link>
           
-        );
-      },
-    },
+    //     );
+    //   },
+    // },
   ];
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
+  // const mergedColumns = columns.map((col) => {
+  //   if (!col.editable) {
+  //     return col;
+  //   }
 
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === 'age' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
+  //   return {
+  //     ...col,
+  //     onCell: (record) => ({
+  //       record,
+  //       dataIndex: col.dataIndex,
+  //       title: col.title,
+  //       editing: isEditing(record),
+  //     }),
+  //   };
+  // });
+  console.log(data)
   return (
-    <Form form={form} component={false}>
+    
+    // <Form form={form} component={false}>
+      
+      
       <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
+        // components={{
+        //   body: {
+        //     cell: EditableCell,
+        //   },
+        // }}
         bordered
         dataSource={data}
-        columns={mergedColumns}
+        columns={columns}
         rowClassName="editable-row"
         pagination={false} 
       />
       
-    </Form>
+    // </Form>
+    
   );
 };
 
