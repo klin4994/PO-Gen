@@ -3,6 +3,7 @@ import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn } from "../
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
 import {useUpdateEffect} from "react-use"
+import { set } from "mongoose";
 
 
 function Calculation() {
@@ -21,63 +22,39 @@ function Calculation() {
     // Set products state
     const [products, setProducts] = useState([])
     // Set product qty state
-    const [quantity, setQuantity] = useState(5)
+    const [quantity, setQuantity] = useState(0)
     // Set state for currently selected product key 
     const [currentProductKey, setCurrentProductKey] = useState()
     // Set state for currently selected product
-    const [currentProduct, setCurrentProduct] = useState([])
-    console.log(currentProduct)
+    const [currentProduct, setCurrentProduct] = useState({})
+    console.log(currentProduct) 
     console.log(quantity)
-    // const handleSetProduct = () => {
+    const handleCalculation = () => {
+        
+        setQuantity(qtyInput.current.value)
 
         
-    //     // Query and update if different input quantity
-    //         console.log(quantity)
-    //         setQuantity(qtyInput.current.value)
-    //         console.log(quantity)
-            
-    //         // loops through all product to find the matching one by key and set as current product
-    //         products.forEach(product => {
-    //             // if the selected product is different from the previous one, update the state
-    //             if (product.key === productSet.current.value ) {
-    //                 setCurrentProduct(product)
-    //                 console.log(product)
-    //                 product.formulation.forEach(rm => {
-    //                     console.log("qty", currentProduct)
-    //                     rm.total_price =  (overage * rm.unit_price * quantity * currentProduct.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
-    //                 })
-    //                 console.log(currentProduct)
-                    
-    //             }
-    //         })
-            
-    //         // if (currentProduct.length !== 0) {
-    //         //     currentProduct.formulation.forEach(rm => {
-    //         //         rm.total_price =  (overage * rm.unit_price * quantity * currentProduct.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
-    //         //     })
-
-    //         // }
-    // }
-
-    useEffect (() => {
-        console.log(currentProductKey)
         console.log(quantity)
-        console.log(products)
+        console.log(products[1])
+        // Object to store the modified product object
+        let selectedProduct;
+        // loops through all product to find the matching one by key and set as current product
         products.forEach(product => {
-            // if the selected product is different from the previous one, update the state
-            if (product.key === currentProductKey ) {
-                setCurrentProduct(product)
-                console.log(currentProduct)
-                product.formulation.forEach(rm => {
-                    console.log("qty", currentProduct)
-                    rm.total_price =  (overage * rm.unit_price * quantity * product.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
-                console.log(currentProduct)
-                })
-                console.log(currentProduct)
-                
+            // If the key matches, store properties in the newly declared variable object
+            if (product.key === productSet.current.value ) {
+                selectedProduct = product
             }
+            // Add new property (total_price) to every raw material
+            selectedProduct.formulation.forEach(rm => {
+                
+                rm.total_price =  (overage * rm.unit_price * qtyInput.current.value  * product.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
+            })
+            // set the modified object as the current product
+            setCurrentProduct(selectedProduct)
         })
-    }, [currentProductKey, quantity])
+        
+    }
+
  
     async function loadProducts () {
         API.getProducts ()
@@ -96,8 +73,10 @@ function Calculation() {
         </ProductList>
         {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
         <ProductQtyInput ref={qtyInput} ></ProductQtyInput>
-        <SetProductBtn onClick={() => {setCurrentProductKey(productSet.current.value); setQuantity(qtyInput.current.value)}} />
-        {currentProduct.length !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
+        <SetProductBtn onClick={handleCalculation} />
+        <h1>{quantity}</h1>
+        
+        {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
         </div>
     );
 }

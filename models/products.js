@@ -32,6 +32,11 @@ const RMSchema = new Schema({
 }, { _id : false })
 
 const PTSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Users"
+  },
   key: {
     type: String
   },

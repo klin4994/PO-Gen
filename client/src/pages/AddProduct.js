@@ -44,6 +44,8 @@ export default function AddProduct () {
     
         const onFinish = ({product, formulation, ...rest}) => {
             // Initialize object to post
+            product.user = "6093c20ad150a04ab444bc95"
+            console.log(product)
             const mergeToPost = {
                 ...product,
                 formulation:formulation

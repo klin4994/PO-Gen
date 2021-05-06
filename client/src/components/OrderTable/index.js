@@ -9,88 +9,87 @@ export default function ({children}) {
   console.log(children)
   console.log(children[0].formulation)
 
-// const EditableCell = ({
-//   editing,
-//   dataIndex,
-//   title,
-//   inputType,
-//   record,
-//   index,
-//   children,
-//   ...restProps
-// }) => {
-//   const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
-//   return (
-//     <td {...restProps}>
-//       {editing ? (
-//         <Form.Item
-//           name={dataIndex}
-//           style={{
-//             margin: 0,
-//           }}
-//           rules={[
-//             {
-//               required: true,
-//               message: `Please Input ${title}!`,
-//             },
-//           ]}
-//         >
-//           {inputNode}
-//         </Form.Item>
-//       ) : (
-//         children
-//       )}
-//     </td>
-//   );
-// };
+const EditableCell = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  record,
+  index,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{
+            margin: 0,
+          }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}!`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  );
+};
 
 
 
   const data = children[0].formulation
    
-  // const [form] = Form.useForm();
-  // const [editingKey, setEditingKey] = useState('');
+  const [form] = Form.useForm();
+  const [editingKey, setEditingKey] = useState('');
 
 
-  // const isEditing = (record) => record.key === editingKey;
+  const isEditing = (record) => record.key === editingKey;
 
-  // const edit = (record) => {
-  //   form.setFieldsValue({
-  //     name: '',
-  //     age: '',
-  //     address: '',
-  //     ...record,
-  //   });
-  //   setEditingKey(record.key);
-  // };
+  const edit = (record) => {
+    form.setFieldsValue({
+      name: '',
+      age: '',
+      address: '',
+      ...record,
+    });
+    setEditingKey(record.key);
+  };
 
-  // const cancel = () => {
-  //   setEditingKey('');
-  // };
+  const cancel = () => {
+    setEditingKey('');
+  };
 
-  // const save = async (key) => {
-  //   try {
-  //     const row = await form.validateFields();
-  //     const newData = [...data];
-  //     const index = newData.findIndex((item) => key === item.key);
+  const save = async (key) => {
+    try {
+      const row = await form.validateFields();
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.key);
 
-  //     if (index > -1) {
-  //       const item = newData[index];
-  //       newData.splice(index, 1, { ...item, ...row });
-  //       setData(newData);
-  //       data.length = 0;
-  //       data.push(newData)
-  //       setEditingKey('');
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, { ...item, ...row });
+        data=newData
+        data.push(newData)
+        setEditingKey('');
 
-  //     } else {
-  //       newData.push(row);
-  //       setData(newData);
-  //       setEditingKey('');
-  //     }
-  //   } catch (errInfo) {
-  //     console.log('Validate Failed:', errInfo);
-  //   }
-  // };
+      } else {
+        newData.push(row);
+        data=newData
+        setEditingKey('');
+      }
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
+    }
+  };
 
   const columns = [
     {
@@ -143,70 +142,70 @@ export default function ({children}) {
       width: '5%',
       editable: true,
     },
-    // {
-    //   title: 'operation',
-    //   dataIndex: 'operation',
-    //   render: (_, record) => {
-    //     const editable = isEditing(record);
-    //     return editable ? (
-    //       <span>
-    //         <a
-    //           // onClick={() => save(record.key)}
-    //           style={{
-    //             marginRight: 8,
-    //             color: "dodgerblue"
-    //           }}
-    //         >
-    //           Save
-    //         </a>
-    //         <Popconfirm title="Sure to cancel?" onConfirm={cancel} okText="Yes" cancelText="No">
-    //           <a>Cancel</a>
-    //         </Popconfirm>
-    //       </span>
-    //     ) : (
-    //       <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
-    //         Edit
-    //       </Typography.Link>
+    {
+      title: 'operation',
+      dataIndex: 'operation',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <a
+              onClick={() => save(record.key)}
+              style={{
+                marginRight: 8,
+                color: "dodgerblue"
+              }}
+            >
+              Save
+            </a>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel} okText="Yes" cancelText="No">
+              <a>Cancel</a>
+            </Popconfirm>
+          </span>
+        ) : (
+          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
+            Edit
+          </Typography.Link>
           
-    //     );
-    //   },
-    // },
+        );
+      },
+    },
   ];
-  // const mergedColumns = columns.map((col) => {
-  //   if (!col.editable) {
-  //     return col;
-  //   }
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
 
-  //   return {
-  //     ...col,
-  //     onCell: (record) => ({
-  //       record,
-  //       dataIndex: col.dataIndex,
-  //       title: col.title,
-  //       editing: isEditing(record),
-  //     }),
-  //   };
-  // });
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
   console.log(data)
   return (
     
-    // <Form form={form} component={false}>
+    <Form form={form} component={false}>
       
       
       <Table
-        // components={{
-        //   body: {
-        //     cell: EditableCell,
-        //   },
-        // }}
+        components={{
+          body: {
+            cell: EditableCell,
+          },
+        }}
         bordered
         dataSource={data}
-        columns={columns}
+        columns={mergedColumns}
         rowClassName="editable-row"
         pagination={false} 
       />
       
-    // </Form>
+    </Form>
     
   );
 };

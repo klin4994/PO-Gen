@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
-let db = require('../models/products.js')
+let {Products, Users} = require('../models')
+
 
 mongoose.connect("mongodb://localhost/products_db"), {
     useNewUrlParser: true,
@@ -7,7 +8,7 @@ mongoose.connect("mongodb://localhost/products_db"), {
 }
 
 let productsSeed = [
-    {
+    {   user:"6093c20ad150a04ab444bc95",
         key: "PT001",
         dosageForm: "Tablet",
         qtyPerPack: 20,
@@ -81,7 +82,7 @@ let productsSeed = [
 ]
 
 let usersSeed = [
-    {
+    {   _id: "6093c20ad150a04ab444bc95",
         company: "Company 1",
         email: "c1@email.com",
         password: "111",
@@ -94,10 +95,8 @@ let usersSeed = [
         address: "Address 2"
     }
 ]
-db.deleteMany({})
-  .then(() => db.collection.insertMany(productsSeed))
-  .then(() => db.collection.insertMany(usersSeed))
-  
+Products.deleteMany({})
+  .then(() => Products.collection.insertMany(productsSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
@@ -106,3 +105,14 @@ db.deleteMany({})
     console.error(err);
     process.exit(1);
   });
+
+Users.deleteMany({})
+.then(() => Users.collection.insertMany(usersSeed))
+.then(data => {
+console.log(data.result.n + " records inserted!");
+process.exit(0);
+})
+.catch(err => {
+console.error(err);
+process.exit(1);
+});
