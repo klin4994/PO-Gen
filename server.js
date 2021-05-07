@@ -16,10 +16,10 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-// // Initialize middleware, intialize passport
-// app.use(passport.initialize());
-// // Initialize middleware to alter the request object and deserialize "user" session ID from the request into a proper user object
-// app.use(passport.session());
+// Initialize middleware, intialize passport
+app.use(passport.initialize());
+// Initialize middleware to alter the request object and deserialize "user" session ID from the request into a proper user object
+app.use(passport.session());
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/products_db");

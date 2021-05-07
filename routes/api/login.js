@@ -6,6 +6,6 @@ const passport = require("../../controller/passport");
 router
   .post("/api/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
-    // console.log(req.user);
+    console.log(req.user);
   });
 module.exports = router;

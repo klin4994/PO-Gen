@@ -6,6 +6,11 @@ import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography } from 
 import {useUpdateEffect} from "react-use"
 
 export default function ({children}) {
+  const [data, setData] = useState(children[0].formulation)
+  useEffect (() => {
+    setData(children[0].formulation)
+  }, children)
+
   console.log(children)
   console.log(children[0].formulation)
 
@@ -46,8 +51,8 @@ const EditableCell = ({
 
 
 
-  const data = children[0].formulation
-   
+
+  
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
 
@@ -77,13 +82,13 @@ const EditableCell = ({
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        data=newData
+        setData(newData)
         data.push(newData)
         setEditingKey('');
 
       } else {
         newData.push(row);
-        data=newData
+        setData(newData)
         setEditingKey('');
       }
     } catch (errInfo) {
@@ -190,8 +195,6 @@ const EditableCell = ({
   return (
     
     <Form form={form} component={false}>
-      
-      
       <Table
         components={{
           body: {

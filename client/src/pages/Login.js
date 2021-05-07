@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
-
+import API from '../utils/API'
 import LoginFormContainer from '../components/LoginForm';
 
 export default function Login () {
       const onFinish = (values) => {
+        API.login(values)
+            .then(() => console.log("done!"))
+            .catch(err => console.log(err));
       console.log('Success:', values);
+
     };
   
     const onFinishFailed = (errorInfo) => {

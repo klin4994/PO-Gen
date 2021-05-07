@@ -6,8 +6,13 @@ import {useUpdateEffect} from "react-use"
 import { set } from "mongoose";
 
 
-function Calculation() {
-
+function Calculation({checkLoginState}) {
+    // useEffect(() =>{
+    //     const isAuthenticated = checkLoginState();
+    //     if (!isAuthenticated) {
+    //         window.location.replace("/login");
+    //     }
+    //   })
     
     // Load data
     useEffect (() => {
@@ -74,8 +79,7 @@ function Calculation() {
         {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
         <ProductQtyInput ref={qtyInput} ></ProductQtyInput>
         <SetProductBtn onClick={handleCalculation} />
-        <h1>{quantity}</h1>
-        
+       
         {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
         </div>
     );

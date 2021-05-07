@@ -3,21 +3,7 @@ import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 export default function  ({onFinish, onFinishFailed, ...props}) {
-    const layout = {
-        labelCol: {
-          span: 8,
-        },
-        wrapperCol: {
-          span: 16,
-        },
-        
-      };
-      const tailLayout = {
-        wrapperCol: {
-          offset: 8,
-          span: 16,
-        },
-      };
+
     return (
         <> 
         <Form
@@ -31,15 +17,15 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
             style={{border:"solid #f1f1f1", padding:"3em", minWidth:"30%", marginTop: "3em"}}
           >
             <Form.Item
-              name="username"
+              name="email"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your Username!',
+                  message: 'Please input your Email!',
                 },
               ]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
             </Form.Item>
             <Form.Item
               name="password"
