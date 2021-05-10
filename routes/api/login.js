@@ -1,11 +1,23 @@
 const router = require("express").Router();
-const productsController = require("../../controller/productsController");
-const passport = require("../../controller/passport");
+const userController = require("../../controller/userController");
+const passport = require("../../config/passport");
 
-// Matches with "/api/products"
-router
-  .post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.json(req.user);
-    console.log(req.user);
-  });
+// router
+//   .route("/")
+//   .get(userController.findAll)
+//   .post(
+//     passport.authenticate('local'), function(req, res) {
+//       res.redirect('/');
+//     }
+//   );
+router.post('/', passport.authenticate('local', (req, res) => {
+  console.log(req, "req")
+  console.log(res, "res")
+  //res.json(req.user);
+  // console.log(req.user);
+}));
+  // .post("/login", passport.authenticate("local"), (req, res) => {
+  //   res.json(req.user);
+  //   console.log("req.user");
+  // });
 module.exports = router;

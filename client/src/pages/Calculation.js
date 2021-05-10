@@ -45,15 +45,16 @@ function Calculation({checkLoginState}) {
         let selectedProduct;
         // loops through all product to find the matching one by key and set as current product
         products.forEach(product => {
-            // If the key matches, store properties in the newly declared variable object
+            // If the key matches, store properties in the selectProduct
             if (product.key === productSet.current.value ) {
                 selectedProduct = product
+                // Add new property (total_price) to every raw material
+                selectedProduct.formulation.forEach(rm => {
+                    rm.total_price =  (overage * rm.unit_price * qtyInput.current.value  * product.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
+                })
             }
-            // Add new property (total_price) to every raw material
-            selectedProduct.formulation.forEach(rm => {
-                
-                rm.total_price =  (overage * rm.unit_price * qtyInput.current.value  * product.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
-            })
+            
+
             // set the modified object as the current product
             setCurrentProduct(selectedProduct)
         })

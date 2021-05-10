@@ -9,16 +9,15 @@ import LoginFormContainer from '../components/LoginForm';
 export default function Login () {
       const onFinish = (values) => {
         API.login(values)
-            .then(() => console.log("done!"))
-            .catch(err => console.log(err));
+            .then((res) => console.log(res))
+      
       console.log('Success:', values);
-
     };
-  
+
     const onFinishFailed = (errorInfo) => {
       console.log('Failed:', errorInfo);
     };
-  
+
     return <LoginFormContainer onFinish={onFinish} onFinishFailed={onFinishFailed}/>
-    
+
 }

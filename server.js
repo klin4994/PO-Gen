@@ -15,7 +15,10 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
-
+// We need to use sessions to keep track of our user's login status
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
 // Initialize middleware, intialize passport
 app.use(passport.initialize());
 // Initialize middleware to alter the request object and deserialize "user" session ID from the request into a proper user object

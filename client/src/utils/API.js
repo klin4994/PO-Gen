@@ -13,5 +13,8 @@ export default {
     // User/Company Login
     login: function(loginDetails) {
         return axios.post("/api/login", loginDetails)
+    },
+    getUsers: function() {
+        return axios.get("/api/login")
     }
 }
