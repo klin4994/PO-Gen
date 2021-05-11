@@ -11,10 +11,9 @@ const passport = require("../../config/passport");
 //     }
 //   );
 router.post('/', passport.authenticate('local', (req, res) => {
-  console.log(req, "req")
-  console.log(res, "res")
-  //res.json(req.user);
-  // console.log(req.user);
+  console.log(req ) // null
+  console.log(res) // shows the logged-in user properties
+  res.json(req.user)
 }));
   // .post("/login", passport.authenticate("local"), (req, res) => {
   //   res.json(req.user);
