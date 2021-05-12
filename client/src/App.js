@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import {   BrowserRouter,
   Switch,
   Route,
@@ -13,6 +13,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import PrivateRoute from "./components/PrivateRoute";
 import { ProvideAuth } from './components/ProvideAuth';
+import AuthContext from './components/AuthContext';
 function App() {
   return (
     <ProvideAuth>

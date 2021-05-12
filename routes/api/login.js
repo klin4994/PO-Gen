@@ -10,11 +10,9 @@ const passport = require("../../config/passport");
 //       res.redirect('/');
 //     }
 //   );
-router.post('/', passport.authenticate('local', (req, res) => {
-  console.log(req ) // null
-  console.log(res) // shows the logged-in user properties
+router.post('/', passport.authenticate('local'), (req, res) => {
   res.json(req.user)
-}));
+});
   // .post("/login", passport.authenticate("local"), (req, res) => {
   //   res.json(req.user);
   //   console.log("req.user");

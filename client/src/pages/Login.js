@@ -1,23 +1,34 @@
 import React, {useContext} from 'react';
-import ReactDOM, {  useHistory, useLocation } from 'react-dom';
+import ReactDOM, { useLocation } from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import API from '../utils/API'
 import LoginFormContainer from '../components/LoginForm';
-import authContext from '../components/AuthContext';
-
+import AuthContext from '../components/AuthContext';
+import ProvideAuth from '../components/ProvideAuth';
 export default function Login () {
+     const history = useHistory();
+    const { setIsAuthenticated } = useContext(AuthContext);
+    async function onFinish (loginData) {
+      
+      // const loggedIn = await API.login(loginData)
+      // const loggedUserId = loggedIn.data._id
 
-
-
-    const onFinish = (loginData) => {
-
-        API.login(loginData)
-            .then((res) => {
-              console.log(res);
-            })
-      console.log('Success:', loginData);
+      API.login(loginData)
+        .then(response => {
+          console.log(response)
+          if (response.data._id) {
+            setIsAuthenticated(true);
+            history.push('/');
+          } else {
+            console.log("Error logging in");
+          }
+        }).catch(err => {
+          console.log(err);
+        }
+        );
     };
 
     const onFinishFailed = (errorInfo) => {

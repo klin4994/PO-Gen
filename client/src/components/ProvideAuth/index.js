@@ -1,19 +1,15 @@
 import React, {useState} from 'react';
-import authContext from '../AuthContext';
+import AuthContext from '../AuthContext';
 
-function useProvideAuth() {
-    return {
-        user: null,
-        login: ()=>{}, 
-        logout: ()=>{}
-    };
-  }
+
 export function ProvideAuth({ children }) {
-    
-    const auth = useProvideAuth();
+    const state = {
+        IsAuthenticated:false,
+        setIsAuthenticated:()=>{}
+    };
     return (
-      <authContext.Provider value={auth}>
+      <AuthContext.Provider value= {state}>
         {children}
-      </authContext.Provider>
+      </AuthContext.Provider>
     );
 }
