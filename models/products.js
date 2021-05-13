@@ -40,6 +40,10 @@ const PTSchema = new Schema({
   key: {
     type: String
   },
+  name: {
+    type: String,
+    trim: true
+  },
   dosageForm: {
     type: String
   },

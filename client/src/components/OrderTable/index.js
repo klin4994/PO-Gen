@@ -5,8 +5,10 @@ import {InfoCircleOutlined} from '@ant-design/icons';
 import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
 import {useUpdateEffect} from "react-use"
 import { jsPDF } from "jspdf";
+import _ from "lodash";
 
 export default function ({children}) {
+  console.log(children)
   const [data, setData] = useState(children[0].formulation)
   useEffect (() => {
     setData(children[0].formulation)
@@ -66,9 +68,20 @@ const EditableCell = ({
     });
     setEditingKey(record.key);
   };
+  // Current date
+
 //
   const newPdf = ({coefficient,vendor_email,vendor_name, ...rest}) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+    console.log(today)
   console.log([rest])
+  _.update(rest, 'unit_price',
+    function (price) {return JSON.stringify(price)})
+    console.log([rest])
   const doc = new jsPDF();
   doc.rect(20, 10, 168, 275);
 
@@ -84,7 +97,7 @@ const EditableCell = ({
   doc.text(vendor_name, 20, 40);
   doc.text(vendor_email, 20, 45);
 
-  doc.text("Order date", 110, 35);
+  doc.text(`Order date: ${today}`, 110, 35);
   doc.text("PO #: 12345678", 110, 40);
 
   // var data = [{
@@ -276,7 +289,7 @@ const EditableCell = ({
   return (
     
     <Form form={form} component={false}>
-      <Table
+      <Table id="results_table"
         components={{
           body: {
             cell: EditableCell,

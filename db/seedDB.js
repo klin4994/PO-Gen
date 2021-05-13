@@ -11,6 +11,7 @@ let productsSeed = [
     {   user:"6093c20ad150a04ab444bc95",
         key: "PT001",
         dosageForm: "Tablet",
+        name: "Vitamin C - 20S",
         qtyPerPack: 20,
         packaging: "Box(blisters)",
         formulation: [
@@ -48,6 +49,7 @@ let productsSeed = [
         qtyPerPack: 60,
         packaging: "Bottle",
         dosageForm: "Capsule",
+        name: "FatBurner - 60S",
         formulation: [
             {
                 key: "RM003",

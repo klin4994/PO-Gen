@@ -5,13 +5,13 @@ import AuthContext from '../AuthContext'
 
 
 export default function PrivateRoute({ children, ...rest }) {
-  const {user} = useContext(AuthContext)
-  console.log(user)
+  const {isAuthenticated} = useContext(AuthContext)
+  console.log(isAuthenticated)
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          user ? (
+          isAuthenticated ? (
             children
           ) : (
             <Redirect

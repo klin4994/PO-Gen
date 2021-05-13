@@ -10,6 +10,7 @@ import AuthContext from '../components/AuthContext';
 import ProvideAuth from '../components/ProvideAuth';
 export default function Login () {
      const history = useHistory();
+     console.log(history)
     const { setIsAuthenticated } = useContext(AuthContext);
     async function onFinish (loginData) {
       
@@ -21,7 +22,7 @@ export default function Login () {
           console.log(response)
           if (response.data._id) {
             setIsAuthenticated(true);
-            history.push('/');
+            history.push(history.location.pathname);
           } else {
             console.log("Error logging in");
           }

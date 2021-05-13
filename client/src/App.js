@@ -1,4 +1,4 @@
-import React,{useState, useContext} from "react";
+import React,{useState, useContext, useEffect} from "react";
 import {   BrowserRouter,
   Switch,
   Route,
@@ -14,9 +14,22 @@ import Nav from "./components/Nav";
 import PrivateRoute from "./components/PrivateRoute";
 import { ProvideAuth } from './components/ProvideAuth';
 import AuthContext from './components/AuthContext';
+import API from './utils/API';
 function App() {
+  const [isAuthenticated, setIsAuthenticated ] = useState(false);
+  const value = { isAuthenticated, setIsAuthenticated };
+
+  // We check if user is already logged in, and if they are then we set isAuthenticated to true
+  // useEffect(() => {
+  //   API.userLoggedIn().then(response => {
+  //     console.log(response)
+  //     setIsAuthenticated(response.data.isAuthenticated)
+  //   })
+  // }, []);
+
+
   return (
-    <ProvideAuth>
+    <AuthContext.Provider value={value}>
         <BrowserRouter>
             <Nav/>
             <Switch>
@@ -26,15 +39,16 @@ function App() {
               <Route exact path= {["/login"]}> 
                 <Login/>
               </Route>
-              <PrivateRoute exact path= {["/addproduct"]}> 
-                <AddProduct/>
-              </PrivateRoute>
+              <Route exact path= {["/addproduct"]} > 
+                {isAuthenticated ?  
+                <AddProduct/>:<Login/>}
+              </Route>
               <Route>
                 <NoMatch/>
               </Route>
             </Switch>
         </BrowserRouter>
-     </ProvideAuth>
+     </AuthContext.Provider>
   );
 }
 

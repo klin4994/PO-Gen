@@ -12,9 +12,12 @@ export default {
     },
     // User/Company Login
     login: function(loginDetails) {
-        return axios.post("/api/login", loginDetails)
+        return axios.post("/api/user/login", loginDetails)
     },
-    getUsers: function() {
-        return axios.get("/api/login")
+    // getUsers: function() {
+    //     return axios.get("/api/user")
+    // }
+    userLoggedIn: function() {
+        return axios.get("/api/user/logged-in")
     }
 }

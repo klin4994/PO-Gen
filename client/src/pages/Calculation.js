@@ -71,15 +71,21 @@ function Calculation({checkLoginState}) {
     }
     console.log(currentProduct)
     return (
-        <div>
-        <ProductList ref={productSet}>
-        {products.map(product => (
-            <ProductListItem key={product.key}>{product}</ProductListItem>
-        ))}
-        </ProductList>
+        <div id="page-container" style={{ maxWidth : "90%", marginLeft:"auto", marginRight:"auto"}}>
+        <div >
+            <ProductList ref={productSet}>
+            {products.map(product => (
+                <ProductListItem key={product.key}>{product}</ProductListItem>
+            ))}
+            </ProductList>
+            <ProductQtyInput ref={qtyInput} ></ProductQtyInput>
+        </div>
+        <span><strong>Product: </strong>{currentProduct.name}</span>
+        <br/>
         {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
-        <ProductQtyInput ref={qtyInput} ></ProductQtyInput>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
         <SetProductBtn onClick={handleCalculation} />
+        </div>
        
         {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
         </div>
