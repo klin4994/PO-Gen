@@ -22,7 +22,7 @@ export default function Login () {
           console.log(response)
           if (response.data._id) {
             setIsAuthenticated(true);
-            history.push('/addproduct');
+            history.go(0)
           } else {
             console.log("Error logging in");
           }

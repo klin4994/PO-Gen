@@ -19,5 +19,9 @@ export default {
     // }
     userLoggedIn: function() {
         return axios.get("/api/user/logged-in")
+    },
+    // User/Company logout
+    logout: function () {
+        return axios.get("/api/user/logout")
     }
 }
