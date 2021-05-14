@@ -7,7 +7,6 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import API from '../utils/API'
 import LoginFormContainer from '../components/LoginForm';
 import AuthContext from '../components/AuthContext';
-import ProvideAuth from '../components/ProvideAuth';
 export default function Login () {
      const history = useHistory();
      console.log(history)

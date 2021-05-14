@@ -21,8 +21,8 @@ let productsSeed = [
                 unit_price: 95,
                 unit: "kg",
                 coefficient: 150,
-                vendor_name: "Company 1",
-                vendor_email: "company1@email.com",
+                vendor_name: "Vendor 1",
+                vendor_email: "vendor1@email.com",
             },
             {
                 key: "RM002",
@@ -30,8 +30,8 @@ let productsSeed = [
                 unit_price: 165,
                 unit: "kg",
                 coefficient: 500,
-                vendor_name: "Company 2",
-                vendor_email: "company2@email.com",
+                vendor_name: "Vendor 1",
+                vendor_email: "vendor1@email.com",
             },
             {
                 key: "RM003",
@@ -39,8 +39,8 @@ let productsSeed = [
                 unit_price: 80,
                 unit: "kg",
                 coefficient: 50,
-                vendor_name: "Company 3",
-                vendor_email: "company3@email.com",
+                vendor_name: "Vendor 3",
+                vendor_email: "vendor3@email.com",
             },
         ]
     },
@@ -57,8 +57,8 @@ let productsSeed = [
                 unit_price: 130,
                 unit: "kg",
                 coefficient: 700,
-                vendor_name: "Company 1",
-                vendor_email: "company1@email.com",
+                vendor_name: "Vendor 2",
+                vendor_email: "vendor2@email.com",
             },
             {
                 key: "RM004",
@@ -66,8 +66,8 @@ let productsSeed = [
                 unit_price: 30,
                 unit: "kg",
                 coefficient: 900,
-                vendor_name: "Company 1",
-                vendor_email: "company1@email.com",
+                vendor_name: "Vendor 2",
+                vendor_email: "vendor2@email.com",
             },
             {
                 key: "RM005",
@@ -75,8 +75,8 @@ let productsSeed = [
                 unit_price: 320,
                 unit: "kg",
                 coefficient: 40,
-                vendor_name: "Company 1",
-                vendor_email: "company1@email.com",
+                vendor_name: "Vendor 2",
+                vendor_email: "vendor2@email.com",
             },
             
         ]

@@ -1,19 +1,13 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn } from "../components/ProductList"
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
-import {useUpdateEffect} from "react-use"
-import { set } from "mongoose";
+import AllProductsContext from '../components/AllProductsContext';
 
 
-function Calculation({checkLoginState}) {
-    // useEffect(() =>{
-    //     const isAuthenticated = checkLoginState();
-    //     if (!isAuthenticated) {
-    //         window.location.replace("/login");
-    //     }
-    //   })
-    
+function Calculation() {
+    const [allProducts, setAllProducts] = useState()
+    const value = {allProducts, setAllProducts}
     // Load data
     useEffect (() => {
         loadProducts()
@@ -64,13 +58,16 @@ function Calculation({checkLoginState}) {
  
     async function loadProducts () {
         API.getProducts ()
-        .then(res => 
-            setProducts(res.data),
-          )
+        .then(res => {
+            setProducts(res.data);
+            setAllProducts(res.data)
+            }
+        )
           .catch(err => console.log(err));
     }
     console.log(currentProduct)
     return (
+        <AllProductsContext.Provider value={value}>
         <div id="page-container" style={{ maxWidth : "90%", marginLeft:"auto", marginRight:"auto"}}>
         <div >
             <ProductList ref={productSet}>
@@ -89,6 +86,7 @@ function Calculation({checkLoginState}) {
        
         {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
         </div>
+        </AllProductsContext.Provider>
     );
 }
 

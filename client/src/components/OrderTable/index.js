@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import {InfoCircleOutlined} from '@ant-design/icons';
 import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
-import {useUpdateEffect} from "react-use"
+import AllProductsContext from '../AllProductsContext'
 import { jsPDF } from "jspdf";
 import _ from "lodash";
+import 'jspdf-autotable'
 
 export default function ({children}) {
+  const allProducts = useContext(AllProductsContext);
   console.log(children)
   const [data, setData] = useState(children[0].formulation)
   useEffect (() => {
@@ -70,96 +72,89 @@ const EditableCell = ({
   };
   // Current date
 
-//
-  const newPdf = ({coefficient,vendor_email,vendor_name, ...rest}) => {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = dd + '/' + mm + '/' + yyyy;
-    console.log(today)
-  console.log([rest])
-  _.update(rest, 'unit_price',
-    function (price) {return JSON.stringify(price)})
-    console.log([rest])
-  const doc = new jsPDF();
-  doc.rect(20, 10, 168, 275);
+  // works with one product:
+  // const newPdf = ({coefficient,vendor_email,vendor_name, ...rest}) => {
+    const newPdf = (props) => {
+      console.log(allProducts)
+      console.log(props)
+  //   var today = new Date();
+  //   var dd = String(today.getDate()).padStart(2, '0');
+  //   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  //   var yyyy = today.getFullYear();
+  //   today = dd + '/' + mm + '/' + yyyy;
+  // console.log([rest])
+  // _.update(rest, 'unit_price',
+  //   function (price) {return JSON.stringify(price)})
+  //   console.log([rest])
+  // const doc = new jsPDF();
+  // doc.rect(20, 10, 168, 275);
 
-  doc.text("Company name", 45, 15, null, null, "left");
-  doc.text("Address", 45, 20, null, null, "left");
-  doc.text("Email", 45, 25, null, null, "left");
-  doc.line(20, 30, 188,30)
+  // doc.text("Company name", 45, 15, null, null, "left");
+  // doc.text("Address", 45, 20, null, null, "left");
+  // doc.text("Email", 45, 25, null, null, "left");
+  // doc.line(20, 30, 188,30)
 
 
-  doc.setFont("helvetica", "bold");
-  doc.text("To:", 20, 35);
-  doc.setFont("helvetica", "normal");
-  doc.text(vendor_name, 20, 40);
-  doc.text(vendor_email, 20, 45);
+  // doc.setFont("helvetica", "bold");
+  // doc.text("To:", 20, 35);
+  // doc.setFont("helvetica", "normal");
+  // doc.text(vendor_name, 20, 40);
+  // doc.text(vendor_email, 20, 45);
 
-  doc.text(`Order date: ${today}`, 110, 35);
-  doc.text("PO #: 12345678", 110, 40);
+  // doc.text(`Order date: ${today}`, 110, 35);
+  // doc.text("PO #: 12345678", 110, 40);
 
-  // var data = [{
-  //   code:key,
-  //   name: name,
-  //   unit_price: unit_price,
-  //   //quantity: "XPTO2",
-  //   unit: "25",
-  //   total_price: "20485861",
-  // },
-  // {
-  //   code:"1",
-  //   name: "1000",
-  //   unit_price: "GameGroup",
-  //   quantity: "XPTO2",
-  //   unit: "25",
-  //   total_price: "20485861",
-  // }];
 
-  function createHeaders(keys) {
-  var result = [];
-  for (var i = 0; i < keys.length; i += 1) {
-    result.push({
-      id: keys[i],
-      name: keys[i],
-      prompt: keys[i],
-      width: 65,
-      align: "center",
-      padding: 0
-    });
-  }
-  return result;
-  }
+  // function createHeaders(keys) {
+  // var result = [];
+  // for (var i = 0; i < keys.length; i += 1) {
+  //   result.push({
+  //     id: keys[i],
+  //     name: keys[i],
+  //     prompt: keys[i],
+  //     width: 65,
+  //     align: "center",
+  //     padding: 0
+  //   });
+  // }
+  // return result;
+  // }
 
-  var headers = createHeaders([ 
-  "key",
-  "name",
-  "unit_price",
-  "unit",
-  "total_price",
+  // var headers = createHeaders([ 
+  // "key",
+  // "name",
+  // "unit_price",
+  // "unit",
+  // "total_price",
 
-  ]);
+  // ]);
 
-  doc.table(45, 60, [rest], headers,{printHeaders:true, autoSize: true, fontSize:12});
+  // doc.table(45, 60, [rest], headers,{printHeaders:true, autoSize: true, fontSize:12});
+  // doc.autoTable({
+  //   head: [['Name', 'Email', 'Country']],
+  //   body: [
+  //     ['David', 'david@example.com', 'Sweden'],
+  //     ['Castille', 'castille@example.com', 'Spain'],
+  //     // ...
+  //   ],
+  // })
+  //   // console.log(record)
+  //   // doc.text(JSON.stringify(record.coefficient).replace(/['"]+/g, ''), 10, 10);
+  //   // // doc.text(JSON.stringify(record.key), 10, 10);
+  //   // // doc.text(JSON.stringify(record.name), 10, 10);
+  //   // // doc.text(JSON.stringify(record.total_price), 10, 10);
+  //   // // doc.text(JSON.stringify(record.unit), 10, 10);
+  //   // // doc.text(JSON.stringify(record.unit_price), 10, 10);
+  //   // // doc.text(JSON.stringify(record.vendor_email), 10, 10);
+  //   // // doc.text(JSON.stringify(record.vendor_name), 10, 10);
 
-    // console.log(record)
-    // doc.text(JSON.stringify(record.coefficient).replace(/['"]+/g, ''), 10, 10);
-    // // doc.text(JSON.stringify(record.key), 10, 10);
-    // // doc.text(JSON.stringify(record.name), 10, 10);
-    // // doc.text(JSON.stringify(record.total_price), 10, 10);
-    // // doc.text(JSON.stringify(record.unit), 10, 10);
-    // // doc.text(JSON.stringify(record.unit_price), 10, 10);
-    // // doc.text(JSON.stringify(record.vendor_email), 10, 10);
-    // // doc.text(JSON.stringify(record.vendor_name), 10, 10);
-
-    // Open document in new tab
-    var string = doc.output('datauristring');
-    var embed = "<embed width='100%' height='100%' src='" + string + "'/>"
-    var x = window.open();
-    x.document.open();
-    x.document.write(embed);
-    x.document.close();
+  //   // Open document in new tab
+  //   var string = doc.output('datauristring');
+  //   var embed = "<embed width='100%' height='100%' src='" + string + "'/>"
+  //   var x = window.open();
+  //   x.document.open();
+  //   x.document.write(embed);
+  //   x.document.close();
     
   }
 
@@ -185,6 +180,14 @@ const EditableCell = ({
       console.log('Validate Failed:', errInfo);
     }
   };
+
+  // Remove a raw material from the data and set new state for data
+  const remove = (row) => {
+    console.log(row)
+    console.log(data)
+    const removedData = data.filter(e => e.key != row.key);
+    setData(removedData)
+  }
 
   const columns = [
     {
@@ -242,6 +245,7 @@ const EditableCell = ({
       dataIndex: 'operation',
       render: (_, record) => {
         const editable = isEditing(record);
+        
         return editable ? (
           <span>
             <a
@@ -262,8 +266,13 @@ const EditableCell = ({
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
             Edit
           </Typography.Link>
-          <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(record)} style={{color: "dodgerblue"}}>
+          <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(children)} style={{color: "dodgerblue"}}>
             Generate PDF
+          </Typography.Link>
+          <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>
+            <Popconfirm title="Sure to cancel?" onConfirm={() => remove(record)} okText="Yes" cancelText="No">
+              Remove
+            </Popconfirm>
           </Typography.Link>
           </>
 );
