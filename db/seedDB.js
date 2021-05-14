@@ -87,13 +87,13 @@ let usersSeed = [
     {   _id: "6093c20ad150a04ab444bc95",
         company: "Company 1",
         email: "c1@email.com",
-        password: "$2y$10$mIzDPHPeuVUFZrmF6qGnheZ4H2URRxF7PAQAnQ5ZhHm/5MBcjxg3y ",
+        password: "$2a$10$PQsjsDIZ2DkJEhuG.EWyr.rktERsd7xUz2.ULDJkJBfxMIDUl53FW",
         address: "Address 1"
     },
     {
         company: "Company 2",
         email: "c2@email.com",
-        password: "$2y$10$MQIjCBpRoTZrhJOAij3iqu8DGL9V4HTD3nxsZCkqM/vT4kA66EsDG ",
+        password: "$2a$10$fN9nUcvUvXGagsrdv3XNBOfnDxi6EFeYGAsSqmn2MHgQDBcBcFiOm",
         address: "Address 2"
     }
 ]
