@@ -75,34 +75,54 @@ const EditableCell = ({
   // works with one product:
   // const newPdf = ({coefficient,vendor_email,vendor_name, ...rest}) => {
     const newPdf = (props) => {
-      console.log(allProducts)
+      console.log(data)
       console.log(props)
-  //   var today = new Date();
-  //   var dd = String(today.getDate()).padStart(2, '0');
-  //   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  //   var yyyy = today.getFullYear();
-  //   today = dd + '/' + mm + '/' + yyyy;
+      // Remove RMs with different vendor than the one clicked on, this allows all RMs to be printed on one PO
+      const matchingKeyData = _.filter(data, ['vendor_name', props.vendor_name])
+      console.log(matchingKeyData)
+      // Pick out properties to be printed on the PO
+      const pickedData = _.map(matchingKeyData, (rm => { return _.pick(rm, ['key','name', 'unit_price', 'unit', 'total_price'])}))
+      console.log(pickedData)
+      
+      // Extract data values to arrays to populate on the PO
+      const finalRowData = _.map(pickedData,(rm => {return _.map(rm,(value=> {return value}))}))   
+      // Convert total_price from string to numbers
+      const numberedTotalData = _.map(pickedData, rm => {return rm.total_price = Number(rm.total_price)})
+      console.log(finalRowData)
+      // Sum total price
+      const reducer = (accumulator, item) => {
+        return accumulator + item;
+      };
+      const sumPrice = numberedTotalData.reduce(reducer)
+      // Push the total price as the last row of the table
+      finalRowData.push(['','','','Total All',sumPrice.toFixed(2)])
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
   // console.log([rest])
   // _.update(rest, 'unit_price',
   //   function (price) {return JSON.stringify(price)})
   //   console.log([rest])
-  // const doc = new jsPDF();
-  // doc.rect(20, 10, 168, 275);
+  const doc = new jsPDF();
+  doc.rect(20, 10, 168, 275);
 
-  // doc.text("Company name", 45, 15, null, null, "left");
-  // doc.text("Address", 45, 20, null, null, "left");
-  // doc.text("Email", 45, 25, null, null, "left");
-  // doc.line(20, 30, 188,30)
+  doc.text("Company name", 45, 15, null, null, "left");
+  doc.text("Address", 45, 20, null, null, "left");
+  doc.text("Email", 45, 25, null, null, "left");
+  doc.line(20, 30, 188,30)
 
 
-  // doc.setFont("helvetica", "bold");
-  // doc.text("To:", 20, 35);
-  // doc.setFont("helvetica", "normal");
-  // doc.text(vendor_name, 20, 40);
-  // doc.text(vendor_email, 20, 45);
+  doc.setFont("helvetica", "bold");
+  doc.text("To:", 20, 35);
+  doc.setFont("helvetica", "normal");
+  doc.text(props.vendor_name, 20, 40);
+  doc.text(props.vendor_email, 20, 45);
 
-  // doc.text(`Order date: ${today}`, 110, 35);
-  // doc.text("PO #: 12345678", 110, 40);
+  doc.text(`Order date: ${today}`, 110, 35);
+  doc.text("PO #: 12345678", 110, 40);
 
 
   // function createHeaders(keys) {
@@ -130,14 +150,21 @@ const EditableCell = ({
   // ]);
 
   // doc.table(45, 60, [rest], headers,{printHeaders:true, autoSize: true, fontSize:12});
-  // doc.autoTable({
-  //   head: [['Name', 'Email', 'Country']],
-  //   body: [
-  //     ['David', 'david@example.com', 'Sweden'],
-  //     ['Castille', 'castille@example.com', 'Spain'],
-  //     // ...
-  //   ],
-  // })
+  doc.autoTable({
+    head: [['Code', 'Name', 'Unit Price', 'Unit', 'Total Price']],
+    margin: { top: 60 , left: 20.2, right: 22.2},
+    columnStyles: { 
+      0: { halign: 'center', minCellWidth: 8 }, 
+      1: { halign: 'center', minCellWidth: 30},
+      2: { halign: 'center', minCellWidth: 10},
+      3: { halign: 'center', minCellWidth: 5},
+      4: { halign: 'center'}
+    },
+    footStyles: {fillColor:[255, 0, 0]},
+    // startY: number = null,
+    body: finalRowData,
+  })
+
   //   // console.log(record)
   //   // doc.text(JSON.stringify(record.coefficient).replace(/['"]+/g, ''), 10, 10);
   //   // // doc.text(JSON.stringify(record.key), 10, 10);
@@ -148,13 +175,13 @@ const EditableCell = ({
   //   // // doc.text(JSON.stringify(record.vendor_email), 10, 10);
   //   // // doc.text(JSON.stringify(record.vendor_name), 10, 10);
 
-  //   // Open document in new tab
-  //   var string = doc.output('datauristring');
-  //   var embed = "<embed width='100%' height='100%' src='" + string + "'/>"
-  //   var x = window.open();
-  //   x.document.open();
-  //   x.document.write(embed);
-  //   x.document.close();
+    // Open document in new tab
+    var string = doc.output('datauristring');
+    var embed = "<embed width='100%' height='100%' src='" + string + "'/>"
+    var x = window.open();
+    x.document.open();
+    x.document.write(embed);
+    x.document.close();
     
   }
 
@@ -185,6 +212,7 @@ const EditableCell = ({
   const remove = (row) => {
     console.log(row)
     console.log(data)
+    // remove by matching key
     const removedData = data.filter(e => e.key != row.key);
     setData(removedData)
   }
@@ -266,7 +294,7 @@ const EditableCell = ({
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
             Edit
           </Typography.Link>
-          <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(children)} style={{color: "dodgerblue"}}>
+          <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(record)} style={{color: "dodgerblue"}}>
             Generate PDF
           </Typography.Link>
           <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>

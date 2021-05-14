@@ -12,7 +12,6 @@ function Calculation() {
     useEffect (() => {
         loadProducts()
     }, [])
-    
     const qtyInput = useRef(null)
     const productSet = useRef(null)
     console.log(qtyInput.current)
@@ -29,9 +28,9 @@ function Calculation() {
     console.log(currentProduct) 
     console.log(quantity)
     const handleCalculation = () => {
-        
+        loadProducts()
         setQuantity(qtyInput.current.value)
-
+        
         
         console.log(quantity)
         console.log(products[1])

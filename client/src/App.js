@@ -22,7 +22,7 @@ function App() {
     API.userLoggedIn().then(response => {
       console.log(response)
       // setIsAuthenticated(response.data.isAuthenticated)
-      setIsAuthenticated(true)
+      setIsAuthenticated(response.data.isAuthenticated)
     })
   }, []);
 
