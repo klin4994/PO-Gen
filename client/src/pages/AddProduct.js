@@ -4,6 +4,7 @@ import './index.css';
 import API from '../utils/API'
 import { Form, Input, InputNumber, Button, Space, Tooltip, Popconfirm, Radio } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, QuestionCircleOutlined, DeleteFilled, InfoCircleOutlined } from '@ant-design/icons';
+import Paper from '@material-ui/core/Paper';
 
 export default function AddProduct () {
 
@@ -65,9 +66,10 @@ export default function AddProduct () {
               
               //<Form {...layout} name="product-form" onFinish={onFinish} validateMessages={validateMessages}> 
         <Form.Provider> 
+        
         <Form name="new-product-form" onFinish={onFinish} autoComplete="off" validateMessages={validateMessages}>
-            
-            <div className = "form-container">
+            <Paper elevation={3} style={{padding:"3em", margin:"2em 30%"}}>
+            {/* <div className = "form-container"> */}
             <Form.Item
                 name={['product', 'key']}
                 label="Product Code"
@@ -118,14 +120,18 @@ export default function AddProduct () {
                     },
                     ]}
             >
-                <InputNumber />
+                <InputNumber min='0'/>
             </Form.Item>
-            </div>
+            {/* </div> */}
+            </Paper>
+            
             <Form.List name="formulation">
                 {(fields, { add, remove }) => (
                 <>
                     {fields.map(({ key, name, fieldKey, ...restField }) => (
-                    <Space key={key}  direction="vertical" className="form-container flex"  align="baseline">
+                    <Paper elevation={3} style={{padding:"3em", margin:"2em 30%"}}>
+                    <Space key={key}  direction="vertical"  align="baseline">
+                        
                         <Form.Item 
                         
                         name={[name, 'key']}
@@ -176,7 +182,7 @@ export default function AddProduct () {
                             },
                             ]}
                         >
-                        <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/>
+                        <InputNumber min='0' formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/>
                         </Form.Item>
                         <Form.Item
                         name={[name, 'coefficient']}
@@ -190,7 +196,7 @@ export default function AddProduct () {
                             ]}
                         tooltip={coefficientTooltip}
                         >
-                        <InputNumber />
+                        <InputNumber min='0'/>
                         </Form.Item>
                         </Space>
                         <Space>
@@ -224,7 +230,8 @@ export default function AddProduct () {
                             </Button>
                             
                         </Popconfirm>
-                    </Space>
+                        </Space>
+                    </Paper>  
                     ))}
                     <Form.Item>
                     <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />} style={{ width: ""}}>

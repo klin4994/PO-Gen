@@ -1,15 +1,31 @@
 import React, {useState, useEffect, useRef, useContext} from "react";
-import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn } from "../components/ProductList"
+import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn, ProductForm } from "../components/ProductList"
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
 import AllProductsContext from '../components/AllProductsContext';
-import { Button } from 'antd';
+import { Button, Form, Select, InputNumber, message, Divider} from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import AuthContext from '../components/AuthContext'
 import _ from 'lodash';
+import Paper from '@material-ui/core/Paper';
 function Calculation() {
     // const [allProducts, setAllProducts] = useState()
     // const value = {allProducts, setAllProducts}
     // Load data
+    const layout = {
+        labelCol: {
+          span: 4,
+        },
+        wrapperCol: {
+          span: 16,
+        },
+      };
+      const tailLayout = {
+        wrapperCol: {
+          offset: 1,
+          span: 5,
+        },
+      };
 
     useEffect (() => {
         loadVendors()
@@ -30,22 +46,34 @@ function Calculation() {
     // Set state for currently selected product
     const [currentProduct, setCurrentProduct] = useState({})
 
-    const handleCalculation = () => {
+    const handleCalculation = (selectedP, selectedQ) => {
+        if (!selectedP || !selectedQ){
+            console.log("no data")
+            message.warning('Please complete all fields below')
+            return
+        }
+        console.log(selectedP)
+        console.log(selectedQ)
         loadProducts()
-        setQuantity(qtyInput.current.value)
+        setQuantity(selectedQ)
         // Object to store the modified product object
         let selectedProduct;
         // loops through all product to find the matching one by key and set as current product
         products.forEach(product => {
-            // If the key matches, store properties in the selectProduct
-            if (product.key === productSet.current.value ) {
+            console.log("count")
+            console.log(products)
+            console.log(product.key)
+            console.log(selectedP)
+            // If the key matches, store properties in the selectProduct -> productSet.current.value 
+            if (product.key === selectedP ) {
+                console.log("product.key")
                 selectedProduct = product
                 // Add new property (total_price) to every raw material
                 selectedProduct.formulation.forEach(rm => {
                     // 1.05 * 1 *20 * 150 * 1000
                     // bottle/box:
                     // 1.05 * 1 * 20 * 0.05 = 1
-                    rm.quantity = (overage * qtyInput.current.value * product.qtyPerPack * rm.coefficient).toFixed(2)
+                    rm.quantity = (overage * selectedQ * product.qtyPerPack * rm.coefficient).toFixed(2)
 
                     // Divide the quantity unity by 1000000 - convert mg (calculated above) to kg, for weight units only
                     const conversionFactor = 1000000
@@ -55,11 +83,12 @@ function Calculation() {
                     // Calculate total price 
                     rm.total_price =  (rm.quantity * rm.unit_price).toFixed(2)                   
                 })
-            }
+            
             
 
             // set the modified object as the current product
             setCurrentProduct(selectedProduct)
+        }
         })
         
     }
@@ -102,23 +131,50 @@ function Calculation() {
         // const currentRows = [...currentProduct.formulation]
         setCurrentProduct(addRmProduct)
       };
-      console.log(vendors)
+      console.log(products)
+      
     return (
         // <AllProductsContext.Provider value={value}>
-        <div id="page-container" style={{ maxWidth : "90%", marginLeft:"auto", marginRight:"auto"}}>
-        <div >
-            <ProductList ref={productSet}>
+        <div id="page-container" style={{ maxWidth : "60%", marginTop:"3em", marginLeft:"auto", marginRight:"auto"}}>
+            <Paper variant="outlined" style={{padding: "3em 6em"}}> 
+            <h1>Enter product information below:</h1>
+            <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
+            <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" >
+            <Select 
+            dropdownRender={menu => (
+                <div>
+                  {menu}
+                  <Divider style={{ margin: '4px 0' }} />
+                  <div >
+                    <a
+                      style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
+                      href="/addproduct"
+                    >
+                      <PlusOutlined /> New Product
+                    </a>
+                  </div>
+                </div>
+              )}
+              placeholder="Select Product Code">
             {products.map(product => (
-                <ProductListItem key={product.key}>{product}</ProductListItem>
+                <Select.Option key={product.key}>{product.key}</Select.Option>
             ))}
-            </ProductList>
-            <ProductQtyInput ref={qtyInput} ></ProductQtyInput>
-        </div>
+            </Select>
+            </Form.Item>
+            <Form.Item  {...tailLayout} label="Package quantity:"name="selectedQty" tooltip="E.g for 5000 bottles/boxes of blisters, enter 5000.">
+                <InputNumber placeholder="Enter Qty" min='0'style={{ width: 200}}/>
+            </Form.Item>
+            <Form.Item wrapperCol= {{offset: 5,span: 5}}>
+            <Button htmlType="submit" >
+                Calculate
+            </Button>
+            </Form.Item>
+            </Form>
+            </Paper>
         <span><strong>Product: </strong>{currentProduct.name}</span>
         <br/>
         {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
         <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-        <SetProductBtn onClick={handleCalculation} />
         </div>
 
         {currentProduct !== 0 ? <OrderTable>{{currentProduct, vendors}} </OrderTable> : <></>}    

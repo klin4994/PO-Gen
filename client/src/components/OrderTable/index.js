@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import {InfoCircleOutlined} from '@ant-design/icons';
-import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select } from 'antd';
+import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select, Button } from 'antd';
 import API from "../../utils/API"
 import { jsPDF } from "jspdf";
 import _ from "lodash";
@@ -19,7 +19,6 @@ export default function ({children}) {
 
   // Get vendor names in an array
   const vendorArray = _.map(children[0].vendors, (vendor => {return _.pick(vendor, ['name', 'contact_email'])}))
-  console.log(vendorArray)
 const EditableCell = ({
   editing,
   dataIndex,
@@ -280,7 +279,7 @@ const EditableCell = ({
             Generate PDF
           </Typography.Link>
           <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>
-            <Popconfirm title="Sure to remove?" onConfirm={() => remove(record)} okText="Yes" cancelText="No">
+            <Popconfirm title="Remove this row?" onConfirm={() => remove(record)} okText="Confirm" cancelText="Cancel">
               Remove
             </Popconfirm>
           </Typography.Link>
@@ -289,6 +288,9 @@ const EditableCell = ({
       },
     },
   ];
+  const logVendor = (value) => {
+    console.log(value)
+  }
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
       return col;
@@ -319,7 +321,6 @@ const EditableCell = ({
         rowClassName="editable-row"
         pagination={false} 
       />
-      
     </Form>
     
   );
