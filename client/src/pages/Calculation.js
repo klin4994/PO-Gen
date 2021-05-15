@@ -43,7 +43,19 @@ function Calculation() {
                 selectedProduct = product
                 // Add new property (total_price) to every raw material
                 selectedProduct.formulation.forEach(rm => {
-                    rm.total_price =  (overage * rm.unit_price * qtyInput.current.value  * product.qtyPerPack * rm.coefficient / 1000000).toFixed(2)
+                    // 1.05 * 1 *20 * 150 * 1000
+                    // bottle/box:
+                    // 1.05 * 1 * 20 * 0.05 = 1
+                    rm.quantity = (overage * qtyInput.current.value * product.qtyPerPack * rm.coefficient)
+                    
+                    // Divide the quantity unity by 1000000 - convert mg (calculated above) to kg, for weight units only
+                    const conversionFactor = 1000000
+                    if (rm.unit === 'KG') {
+                        rm.quantity /= conversionFactor;
+                    };
+                    // Calculate total price 
+                    rm.total_price =  (rm.quantity * rm.unit_price).toFixed(2)
+                    console.log(rm.quantity, "------", rm.total_price)                    
                 })
             }
             

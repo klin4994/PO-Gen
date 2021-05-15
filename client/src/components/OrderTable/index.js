@@ -238,24 +238,25 @@ const EditableCell = ({
       width: '35%',
       editable: true,
     },
-    // {
-    //   title: 'Order Quantity',
-    //   dataIndex: 'vendor',
-    //   width: '15%',
-    //   editable: true,
-    // },
     {
-      title: 'Unit Price',
+      title: 'Order Quantity',
+      dataIndex: 'quantity',
+      width: '15%',
+      editable: true,
+    },
+    {
+      title: 'Unit',
+      dataIndex: 'unit',
+      width: '5%',
+      editable: true,
+    },   
+    {
+      title: 'Price per unit',
       dataIndex: 'unit_price',
       width: '10%',
       editable: true,
     },
-    // {
-    //   title: 'Unit',
-    //   dataIndex: 'unit',
-    //   width: '5%',
-    //   editable: true,
-    // },    
+ 
     {
       title: 'Total Price',
       dataIndex: 'total_price',
@@ -298,7 +299,7 @@ const EditableCell = ({
             Generate PDF
           </Typography.Link>
           <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>
-            <Popconfirm title="Sure to cancel?" onConfirm={() => remove(record)} okText="Yes" cancelText="No">
+            <Popconfirm title="Sure to remove?" onConfirm={() => remove(record)} okText="Yes" cancelText="No">
               Remove
             </Popconfirm>
           </Typography.Link>
