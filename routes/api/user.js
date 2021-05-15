@@ -6,10 +6,6 @@ const passport = require("../../config/passport");
 router.post('/login/', passport.authenticate('local'), (req, res) => {
   res.json(req.user)
 });
-  // .post("/login", passport.authenticate("local"), (req, res) => {
-  //   res.json(req.user);
-  //   console.log("req.user");
-  // });
 
 // check if a user has been authenticated by verifying the isAuthenticated() property provided by passport.js
 router.get("/logged-in", (req, res) => {

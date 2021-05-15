@@ -23,5 +23,9 @@ export default {
     // User/Company logout
     logout: function () {
         return axios.get("/api/user/logout")
+    },
+    // Get all vendors
+    getVendors: function () {
+        return axios.get("api/vendors")
     }
 }

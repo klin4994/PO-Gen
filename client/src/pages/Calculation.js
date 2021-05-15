@@ -4,37 +4,35 @@ import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
 import AllProductsContext from '../components/AllProductsContext';
 import { Button } from 'antd';
-
+import AuthContext from '../components/AuthContext'
 
 function Calculation() {
-    const [allProducts, setAllProducts] = useState()
-    const value = {allProducts, setAllProducts}
+    // const [allProducts, setAllProducts] = useState()
+    // const value = {allProducts, setAllProducts}
     // Load data
+
+    useEffect (() => {
+        loadVendors()
+    }, [])
     useEffect (() => {
         loadProducts()
     }, [])
     const qtyInput = useRef(null)
     const productSet = useRef(null)
-    console.log(qtyInput.current)
     // Overage 5%
     const overage = 1.05;
     // Set products state
     const [products, setProducts] = useState([])
     // Set product qty state
     const [quantity, setQuantity] = useState(0)
-    // Set state for currently selected product key 
-    const [currentProductKey, setCurrentProductKey] = useState()
+    // Set vendors 
+    const [vendors, setVendors] = useState([])
     // Set state for currently selected product
     const [currentProduct, setCurrentProduct] = useState({})
-    console.log(currentProduct) 
-    console.log(quantity)
+
     const handleCalculation = () => {
         loadProducts()
         setQuantity(qtyInput.current.value)
-        
-        
-        console.log(quantity)
-        console.log(products[1])
         // Object to store the modified product object
         let selectedProduct;
         // loops through all product to find the matching one by key and set as current product
@@ -53,11 +51,9 @@ function Calculation() {
                     const conversionFactor = 1000000
                     if (rm.unit.toUpperCase() === 'KG') {
                         rm.quantity = (rm.quantity/conversionFactor).toFixed(2);
-                        console.log(rm.quantity)
                     };
                     // Calculate total price 
-                    rm.total_price =  (rm.quantity * rm.unit_price).toFixed(2)
-                    console.log(rm.quantity, "------", rm.total_price)                    
+                    rm.total_price =  (rm.quantity * rm.unit_price).toFixed(2)                   
                 })
             }
             
@@ -73,13 +69,22 @@ function Calculation() {
         API.getProducts ()
         .then(res => {
             setProducts(res.data);
-            setAllProducts(res.data)
+            // setAllProducts(res.data)
             }
         )
           .catch(err => console.log(err));
     }
+    
+    async function loadVendors () {
+        API.getVendors ()
+        .then(res => {
+            setVendors(res.data);
+            }
+        )
+          .catch(err => console.log(err));
+    }
+
     const handleAdd = () => {
-        
         const newRow = {
           key: '',
           name: '',
@@ -89,7 +94,6 @@ function Calculation() {
           total_price: '',
           vendor_name:''
         };
-        console.log(currentProduct)
         // cloning current product for setCurrentProduct to detect new object and trigger rerendering
         const clone = obj => Object.assign({}, ...obj);
         const addRmProduct = clone([currentProduct]);
@@ -98,8 +102,9 @@ function Calculation() {
         // const currentRows = [...currentProduct.formulation]
         setCurrentProduct(addRmProduct)
       };
+      console.log(vendors)
     return (
-        <AllProductsContext.Provider value={value}>
+        // <AllProductsContext.Provider value={value}>
         <div id="page-container" style={{ maxWidth : "90%", marginLeft:"auto", marginRight:"auto"}}>
         <div >
             <ProductList ref={productSet}>
@@ -124,9 +129,9 @@ function Calculation() {
         >
           Add a row
         </Button>
-        {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
+        {currentProduct !== 0 ? <OrderTable>{{currentProduct, vendors}} </OrderTable> : <></>}       
         </div>
-        </AllProductsContext.Provider>
+        // </AllProductsContext.Provider>
     );
 }
 

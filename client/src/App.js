@@ -14,7 +14,7 @@ import Nav from "./components/Nav";
 import AuthContext from './components/AuthContext';
 import API from './utils/API';
 function App() {
-  const [isAuthenticated, setIsAuthenticated ] = useState(false);
+  const [isAuthenticated, setIsAuthenticated ] = useState(true);
   const value = { isAuthenticated, setIsAuthenticated };
 
   // We check if user is already logged in, and if they are then we set isAuthenticated to true

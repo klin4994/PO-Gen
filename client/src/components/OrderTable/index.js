@@ -2,23 +2,24 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import {InfoCircleOutlined} from '@ant-design/icons';
-import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
-import AllProductsContext from '../AllProductsContext'
+import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select } from 'antd';
+import API from "../../utils/API"
 import { jsPDF } from "jspdf";
 import _ from "lodash";
 import 'jspdf-autotable'
 
+const {Option} = Select;
+
 export default function ({children}) {
-  const allProducts = useContext(AllProductsContext);
-  console.log(children)
-  const [data, setData] = useState(children[0].formulation)
+ console.log(children[0].currentProduct)
+  const [data, setData] = useState(children[0].currentProduct.formulation)
   useEffect (() => {
-    setData(children[0].formulation)
+    setData(children[0].currentProduct.formulation)
   }, children)
 
-  console.log(children)
-  console.log(children[0].formulation)
-
+  // Get vendor names in an array
+  const vendorArray = _.map(children[0].vendors, (vendor => {return _.pick(vendor, ['name', 'contact_email'])}))
+  console.log(vendorArray)
 const EditableCell = ({
   editing,
   dataIndex,
@@ -29,7 +30,6 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -38,14 +38,15 @@ const EditableCell = ({
           style={{
             margin: 0,
           }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
         >
-          {inputNode}
+          {dataIndex === 'vendor_name'? 
+          <Select>
+            {_.map(vendorArray, (vendor => (
+              <Option key={vendor.name}>{vendor.name}</Option>
+            )))}
+          </Select>:
+          <Input/>
+        }
         </Form.Item>
       ) : (
         children
@@ -79,16 +80,12 @@ const EditableCell = ({
       console.log(props)
       // Remove RMs with different vendor than the one clicked on, this allows all RMs to be printed on one PO
       const matchingKeyData = _.filter(data, ['vendor_name', props.vendor_name])
-      console.log(matchingKeyData)
       // Pick out properties to be printed on the PO
-      const pickedData = _.map(matchingKeyData, (rm => { return _.pick(rm, ['key','name', 'quantity', 'unit', 'unit_price', 'total_price'])}))
-      console.log(pickedData)
-      
+      const pickedData = _.map(matchingKeyData, (rm => { return _.pick(rm, ['key','name', 'quantity', 'unit', 'unit_price', 'total_price'])}))     
       // Extract data values to arrays to populate on the PO
       const finalRowData = _.map(pickedData,(rm => {return _.map(rm,(value=> {return value}))}))   
       // Convert total_price from string to numbers
       const numberedTotalData = _.map(pickedData, rm => {return rm.total_price = Number(rm.total_price)})
-      console.log(finalRowData)
       // Sum total price
       const reducer = (accumulator, item) => {
         return accumulator + item;
@@ -102,10 +99,8 @@ const EditableCell = ({
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = dd + '/' + mm + '/' + yyyy;
-  // console.log([rest])
-  // _.update(rest, 'unit_price',
-  //   function (price) {return JSON.stringify(price)})
-  //   console.log([rest])
+
+    // Initialize pdf
   const doc = new jsPDF();
   doc.rect(20, 10, 168, 275);
 
@@ -119,7 +114,21 @@ const EditableCell = ({
   doc.text("To:", 20, 35);
   doc.setFont("helvetica", "normal");
   doc.text(props.vendor_name, 20, 40);
-  // doc.text(props.vendor_email, 20, 45);
+  
+  let vendorEmail;
+
+  vendorArray.forEach(vendor => {
+    console.log(vendor)
+    console.log(props.vendor_name)
+    console.log(vendor.contact_email)
+    if (vendor.name === props.vendor_name) {
+      console.log(vendor.contact_email)
+      return vendorEmail = vendor.contact_email;
+    };
+  });
+
+  console.log(vendorEmail)
+  doc.text(vendorEmail, 20, 45);
 
   doc.text(`Order date: ${today}`, 110, 35);
   doc.text("PO #: 12345678", 110, 40);
@@ -159,21 +168,16 @@ const EditableCell = ({
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      console.log("NewDate", newData);
       // find the index of the modified value
       const index = newData.findIndex((item) => key === item.key);
-      // // replace the properties with the new values
-      // const item = newData[index];
-      // newData.splice(index, 1, { ...item, ...row });
-      // setData(newData)
-      // data.push(newData)
-      // setEditingKey('');
+      // replace the properties with the new values
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
         setData(newData);
         setEditingKey('');
       } else {
+      // If new row of data, add it to the original data set
         newData.push(row);
         setData(newData);
         setEditingKey('');
@@ -185,8 +189,6 @@ const EditableCell = ({
 
   // Remove a raw material from the data and set new state for data
   const remove = (row) => {
-    console.log(row)
-    console.log(data)
     // remove by matching key
     const removedData = data.filter(e => e.key != row.key);
     setData(removedData)
@@ -299,7 +301,6 @@ const EditableCell = ({
       }),
     };
   });
-  console.log(data)
   return (
     
     <Form form={form} component={false}>
