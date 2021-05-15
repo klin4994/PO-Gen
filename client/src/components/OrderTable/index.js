@@ -81,7 +81,7 @@ const EditableCell = ({
       const matchingKeyData = _.filter(data, ['vendor_name', props.vendor_name])
       console.log(matchingKeyData)
       // Pick out properties to be printed on the PO
-      const pickedData = _.map(matchingKeyData, (rm => { return _.pick(rm, ['key','name', 'unit_price', 'unit', 'total_price'])}))
+      const pickedData = _.map(matchingKeyData, (rm => { return _.pick(rm, ['key','name', 'quantity', 'unit', 'unit_price', 'total_price'])}))
       console.log(pickedData)
       
       // Extract data values to arrays to populate on the PO
@@ -95,7 +95,7 @@ const EditableCell = ({
       };
       const sumPrice = numberedTotalData.reduce(reducer)
       // Push the total price as the last row of the table
-      finalRowData.push(['','','','Total All',sumPrice.toFixed(2)])
+      finalRowData.push(['','','','','Total All',sumPrice.toFixed(2)])
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -119,61 +119,26 @@ const EditableCell = ({
   doc.text("To:", 20, 35);
   doc.setFont("helvetica", "normal");
   doc.text(props.vendor_name, 20, 40);
-  doc.text(props.vendor_email, 20, 45);
+  // doc.text(props.vendor_email, 20, 45);
 
   doc.text(`Order date: ${today}`, 110, 35);
   doc.text("PO #: 12345678", 110, 40);
 
-
-  // function createHeaders(keys) {
-  // var result = [];
-  // for (var i = 0; i < keys.length; i += 1) {
-  //   result.push({
-  //     id: keys[i],
-  //     name: keys[i],
-  //     prompt: keys[i],
-  //     width: 65,
-  //     align: "center",
-  //     padding: 0
-  //   });
-  // }
-  // return result;
-  // }
-
-  // var headers = createHeaders([ 
-  // "key",
-  // "name",
-  // "unit_price",
-  // "unit",
-  // "total_price",
-
-  // ]);
-
-  // doc.table(45, 60, [rest], headers,{printHeaders:true, autoSize: true, fontSize:12});
   doc.autoTable({
-    head: [['Code', 'Name', 'Unit Price', 'Unit', 'Total Price']],
-    margin: { top: 60 , left: 20.2, right: 22.2},
+    head: [['Our Ref', 'Name', 'Quantity', 'Unit', 'Rate', 'Total Price']],
+    margin: { top: 60 , left: 20.2, right: 22.4},
     columnStyles: { 
       0: { halign: 'center', minCellWidth: 8 }, 
       1: { halign: 'center', minCellWidth: 30},
       2: { halign: 'center', minCellWidth: 10},
       3: { halign: 'center', minCellWidth: 5},
-      4: { halign: 'center'}
+      4: { halign: 'center', minCellWidth: 10},
+      5: { halign: 'right'}
     },
     footStyles: {fillColor:[255, 0, 0]},
-    // startY: number = null,
     body: finalRowData,
   })
 
-  //   // console.log(record)
-  //   // doc.text(JSON.stringify(record.coefficient).replace(/['"]+/g, ''), 10, 10);
-  //   // // doc.text(JSON.stringify(record.key), 10, 10);
-  //   // // doc.text(JSON.stringify(record.name), 10, 10);
-  //   // // doc.text(JSON.stringify(record.total_price), 10, 10);
-  //   // // doc.text(JSON.stringify(record.unit), 10, 10);
-  //   // // doc.text(JSON.stringify(record.unit_price), 10, 10);
-  //   // // doc.text(JSON.stringify(record.vendor_email), 10, 10);
-  //   // // doc.text(JSON.stringify(record.vendor_name), 10, 10);
 
     // Open document in new tab
     var string = doc.output('datauristring');
@@ -197,12 +162,22 @@ const EditableCell = ({
       console.log("NewDate", newData);
       // find the index of the modified value
       const index = newData.findIndex((item) => key === item.key);
-      // replace the properties with the new values
-      const item = newData[index];
-      newData.splice(index, 1, { ...item, ...row });
-      setData(newData)
-      data.push(newData)
-      setEditingKey('');
+      // // replace the properties with the new values
+      // const item = newData[index];
+      // newData.splice(index, 1, { ...item, ...row });
+      // setData(newData)
+      // data.push(newData)
+      // setEditingKey('');
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, { ...item, ...row });
+        setData(newData);
+        setEditingKey('');
+      } else {
+        newData.push(row);
+        setData(newData);
+        setEditingKey('');
+      }
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
@@ -224,11 +199,12 @@ const EditableCell = ({
       width: '10%',
       editable: true,
       render: (key, row) => {
-        
         return (
+        <React.Fragment>
         <Tooltip title = {`Coefficient: ${row.coefficient}`}> {key}
         <InfoCircleOutlined />
         </Tooltip>
+        </React.Fragment>
         )
       },
     },

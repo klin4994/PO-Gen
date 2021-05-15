@@ -3,6 +3,7 @@ import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn } from "../
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
 import AllProductsContext from '../components/AllProductsContext';
+import { Button } from 'antd';
 
 
 function Calculation() {
@@ -46,12 +47,13 @@ function Calculation() {
                     // 1.05 * 1 *20 * 150 * 1000
                     // bottle/box:
                     // 1.05 * 1 * 20 * 0.05 = 1
-                    rm.quantity = (overage * qtyInput.current.value * product.qtyPerPack * rm.coefficient)
-                    
+                    rm.quantity = (overage * qtyInput.current.value * product.qtyPerPack * rm.coefficient).toFixed(2)
+
                     // Divide the quantity unity by 1000000 - convert mg (calculated above) to kg, for weight units only
                     const conversionFactor = 1000000
-                    if (rm.unit === 'KG') {
-                        rm.quantity /= conversionFactor;
+                    if (rm.unit.toUpperCase() === 'KG') {
+                        rm.quantity = (rm.quantity/conversionFactor).toFixed(2);
+                        console.log(rm.quantity)
                     };
                     // Calculate total price 
                     rm.total_price =  (rm.quantity * rm.unit_price).toFixed(2)
@@ -76,7 +78,26 @@ function Calculation() {
         )
           .catch(err => console.log(err));
     }
-    console.log(currentProduct)
+    const handleAdd = () => {
+        
+        const newRow = {
+          key: '',
+          name: '',
+          quantity: '',
+          unit: '',
+          unit_price: '',
+          total_price: '',
+          vendor_name:''
+        };
+        console.log(currentProduct)
+        // cloning current product for setCurrentProduct to detect new object and trigger rerendering
+        const clone = obj => Object.assign({}, ...obj);
+        const addRmProduct = clone([currentProduct]);
+
+        addRmProduct.formulation = [...addRmProduct.formulation, {...newRow}]
+        // const currentRows = [...currentProduct.formulation]
+        setCurrentProduct(addRmProduct)
+      };
     return (
         <AllProductsContext.Provider value={value}>
         <div id="page-container" style={{ maxWidth : "90%", marginLeft:"auto", marginRight:"auto"}}>
@@ -94,7 +115,15 @@ function Calculation() {
         <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
         <SetProductBtn onClick={handleCalculation} />
         </div>
-       
+        <Button
+          onClick={handleAdd}
+          type="primary"
+          style={{
+            marginBottom: 16,
+          }}
+        >
+          Add a row
+        </Button>
         {currentProduct !== 0 ? <OrderTable>{currentProduct} </OrderTable> : <></>}       
         </div>
         </AllProductsContext.Provider>
