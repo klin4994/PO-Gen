@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import {Button} from 'antd';
 
 export const ProductList = 
 React.forwardRef(({children},ref) => {
@@ -28,6 +29,6 @@ export const ProductQtyInput =
 
 export function SetProductBtn(props) {
     return (
-            <button className="setProduct"{...props}>Set Product</button>
+            <Button className="setProduct"{...props}>Calculate</Button>
     )
 }

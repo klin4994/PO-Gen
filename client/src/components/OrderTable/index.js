@@ -30,6 +30,7 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -45,7 +46,8 @@ const EditableCell = ({
               <Option key={vendor.name}>{vendor.name}</Option>
             )))}
           </Select>:
-          <Input/>
+          dataIndex === 'total_price' ? <InputNumber style={{width: '15em'}}/> : <Input/>
+ 
         }
         </Form.Item>
       ) : (
@@ -225,7 +227,7 @@ const EditableCell = ({
     {
       title: 'Unit',
       dataIndex: 'unit',
-      width: '5%',
+      width: '10%',
       editable: true,
     },   
     {
@@ -238,6 +240,7 @@ const EditableCell = ({
     {
       title: 'Total Price',
       dataIndex: 'total_price',
+      inputType: 'number',
       width: '10%',
       editable: true,
     },
@@ -248,7 +251,7 @@ const EditableCell = ({
       editable: true,
     },
     {
-      title: 'operation',
+      title: 'Operation',
       dataIndex: 'operation',
       render: (_, record) => {
         const editable = isEditing(record);

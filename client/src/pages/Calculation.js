@@ -5,7 +5,7 @@ import API from "../utils/API"
 import AllProductsContext from '../components/AllProductsContext';
 import { Button } from 'antd';
 import AuthContext from '../components/AuthContext'
-
+import _ from 'lodash';
 function Calculation() {
     // const [allProducts, setAllProducts] = useState()
     // const value = {allProducts, setAllProducts}
@@ -120,16 +120,13 @@ function Calculation() {
         <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
         <SetProductBtn onClick={handleCalculation} />
         </div>
-        <Button
-          onClick={handleAdd}
-          type="primary"
-          style={{
-            marginBottom: 16,
-          }}
-        >
+
+        {currentProduct !== 0 ? <OrderTable>{{currentProduct, vendors}} </OrderTable> : <></>}    
+        {!_.isEmpty(currentProduct) ?
+        <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Add a row
-        </Button>
-        {currentProduct !== 0 ? <OrderTable>{{currentProduct, vendors}} </OrderTable> : <></>}       
+        </Button> :
+        <></>}   
         </div>
         // </AllProductsContext.Provider>
     );
