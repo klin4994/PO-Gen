@@ -221,12 +221,12 @@ const EditableCell = ({
     {
       title: 'RM Code',
       dataIndex: 'key',
-      width: '5%',
+      width: '10%',
       editable: true,
       render: (key, row) => {
         
         return (
-        <Tooltip title = {`Vendor: ${row.vendor_name}`}> {key}
+        <Tooltip title = {`Coefficient: ${row.coefficient}`}> {key}
         <InfoCircleOutlined />
         </Tooltip>
         )
@@ -235,7 +235,7 @@ const EditableCell = ({
     {
       title: 'Name and Description',
       dataIndex: 'name',
-      width: '30',
+      width: '35%',
       editable: true,
     },
     // {
@@ -247,7 +247,7 @@ const EditableCell = ({
     {
       title: 'Unit Price',
       dataIndex: 'unit_price',
-      width: '15%',
+      width: '10%',
       editable: true,
     },
     // {
@@ -257,15 +257,15 @@ const EditableCell = ({
     //   editable: true,
     // },    
     {
-      title: 'Coefficient',
-      dataIndex: 'coefficient',
-      width: '5%',
+      title: 'Total Price',
+      dataIndex: 'total_price',
+      width: '10%',
       editable: true,
     },
     {
-      title: 'Total Price',
-      dataIndex: 'total_price',
-      width: '5%',
+      title: 'Vendor',
+      dataIndex: 'vendor_name',
+      width: '20%',
       editable: true,
     },
     {
