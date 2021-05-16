@@ -148,11 +148,12 @@ function Calculation() {
                   {/* <animated.div style={springStyle}>I will fade in</animated.div> */}
                   <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
                   <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Enter product information below:</h1>
+                  <br/>
                   <Form.Item>
                     <Row gutter={{xs:400 , md: 100 , lg:100}}>
                       <Col >
                         <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" >
-                          <Select style={{ width: "10em"}}
+                          <Select style={{ width: "12em"}}
                         dropdownMatchSelectWidth={false}
                         dropdownRender={menu => (
                             <div>
