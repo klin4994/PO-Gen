@@ -3,11 +3,15 @@ import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn, ProductFor
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
 import AllProductsContext from '../components/AllProductsContext';
-import { Button, Form, Select, InputNumber, message, Divider} from 'antd';
+import { Button, Form, Select, InputNumber, message, Divider, Layout, Space, Row, Col} from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import AuthContext from '../components/AuthContext'
 import _ from 'lodash';
 import Paper from '@material-ui/core/Paper';
+import { useSpring, animated } from 'react-spring';
+
+
+const { Content } = Layout;
 function Calculation() {
     // const [allProducts, setAllProducts] = useState()
     // const value = {allProducts, setAllProducts}
@@ -52,8 +56,7 @@ function Calculation() {
             message.warning('Please complete all fields below')
             return
         }
-        console.log(selectedP)
-        console.log(selectedQ)
+
         loadProducts()
         setQuantity(selectedQ)
         // Object to store the modified product object
@@ -132,58 +135,78 @@ function Calculation() {
         setCurrentProduct(addRmProduct)
       };
       console.log(products)
+
+      // transition style
+      const springStyle = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, config:{ duration: 2000 }})
       
     return (
         // <AllProductsContext.Provider value={value}>
-        <div id="page-container" style={{ maxWidth : "60%", marginTop:"3em", marginLeft:"auto", marginRight:"auto"}}>
-            <Paper variant="outlined" style={{padding: "3em 6em"}}> 
-            <h1>Enter product information below:</h1>
-            <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
-            <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" >
-            <Select 
-            dropdownRender={menu => (
-                <div>
-                  {menu}
-                  <Divider style={{ margin: '4px 0' }} />
-                  <div >
-                    <a
-                      style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
-                      href="/addproduct"
-                    >
-                      <PlusOutlined /> New Product
-                    </a>
-                  </div>
-                </div>
-              )}
-              placeholder="Select Product Code">
-            {products.map(product => (
-                <Select.Option key={product.key}>{product.key}</Select.Option>
-            ))}
-            </Select>
-            </Form.Item>
-            <Form.Item  {...tailLayout} label="Package quantity:"name="selectedQty" tooltip="E.g for 5000 bottles/boxes of blisters, enter 5000.">
-                <InputNumber placeholder="Enter Qty" min='0'style={{ width: 200}}/>
-            </Form.Item>
-            <Form.Item wrapperCol= {{offset: 5,span: 5}}>
-            <Button htmlType="submit" >
-                Calculate
-            </Button>
-            </Form.Item>
-            </Form>
-            </Paper>
-        <span><strong>Product: </strong>{currentProduct.name}</span>
-        <br/>
-        {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
-        <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-        </div>
+            <Layout style={{ minHeight: '100vh' }}>
+              <Content style={{minWidth : "60%", marginTop:"3em", marginLeft:"auto", marginRight:"auto"}}>
+                <Paper variant="outlined" style={{padding: "3em 6em"}}> 
+                  <h1>Enter product information below:</h1>
+                  {/* <animated.div style={springStyle}>I will fade in</animated.div> */}
+                  <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
 
-        {currentProduct !== 0 ? <OrderTable>{{currentProduct, vendors}} </OrderTable> : <></>}    
-        {!_.isEmpty(currentProduct) ?
+                  <Form.Item>
+                    <Row gutter={{xs:400 , md: 100 , lg:100}}>
+                      <Col >
+                        <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" >
+                          <Select style={{ width: "10em"}}
+                        dropdownMatchSelectWidth={false}
+                        dropdownRender={menu => (
+                            <div>
+                              {menu}
+                              <Divider style={{ margin: '4px 0' }} />
+                              <div >
+                                <a
+                                  style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
+                                  href="/addproduct"
+                                >
+                                  <PlusOutlined /> New Product
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                          placeholder="Select Product Code">
+                        {products.map(product => (
+                            <Select.Option key={product.key}>{product.key}</Select.Option>
+                        ))}
+                        </Select>
+                        </Form.Item>
+                      </Col>
+                      <Col >
+                        <Form.Item  {...tailLayout} label="Package quantity:"name="selectedQty" tooltip="E.g for 5000 bottles/boxes of blisters, enter 5000.">
+                            <InputNumber placeholder="Enter Qty" min='0'style={{ width: 200}}/>
+                        </Form.Item>
+                      </Col>
+                      <Col >
+                      <Form.Item >
+                        <Button htmlType="submit" >
+                          Calculate
+                      </Button>
+                      </Form.Item>
+                      </Col>
+                    </Row>
+                    {!_.isEmpty(currentProduct)? <h2> {currentProduct.name}</h2>:<></>}
+                  </Form.Item>
+                  </Form>
+            </Paper>
+            <div style={{marginTop:"2%"}}>
+              {currentProduct !== 0 ?<Paper variant="outlined" style={{padding: "2em 2em"}}>  <OrderTable >{{currentProduct, vendors}} </OrderTable></Paper> : <></>} 
+            </div>
+            </Content>
+
+
+        {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
+   
+      
+        {/* {!_.isEmpty(currentProduct) ?
         <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Add a row
         </Button> :
-        <></>}   
-        </div>
+        <></>}  */}
+        </Layout>  
         // </AllProductsContext.Provider>
     );
 }
