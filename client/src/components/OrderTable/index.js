@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import {InfoCircleOutlined} from '@ant-design/icons';
+import {InfoCircleOutlined, EditTwoTone, FilePdfTwoTone, DeleteTwoTone} from '@ant-design/icons';
 import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select, Button } from 'antd';
 import API from "../../utils/API"
 import { jsPDF } from "jspdf";
@@ -200,6 +200,7 @@ const EditableCell = ({
       title: 'RM Code',
       dataIndex: 'key',
       width: '10%',
+      fixed: 'left',
       editable: true,
       render: (key, row) => {
         return (
@@ -214,33 +215,7 @@ const EditableCell = ({
     {
       title: 'Name and Description',
       dataIndex: 'name',
-      width: '35%',
-      editable: true,
-    },
-    {
-      title: 'Order Quantity',
-      dataIndex: 'quantity',
-      width: '15%',
-      editable: true,
-    },
-    {
-      title: 'Unit',
-      dataIndex: 'unit',
-      width: '10%',
-      editable: true,
-    },   
-    {
-      title: 'Price per unit',
-      dataIndex: 'unit_price',
-      width: '10%',
-      editable: true,
-    },
- 
-    {
-      title: 'Total Price',
-      dataIndex: 'total_price',
-      inputType: 'number',
-      width: '10%',
+      width: '25%',
       editable: true,
     },
     {
@@ -250,8 +225,41 @@ const EditableCell = ({
       editable: true,
     },
     {
-      title: 'Operation',
-      dataIndex: 'operation',
+      title: 'Order Quantity',
+      dataIndex: 'quantity',
+      width: '10%',
+      editable: true,
+      align:'right'
+    },
+    {
+      title: 'Unit',
+      dataIndex: 'unit',
+      width: '5%',
+      editable: true,
+      align:'right'
+    },   
+    {
+      title: 'Price per unit',
+      dataIndex: 'unit_price',
+      width: '10%',
+      editable: true,
+      align:'right'
+    },
+ 
+    {
+      title: 'Total Price',
+      dataIndex: 'total_price',
+      inputType: 'number',
+      width: '10%',
+      editable: true,
+      align:'right'
+    },
+
+    {
+      title: 'Actions',
+      dataIndex: 'actions',
+      width: '15%',
+      fixed: 'right',
       render: (_, record) => {
         const editable = isEditing(record);
         
@@ -271,19 +279,20 @@ const EditableCell = ({
             </Popconfirm>
           </span>
         ) : (
-          <>
+          <span>
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
-            Edit
+            <EditTwoTone twoToneColor="orange" style={{fontSize:"1.5em", paddingRight:"0.5em"}}/>
           </Typography.Link>
+
           <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(record)} style={{color: "dodgerblue"}}>
-            Generate PDF
+            <FilePdfTwoTone twoToneColor="blue" style={{fontSize:"1.5em", paddingRight:"0.5em"}} />
           </Typography.Link>
           <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>
             <Popconfirm title="Remove this row?" onConfirm={() => remove(record)} okText="Confirm" cancelText="Cancel">
-              Remove
+              <DeleteTwoTone twoToneColor="red" style={{fontSize:"1.5em", }}/>
             </Popconfirm>
           </Typography.Link>
-          </>
+          </span>
 );
       },
     },

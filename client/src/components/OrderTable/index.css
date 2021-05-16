@@ -8,3 +8,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+thead[class*="ant-table-thead"] th{
+    background-color: rgb(8, 105, 124) !important;
+    color: rgb(243, 243, 243) !important;
+  }
+  :global(.ant-btn-primary:active) {
+    background-color: red !important;
+    border-color: red !important;
+  }

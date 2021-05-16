@@ -141,13 +141,13 @@ function Calculation() {
       
     return (
         // <AllProductsContext.Provider value={value}>
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout style={{ minHeight: '100vh',minWidth: '100vh' }}>
               <Content style={{minWidth : "60%", marginTop:"3em", marginLeft:"auto", marginRight:"auto"}}>
                 <Paper variant="outlined" style={{padding: "3em 6em"}}> 
-                  <h1>Enter product information below:</h1>
+                  
                   {/* <animated.div style={springStyle}>I will fade in</animated.div> */}
                   <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
-
+                  <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Enter product information below:</h1>
                   <Form.Item>
                     <Row gutter={{xs:400 , md: 100 , lg:100}}>
                       <Col >
@@ -182,7 +182,7 @@ function Calculation() {
                       </Col>
                       <Col >
                       <Form.Item >
-                        <Button htmlType="submit" >
+                        <Button size="large" htmlType="submit" style={{backgroundColor:"rgb(8, 105, 124)", color:"white", borderColor: "rgb(8, 105, 124)"}} >
                           Calculate
                       </Button>
                       </Form.Item>
