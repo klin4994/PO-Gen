@@ -274,7 +274,7 @@ export default function AddProduct () {
                                                     </Col>
                                                 ))}
                                                     <Col span={12}>
-                                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}  style={{color: "rgb(8, 105, 124)", borderColor: "rgb(8, 105, 124)"}} >
+                                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}  style={{fontWeight:"bold", color: "rgb(8, 105, 124)", borderColor: "rgb(8, 105, 124)"}} >
                                                         Add Raw Material
                                                     </Button>
                                                     </Col>

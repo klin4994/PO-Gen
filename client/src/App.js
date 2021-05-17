@@ -13,6 +13,8 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import AuthContext from './components/AuthContext';
 import API from './utils/API';
+import { Layout } from "antd";
+
 function App() {
   const [isAuthenticated, setIsAuthenticated ] = useState(true);
   const value = { isAuthenticated, setIsAuthenticated };
@@ -30,6 +32,7 @@ function App() {
   return (
     <AuthContext.Provider value={value}>
         <BrowserRouter>
+        <Layout>
             <Nav/>
             <Switch>
               <Route exact path= {["/"]}>
@@ -50,8 +53,9 @@ function App() {
                 <NoMatch/>
               </Route>
             </Switch>
-        </BrowserRouter>
-     </AuthContext.Provider>
+          </Layout>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 }
 
