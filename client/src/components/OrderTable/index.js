@@ -204,11 +204,9 @@ const EditableCell = ({
       editable: true,
       render: (key, row) => {
         return (
-        <React.Fragment>
         <Tooltip title = {`Coefficient: ${row.coefficient}`}> {key}
         <InfoCircleOutlined />
         </Tooltip>
-        </React.Fragment>
         )
       },
     },
@@ -239,7 +237,7 @@ const EditableCell = ({
       align:'right'
     },   
     {
-      title: 'Price per unit',
+      title: 'Rate',
       dataIndex: 'unit_price',
       width: '10%',
       editable: true,
@@ -281,15 +279,20 @@ const EditableCell = ({
         ) : (
           <span>
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{color: "dodgerblue"}}>
-            <EditTwoTone twoToneColor="orange" style={{fontSize:"1.5em", paddingRight:"0.5em"}}/>
+            <Tooltip title = {'Edit row'}>
+              <EditTwoTone twoToneColor="orange" style={{fontSize:"1.5em", paddingRight:"0.5em"}}/>
+            </Tooltip>
           </Typography.Link>
-
-          <Typography.Link disabled={editingKey !== ''} onClick={() => newPdf(record)} style={{color: "dodgerblue"}}>
-            <FilePdfTwoTone twoToneColor="blue" style={{fontSize:"1.5em", paddingRight:"0.5em"}} />
+          <Typography.Link disabled={editingKey !== ''}  onClick={() => newPdf(record)} style={{color: "dodgerblue"}}>
+            <Tooltip title = {'Generate PDF'}>
+              <FilePdfTwoTone twoToneColor="blue" style={{fontSize:"1.5em", paddingRight:"0.5em"}} />
+            </Tooltip>
           </Typography.Link>
           <Typography.Link disabled={editingKey !== ''} style={{color: "dodgerblue"}}>
             <Popconfirm title="Remove this row?" onConfirm={() => remove(record)} okText="Confirm" cancelText="Cancel">
-              <DeleteTwoTone twoToneColor="red" style={{fontSize:"1.5em", }}/>
+              <Tooltip title = {'Delete row'}>
+                <DeleteTwoTone twoToneColor="red" style={{fontSize:"1.5em", }}/>
+              </Tooltip>
             </Popconfirm>
           </Typography.Link>
           </span>

@@ -11,8 +11,6 @@
 thead[class*="ant-table-thead"] th{
     background-color: rgb(8, 105, 124) !important;
     color: rgb(243, 243, 243) !important;
+    font-size: large;
   }
-  :global(.ant-btn-primary:active) {
-    background-color: red !important;
-    border-color: red !important;
-  }
+/* .ant-table table { font-size: large; } */

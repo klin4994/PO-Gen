@@ -152,7 +152,7 @@ function Calculation() {
                   <Form.Item>
                     <Row gutter={{xs:400 , md: 100 , lg:100}}>
                       <Col >
-                        <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" >
+                        <Form.Item  {...tailLayout} label="Product code:" name="selectedPt" style={{fontFamily:"Arial"}} >
                           <Select style={{ width: "12em"}}
                         dropdownMatchSelectWidth={false}
                         dropdownRender={menu => (
@@ -177,7 +177,7 @@ function Calculation() {
                         </Form.Item>
                       </Col>
                       <Col >
-                        <Form.Item  {...tailLayout} label="Package quantity:"name="selectedQty" tooltip="E.g for 5000 bottles/boxes of blisters, enter 5000.">
+                        <Form.Item  {...tailLayout} label="Package quantity:"name="selectedQty" tooltip="E.g for 5000 bottles/boxes of blisters, enter 5000." style={{fontFamily:"Arial"}} >
                             <InputNumber placeholder="Enter Qty" min='0'style={{ width: 200}}/>
                         </Form.Item>
                       </Col>
@@ -189,7 +189,7 @@ function Calculation() {
                       </Form.Item>
                       </Col>
                     </Row>
-                    {!_.isEmpty(currentProduct)? <h2> {currentProduct.name}</h2>:<></>}
+                    {!_.isEmpty(currentProduct)? <h2 style={{fontFamily:"Arial"}}> {currentProduct.name}</h2>:<></>}
                   </Form.Item>
                   </Form>
             </Paper>
