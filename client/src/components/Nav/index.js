@@ -19,9 +19,9 @@ function Nav() {
     <React.Fragment>
 
       <Sider
-      style={{position:"fixed", zIndex: "1", height: "100vh"}}
-      theme="light"
-      breakpoint="xl"
+      style={{position:"fixed", zIndex: "2", height: "100vh"}}
+      theme="dark"
+      breakpoint="xxl"
       collapsedWidth="0"
       onBreakpoint={broken => {
         console.log(broken);
@@ -30,7 +30,8 @@ function Nav() {
         console.log(collapsed, type);
       }}
     >
-      <Menu>
+      <Menu theme="dark">
+      <h3 style={{marginTop: "2em", color: "#13c2c2", fontFamily:"Arial", minWidth:"10em"}}>PO Generator</h3>
       <Menu.Item key="0">
         <a style={navItem} href="/">Generate PO</a>
       </Menu.Item>
@@ -50,28 +51,6 @@ function Nav() {
      
     </Menu>
     </Sider>
-    {/* <Menu  style={{padding:"0 20em" }} mode="horizontal"  >
-      <Menu.Item key="x">
-        
-      </Menu.Item>
-      <Menu.Item key="0">
-        <a style={navItem} href="/">Generate PO</a>
-      </Menu.Item>
-      <Menu.Item key="1">
-        <a style={navItem} href="/addproduct">Add Product</a>
-      </Menu.Item>
-
- 
-      {isAuthenticated ?
-      <Menu.Item key="3"onClick={userLogOut} >
-        <a style={navItem} href="#">Log Out</a>
-      </Menu.Item>:
-      <Menu.Item key="2">
-        <a style={navItem} href="/login">Log In</a>
-      </Menu.Item>
-      }
-     
-    </Menu> */}
 
     </React.Fragment>
     

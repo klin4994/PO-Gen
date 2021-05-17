@@ -200,7 +200,6 @@ const EditableCell = ({
       title: 'RM Code',
       dataIndex: 'key',
       width: '10%',
-      fixed: 'left',
       editable: true,
       render: (key, row) => {
         return (
@@ -223,7 +222,7 @@ const EditableCell = ({
       editable: true,
     },
     {
-      title: 'Order Quantity',
+      title: 'Quantity',
       dataIndex: 'quantity',
       width: '10%',
       editable: true,
@@ -332,6 +331,7 @@ const EditableCell = ({
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={false} 
+        style={{zIndex:"-1"}}
       />
     </Form>
     

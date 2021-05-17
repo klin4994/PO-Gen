@@ -18,7 +18,7 @@ function Calculation() {
     // Load data
     const layout = {
         labelCol: {
-          span: 4,
+          span: 8,
         },
         wrapperCol: {
           span: 16,

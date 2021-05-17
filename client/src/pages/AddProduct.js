@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import API from '../utils/API'
-import { Form, Input, InputNumber, Button, Space, Tooltip, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
+import { Form, Input, InputNumber, Button, message, Tooltip, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, QuestionCircleOutlined, DeleteFilled, InfoCircleOutlined } from '@ant-design/icons';
 import Paper from '@material-ui/core/Paper';
 import ScrollUpButton from 'react-scroll-up-button'
@@ -11,7 +11,14 @@ import _ from 'lodash';
 
 const { Content } = Layout;
 const { Option } = Select;
-
+const layout = {
+    labelCol: {
+      span: 6,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
 export default function AddProduct () {
 
     useEffect (() => {
@@ -30,14 +37,14 @@ export default function AddProduct () {
     }
     const layout = {
         labelCol: {
-          span: 8,
+            lg:{span: 9},
+            xl:{span: 6}
         },
         wrapperCol: {
-          span: 16,
+          span: 24,
         },
       };
     const validateMessages = {
-        
         required: '${label} is required!',
         types: {
           number: '${label} is not a valid number!',
@@ -63,6 +70,8 @@ export default function AddProduct () {
     
     
         const onFinish = ({product, formulation, ...rest}) => {
+
+            message.success(`${product.key} has been successfully added!`, 6)
             // Initialize object to post
             product.user = "6093c20ad150a04ab444bc95"
             console.log(product)
@@ -88,7 +97,7 @@ export default function AddProduct () {
         <Layout style={{ minHeight: '100vh',minWidth: '100vh' }}>
            <Content style={{marginTop:"3em"}}> 
                     <Form.Provider>
-                            <Form name="new-product-form" onFinish={onFinish} autoComplete="off" validateMessages={validateMessages}>
+                            <Form {...layout} name="new-product-form" onFinish={onFinish} autoComplete="off" validateMessages={validateMessages}>
                                     <Row>
                                     <Col span={12} offset={6}>
                                     {/* Product form */}
@@ -108,7 +117,7 @@ export default function AddProduct () {
                                         </Form.Item>
                                         <Form.Item
                                             name={['product', 'name']}
-                                            label="Product Name/Description"
+                                            label="Name/Desc"
                                             rules={[
                                                 {
                                                     required: true,
@@ -119,7 +128,7 @@ export default function AddProduct () {
                                         </Form.Item>
                                         <Form.Item
                                             name={['product', 'packaging']}
-                                            label="Packaging Type"
+                                            label="Pakaging:"
                                             rules={[
                                                 {
                                                     required: true,
@@ -147,7 +156,7 @@ export default function AddProduct () {
                                         </Form.Item>
                                         <Form.Item
                                             name={['product', 'qtyPerPack']}
-                                            label="Dosage units per package"
+                                            label="Dose per pack"
                                             rules={[
                                                 {
                                                     type: 'number',
@@ -158,6 +167,11 @@ export default function AddProduct () {
                                         >
                                             <InputNumber min='0'/>
                                         </Form.Item>
+                                        <Col offset={20}>
+                                            <Button htmlType="submit" size="large" htmlType="submit" style={{backgroundColor:"rgb(8, 105, 124)", color:"white", borderColor: "rgb(8, 105, 124)", height:"4em"}}>
+                                                Submit
+                                            </Button>
+                                        </Col>
                                         {/* </div> */}
                                         </Paper>
                                         </Col>
@@ -174,7 +188,7 @@ export default function AddProduct () {
 
                                                 {fields.map(({ key, name, fieldKey, ...restField }) => (
                                                     // <Col md={{ span:12, offset:6}} xxl={{ span:6, offset:4 }}>
-                                                    <Col xs={{span:24}} xxl={{ span:12 }}>
+                                                    <Col xs={{span:24}} xxl={{ span:12 }} key={key}>
                                                         <Paper elevation={7} style={{ padding:"3em", marginTop:"2em", minWidth:'100%'}}>
                                                         <Button type="primary" style={{backgroundColor: "rgb(8, 105, 124)", borderColor:"rgb(8, 105, 124)", marginBottom:"1em"}} onClick={() => add()} block icon={<PlusOutlined />}>
                                                             Add Raw Material
@@ -189,7 +203,7 @@ export default function AddProduct () {
                                                             <Form.Item 
                                                             
                                                             name={[name, 'key']}
-                                                            label="Raw Material Code"
+                                                            label="Code"
                                                             rules={[
                                                                 {
                                                                     required: true,
@@ -201,7 +215,7 @@ export default function AddProduct () {
                                                             </Form.Item>
                                                             <Form.Item
                                                             name={[name, 'name']}
-                                                            label="Name/Description"
+                                                            label="Name/Desc"
                                                             rules={[
                                                                 {
                                                                     required: true,
@@ -215,7 +229,7 @@ export default function AddProduct () {
                                                             
                                                             <Form.Item
                                                             name={[name, 'unit']}
-                                                            label="Unit of Goods"
+                                                            label="Unit"
                                                             tooltip="Note: weight in kg"
                                                             rules={[
                                                                 {
@@ -227,7 +241,7 @@ export default function AddProduct () {
                                                             </Form.Item>
                                                             <Form.Item
                                                             name={[name, 'unit_price']}
-                                                            label="Unit Price (AUD)"
+                                                            label="Rate (AUD)"
                                                             rules={[
                                                                 {
                                                                     type: 'number',
@@ -240,7 +254,7 @@ export default function AddProduct () {
                                                             </Form.Item>
                                                             <Form.Item
                                                             name={[name, 'coefficient']}
-                                                            label="Quantity per Unit Dosage"
+                                                            label="Qty/dose"
                                                             rules={[
                                                                 {
                                                                     type: 'number',
@@ -256,7 +270,7 @@ export default function AddProduct () {
 
                                                             <Form.Item
                                                             name={[name, 'vendor_name']}
-                                                            label="Vendor Company Name"
+                                                            label="Vendor"
                                                             rules={[
                                                                 {
                                                                     required: true,
@@ -288,9 +302,7 @@ export default function AddProduct () {
                                     </Row>
                                     <Row>
                                         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                                            <Button type="primary" htmlType="submit" style={{  position: "fixed", bottom: 500, right: 0}}>
-                                                Submit
-                                            </Button>
+
                                             <ScrollUpButton style={{width: "5%", height:"5", backgroundColor:"rgb(8, 105, 124)"}} ToggledStyle={{right: "10%"}} />
                                         </Form.Item>
                                     </Row>
@@ -303,4 +315,4 @@ export default function AddProduct () {
         </Layout>
     );
     
-}
+}   
