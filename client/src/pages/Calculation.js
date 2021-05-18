@@ -169,7 +169,7 @@ function Calculation() {
                               </div>
                             </div>
                           )}
-                          placeholder="Select Product Code">
+                          placeholder="Select code">
                         {products.map(product => (
                             <Select.Option key={product.key}>{product.key}</Select.Option>
                         ))}

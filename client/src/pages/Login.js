@@ -8,13 +8,14 @@ import LoginFormContainer from '../components/LoginForm';
 
 export default function Login () {
      const history = useHistory();
+     console.log(history)
     async function onFinish (loginData) {
-
+      console.log('history', history)
       API.login(loginData)
         .then(response => {
           console.log(response)
           if (response.data._id) {
-            history.go(0)
+            history.go(history.location.pathname)
           } else {
             console.log("Error logging in");
           }

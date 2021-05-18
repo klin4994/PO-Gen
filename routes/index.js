@@ -7,7 +7,6 @@ router.use("/api", apiRoutes);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
-  console.log("no route hit")
   res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 

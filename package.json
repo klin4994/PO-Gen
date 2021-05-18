@@ -2,6 +2,7 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://klin4994.github.io/PurchaseOrder-Generator/",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -11,7 +12,9 @@
     "seed": "node db/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",

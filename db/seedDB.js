@@ -51,36 +51,168 @@ let productsSeed = [
         packaging: "Bottle",
         dosageForm: "Capsule",
         name: "FatBurner - 60S",
-        formulation: [
+        formulation:  [
             {
-                key: "RM003",
-                name: "Raw material 1",
-                unit_price: 130,
-                unit: "KG",
-                coefficient: 700,
-                vendor_name: "Vendor 2 Pty Ltd",
-                vendor_email: "vendor2@email.com",
+              "key": "RM069",
+              "name": "Raw Material 74",
+              "unit": "KG",
+              "unit_price": 44,
+              "coefficient": 445,
+              "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-                key: "RM004",
-                name: "Raw material 4",
-                unit_price: 30,
-                unit: "KG",
-                coefficient: 900,
-                vendor_name: "Vendor 2 Pty Ltd",
-                vendor_email: "vendor2@email.com",
+              "key": "RM082",
+              "name": "Raw Material 36",
+              "unit": "KG",
+              "unit_price": 92,
+              "coefficient": 755,
+              "vendor_name": "Vendor 3 Pty Ltd"
             },
             {
-                key: "RM005",
-                name: "Raw material 5",
-                unit_price: 320,
-                unit: "KG",
-                coefficient: 40,
-                vendor_name: "Vendor 2 Pty Ltd",
-                vendor_email: "vendor2@email.com",
+              "key": "RM027",
+              "name": "Raw Material 68",
+              "unit": "KG",
+              "unit_price": 93,
+              "coefficient": 236,
+              "vendor_name": "Vendor 3 Pty Ltd"
             },
-            
-        ]
+            {
+              "key": "RM050",
+              "name": "Raw Material 58",
+              "unit": "KG",
+              "unit_price": 114,
+              "coefficient": 823,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM090",
+              "name": "Raw Material 23",
+              "unit": "KG",
+              "unit_price": 59,
+              "coefficient": 638,
+              "vendor_name": "Vendor 2 Pty Ltd"
+            },
+            {
+              "key": "RM074",
+              "name": "Raw Material 37",
+              "unit": "KG",
+              "unit_price": 42,
+              "coefficient": 118,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            // {
+            //   "key": "RM030",
+            //   "name": "Raw Material 54",
+            //   "unit": "KG",
+            //   "unit_price": 101,
+            //   "coefficient": 358,
+            //   "vendor_name": "Vendor 1 Pty Ltd"
+            // },
+            {
+              "key": "RM065",
+              "name": "Raw Material 46",
+              "unit": "KG",
+              "unit_price": 114,
+              "coefficient": 621,
+              "vendor_name": "Vendor 3 Pty Ltd"
+            },
+            // {
+            //   "key": "RM041",
+            //   "name": "Raw Material 48",
+            //   "unit": "KG",
+            //   "unit_price": 65,
+            //   "coefficient": 245,
+            //   "vendor_name": "Vendor 3 Pty Ltd"
+            // },
+            {
+              "key": "RM070",
+              "name": "Raw Material 48",
+              "unit": "KG",
+              "unit_price": 87,
+              "coefficient": 131,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM085",
+              "name": "Raw Material 41",
+              "unit": "KG",
+              "unit_price": 77,
+              "coefficient": 167,
+              "vendor_name": "Vendor 3 Pty Ltd"
+            },
+            {
+              "key": "RM047",
+              "name": "Raw Material 55",
+              "unit": "KG",
+              "unit_price": 64,
+              "coefficient": 158,
+              "vendor_name": "Vendor 2 Pty Ltd"
+            },
+            {
+              "key": "RM026",
+              "name": "Raw Material 83",
+              "unit": "KG",
+              "unit_price": 44,
+              "coefficient": 476,
+              "vendor_name": "Vendor 2 Pty Ltd"
+            },
+            {
+              "key": "RM077",
+              "name": "Raw Material 38",
+              "unit": "KG",
+              "unit_price": 122,
+              "coefficient": 508,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM081",
+              "name": "Raw Material 83",
+              "unit": "KG",
+              "unit_price": 66,
+              "coefficient": 204,
+              "vendor_name": "Vendor 2 Pty Ltd"
+            },
+            {
+              "key": "RM095",
+              "name": "Raw Material 25",
+              "unit": "KG",
+              "unit_price": 27,
+              "coefficient": 377,
+              "vendor_name": "Vendor 3 Pty Ltd"
+            },
+            {
+              "key": "RM030",
+              "name": "Raw Material 43",
+              "unit": "KG",
+              "unit_price": 66,
+              "coefficient": 791,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM093",
+              "name": "Raw Material 28",
+              "unit": "KG",
+              "unit_price": 33,
+              "coefficient": 201,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM071",
+              "name": "Raw Material 30",
+              "unit": "KG",
+              "unit_price": 120,
+              "coefficient": 859,
+              "vendor_name": "Vendor 1 Pty Ltd"
+            },
+            {
+              "key": "RM041",
+              "name": "Raw Material 74",
+              "unit": "KG",
+              "unit_price": 87,
+              "coefficient": 990,
+              "vendor_name": "Vendor 3 Pty Ltd"
+            }
+          ]
     },
 ]
 

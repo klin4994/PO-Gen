@@ -6,6 +6,7 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
 
     return (
         <> 
+        
         <Form
             name="normal_login"
             className="login-form"
@@ -15,7 +16,9 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             style={{border:"solid #f1f1f1", padding:"3em", minWidth:"30%", marginTop: "3em"}}
-          >
+          >   <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Login: </h1>
+              <p style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>No Registration available. Please use:</p>
+              <p>Email: c1@email.com</p><p> Password: 111</p>
             <Form.Item
               name="email"
               rules={[
@@ -43,9 +46,7 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
               />
             </Form.Item>
             <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
+
             </Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in

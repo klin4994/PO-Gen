@@ -103,40 +103,42 @@ const EditableCell = ({
 
     // Initialize pdf
   const doc = new jsPDF();
-  doc.rect(20, 10, 168, 275);
+doc.addImage("examples/images/Octonyan.jpg", "JPEG", 20, 12, 23, 23); 
+doc.setFontSize(22);
+doc.text("My Company Name Pty Ltd", 55, 19, null, null, "left");
+doc.setFontSize(16);
+doc.text("23 Company St, Suburb, NSW, Australia", 55, 27, null, null, "left");
+doc.text("myemail@company.com", 55, 35, null, null, "left");
+doc.line(17, 37, 188,37)
 
-  doc.text("Company name", 45, 15, null, null, "left");
-  doc.text("Address", 45, 20, null, null, "left");
-  doc.text("Email", 45, 25, null, null, "left");
-  doc.line(20, 30, 188,30)
 
+doc.setFont("helvetica", "bold");
+doc.text("To:", 25, 45);
+doc.setFont("helvetica", "normal");
 
-  doc.setFont("helvetica", "bold");
-  doc.text("To:", 20, 35);
-  doc.setFont("helvetica", "normal");
-  doc.text(props.vendor_name, 20, 40);
+  doc.text(props.vendor_name, 25, 53);
   
-  let vendorEmail;
+  // let vendorEmail;
 
-  vendorArray.forEach(vendor => {
-    console.log(vendor)
-    console.log(props.vendor_name)
-    console.log(vendor.contact_email)
-    if (vendor.name === props.vendor_name) {
-      console.log(vendor.contact_email)
-      return vendorEmail = vendor.contact_email;
-    };
-  });
+  // vendorArray.forEach(vendor => {
+  //   console.log(vendor)
+  //   console.log(props.vendor_name)
+  //   console.log(vendor.contact_email)
+  //   if (vendor.name === props.vendor_name) {
+  //     console.log(vendor.contact_email)
+  //     return vendorEmail = vendor.contact_email;
+  //   };
+  // });
 
-  console.log(vendorEmail)
-  doc.text(vendorEmail, 20, 45);
+  // console.log(vendorEmail)
+  // doc.text(vendorEmail, 25, 61);
 
-  doc.text(`Order date: ${today}`, 110, 35);
-  doc.text("PO #: 12345678", 110, 40);
+  doc.text(`Order date: ${today}`, 110, 45);
+  doc.text("PO #: 12345678", 110, 53);
 
   doc.autoTable({
     head: [['Our Ref', 'Name', 'Quantity', 'Unit', 'Rate', 'Total Price']],
-    margin: { top: 60 , left: 20.2, right: 22.4},
+    margin: { top: 65 , left: 20.2, right: 22.4},
     columnStyles: { 
       0: { halign: 'center', minCellWidth: 8 }, 
       1: { halign: 'center', minCellWidth: 30},
@@ -244,7 +246,7 @@ const EditableCell = ({
     },
  
     {
-      title: 'Total Price',
+      title: 'Total Price (AUD)',
       dataIndex: 'total_price',
       inputType: 'number',
       width: '10%',
