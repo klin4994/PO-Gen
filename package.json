@@ -2,8 +2,10 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://klin4994.github.io/PurchaseOrder-Generator/",
   "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -12,36 +14,22 @@
     "seed": "node db/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.6.2",
-    "@material-ui/core": "^4.11.4",
-    "antd": "^4.15.5",
-    "axios": "^0.18.1",
+    "axios": "^0.18.0",
     "bcrypt": "^5.0.1",
-    "bootstrap": "^4.6.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
-    "jspdf": "^2.3.1",
-    "jspdf-autotable": "^3.5.14",
-    "lodash": "^4.17.21",
-    "mongoose": "^5.12.8",
+    "mongoose": "^5.3.16",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "react-dom": "^17.0.2",
-    "react-scroll-up-button": "^1.6.4",
-    "react-spring": "^9.1.2",
-    "react-transition-group": "^1.2.1",
-    "react-use": "^17.2.4"
+    "passport-local": "^1.0.0"
   }
 }
