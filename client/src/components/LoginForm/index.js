@@ -1,8 +1,8 @@
 import React from "react";
 import './index.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-export default function  ({onFinish, onFinishFailed, ...props}) {
+export default function  ({onFinish, onFinishFailed}) {
 
     return (
         <> 
@@ -17,8 +17,6 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
             onFinishFailed={onFinishFailed}
             style={{border:"solid #f1f1f1", padding:"3em", minWidth:"30%", marginTop: "3em"}}
           >   <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Login: </h1>
-              <p style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>No Registration available. Please use:</p>
-              <p>Email: c1@email.com</p><p> Password: 111</p>
             <Form.Item
               name="email"
               rules={[

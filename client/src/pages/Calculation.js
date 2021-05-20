@@ -1,21 +1,16 @@
-import React, {useState, useEffect, useRef, useContext} from "react";
-import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn, ProductForm } from "../components/ProductList"
+import React, {useState, useEffect, useRef} from "react";
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
-import AllProductsContext from '../components/AllProductsContext';
-import { Button, Form, Select, InputNumber, message, Divider, Layout, Space, Row, Col} from 'antd';
+import { Button, Form, Select, InputNumber, message, Divider, Layout, Row, Col} from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import AuthContext from '../components/AuthContext'
 import _ from 'lodash';
 import Paper from '@material-ui/core/Paper';
-import { useSpring, animated } from 'react-spring';
+import { useSpring} from 'react-spring';
 
 
 const { Content } = Layout;
 function Calculation() {
-    // const [allProducts, setAllProducts] = useState()
-    // const value = {allProducts, setAllProducts}
-    // Load data
+  // Styling for form
     const layout = {
         labelCol: {
           span: 8,
@@ -63,13 +58,8 @@ function Calculation() {
         let selectedProduct;
         // loops through all product to find the matching one by key and set as current product
         products.forEach(product => {
-            console.log("count")
-            console.log(products)
-            console.log(product.key)
-            console.log(selectedP)
             // If the key matches, store properties in the selectProduct -> productSet.current.value 
             if (product.key === selectedP ) {
-                console.log("product.key")
                 selectedProduct = product
                 // Add new property (total_price) to every raw material
                 selectedProduct.formulation.forEach(rm => {
@@ -131,10 +121,8 @@ function Calculation() {
         const addRmProduct = clone([currentProduct]);
 
         addRmProduct.formulation = [...addRmProduct.formulation, {...newRow}]
-        // const currentRows = [...currentProduct.formulation]
         setCurrentProduct(addRmProduct)
       };
-      console.log(products)
 
       // transition style
       const springStyle = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, config:{ duration: 2000 }})
@@ -197,18 +185,7 @@ function Calculation() {
               {currentProduct !== 0 ?<Paper variant="outlined" style={{padding: "2em 2em"}}>  <OrderTable >{{currentProduct, vendors}} </OrderTable></Paper> : <></>} 
             </div>
             </Content>
-
-
-        {/* <ProductQtyInput ref={qtyInput} value={quantity}></ProductQtyInput> */}
-   
-      
-        {/* {!_.isEmpty(currentProduct) ?
-        <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
-          Add a row
-        </Button> :
-        <></>}  */}
         </Layout>  
-        // </AllProductsContext.Provider>
     );
 }
 

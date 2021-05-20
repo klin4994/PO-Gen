@@ -53,7 +53,7 @@ let productsSeed = [
         name: "FatBurner - 60S",
         formulation:  [
             {
-              "key": "RM069",
+              "key": "RM074",
               "name": "Raw Material 74",
               "unit": "KG",
               "unit_price": 44,
@@ -61,7 +61,7 @@ let productsSeed = [
               "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-              "key": "RM082",
+              "key": "RM036",
               "name": "Raw Material 36",
               "unit": "KG",
               "unit_price": 92,
@@ -69,7 +69,7 @@ let productsSeed = [
               "vendor_name": "Vendor 3 Pty Ltd"
             },
             {
-              "key": "RM027",
+              "key": "RM068",
               "name": "Raw Material 68",
               "unit": "KG",
               "unit_price": 93,
@@ -77,7 +77,7 @@ let productsSeed = [
               "vendor_name": "Vendor 3 Pty Ltd"
             },
             {
-              "key": "RM050",
+              "key": "RM058",
               "name": "Raw Material 58",
               "unit": "KG",
               "unit_price": 114,
@@ -85,7 +85,7 @@ let productsSeed = [
               "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-              "key": "RM090",
+              "key": "RM023",
               "name": "Raw Material 23",
               "unit": "KG",
               "unit_price": 59,
@@ -93,21 +93,13 @@ let productsSeed = [
               "vendor_name": "Vendor 2 Pty Ltd"
             },
             {
-              "key": "RM074",
+              "key": "RM037",
               "name": "Raw Material 37",
               "unit": "KG",
               "unit_price": 42,
               "coefficient": 118,
               "vendor_name": "Vendor 1 Pty Ltd"
             },
-            // {
-            //   "key": "RM030",
-            //   "name": "Raw Material 54",
-            //   "unit": "KG",
-            //   "unit_price": 101,
-            //   "coefficient": 358,
-            //   "vendor_name": "Vendor 1 Pty Ltd"
-            // },
             {
               "key": "RM065",
               "name": "Raw Material 46",
@@ -116,17 +108,9 @@ let productsSeed = [
               "coefficient": 621,
               "vendor_name": "Vendor 3 Pty Ltd"
             },
-            // {
-            //   "key": "RM041",
-            //   "name": "Raw Material 48",
-            //   "unit": "KG",
-            //   "unit_price": 65,
-            //   "coefficient": 245,
-            //   "vendor_name": "Vendor 3 Pty Ltd"
-            // },
             {
               "key": "RM070",
-              "name": "Raw Material 48",
+              "name": "Raw Material 70",
               "unit": "KG",
               "unit_price": 87,
               "coefficient": 131,
@@ -134,14 +118,14 @@ let productsSeed = [
             },
             {
               "key": "RM085",
-              "name": "Raw Material 41",
+              "name": "Raw Material 85",
               "unit": "KG",
               "unit_price": 77,
               "coefficient": 167,
               "vendor_name": "Vendor 3 Pty Ltd"
             },
             {
-              "key": "RM047",
+              "key": "RM055",
               "name": "Raw Material 55",
               "unit": "KG",
               "unit_price": 64,
@@ -149,7 +133,7 @@ let productsSeed = [
               "vendor_name": "Vendor 2 Pty Ltd"
             },
             {
-              "key": "RM026",
+              "key": "RM083",
               "name": "Raw Material 83",
               "unit": "KG",
               "unit_price": 44,
@@ -157,7 +141,7 @@ let productsSeed = [
               "vendor_name": "Vendor 2 Pty Ltd"
             },
             {
-              "key": "RM077",
+              "key": "RM038",
               "name": "Raw Material 38",
               "unit": "KG",
               "unit_price": 122,
@@ -165,16 +149,16 @@ let productsSeed = [
               "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-              "key": "RM081",
-              "name": "Raw Material 83",
+              "key": "RM001",
+              "name": "Raw Material 1",
               "unit": "KG",
               "unit_price": 66,
               "coefficient": 204,
               "vendor_name": "Vendor 2 Pty Ltd"
             },
             {
-              "key": "RM095",
-              "name": "Raw Material 25",
+              "key": "RM009",
+              "name": "Raw Material 9",
               "unit": "KG",
               "unit_price": 27,
               "coefficient": 377,
@@ -182,23 +166,23 @@ let productsSeed = [
             },
             {
               "key": "RM030",
-              "name": "Raw Material 43",
+              "name": "Raw Material 30",
               "unit": "KG",
               "unit_price": 66,
               "coefficient": 791,
               "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-              "key": "RM093",
-              "name": "Raw Material 28",
+              "key": "RM003",
+              "name": "Raw Material 3",
               "unit": "KG",
               "unit_price": 33,
               "coefficient": 201,
               "vendor_name": "Vendor 1 Pty Ltd"
             },
             {
-              "key": "RM071",
-              "name": "Raw Material 30",
+              "key": "RM017",
+              "name": "Raw Material 17",
               "unit": "KG",
               "unit_price": 120,
               "coefficient": 859,
@@ -206,7 +190,7 @@ let productsSeed = [
             },
             {
               "key": "RM041",
-              "name": "Raw Material 74",
+              "name": "Raw Material 41",
               "unit": "KG",
               "unit_price": 87,
               "coefficient": 990,

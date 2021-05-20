@@ -2,10 +2,7 @@ import React,{useState, useContext, useEffect} from "react";
 import {   BrowserRouter,
   Switch,
   Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation} from "react-router-dom";
+} from "react-router-dom";
 import AddProduct from "./pages/AddProduct";
 import Calculation from "./pages/Calculation";
 import Login from "./pages/Login";
@@ -22,8 +19,6 @@ function App() {
   // We check if user is already logged in, and if they are then we set isAuthenticated to true
   useEffect(() => {
     API.userLoggedIn().then(response => {
-      console.log(response)
-      // setIsAuthenticated(response.data.isAuthenticated)
       setIsAuthenticated(response.data.isAuthenticated)
     })
   }, []);

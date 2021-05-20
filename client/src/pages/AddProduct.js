@@ -2,8 +2,8 @@ import React, { useState, useEffect }  from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import API from '../utils/API'
-import { Form, Input, InputNumber, Button, message, Tooltip, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
-import { MinusCircleOutlined, PlusOutlined, QuestionCircleOutlined, DeleteFilled, InfoCircleOutlined } from '@ant-design/icons';
+import { Form, Input, InputNumber, Button, message, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
+import { PlusOutlined, QuestionCircleOutlined, DeleteFilled } from '@ant-design/icons';
 import Paper from '@material-ui/core/Paper';
 import ScrollUpButton from 'react-scroll-up-button'
 import _ from 'lodash';
@@ -50,9 +50,6 @@ export default function AddProduct () {
           number: '${label} is not a valid number!',
           email: '${label} is not a valid email!'
         },
-        // number: {
-        //     range: '${label} must be between ${min} and ${max}',
-        //   },
       };
       let coefficientTooltip = 
       <span>
@@ -62,11 +59,6 @@ export default function AddProduct () {
         For countable materials, divide by the dosage quantity in one package.<br/>
         E.g if 1 bottle per 20 capsules, enter 0.05;<br/>
       </span>
-      // Handles updating component state when the user types into the input field
-    //    function handleInputChange(event) {
-    //     const { name, value } = event.target;
-    //     setFormObject({...formObject, [name]: value})
-    //   };
     
     
         const onFinish = ({product, formulation, ...rest}) => {
@@ -74,17 +66,13 @@ export default function AddProduct () {
             message.success(`${product.key} has been successfully added!`, 6)
             // Initialize object to post
             product.user = "6093c20ad150a04ab444bc95"
-            console.log(product)
             const mergeToPost = {
                 ...product,
                 formulation:formulation
             };
 
-            // console.log(mergeToPost);
             API.addProduct(mergeToPost)
-                // .then(() => setFormObject({
-                    
-                    // }))
+
                 .then(() => console.log("done!"))
                 .catch(err => console.log(err));
             }
@@ -100,9 +88,7 @@ export default function AddProduct () {
                             <Form {...layout} name="new-product-form" onFinish={onFinish} autoComplete="off" validateMessages={validateMessages}>
                                     <Row>
                                     <Col span={12} offset={6}>
-                                    {/* Product form */}
                                         <Paper variant="outlined" style={{padding: "3em 6em"}}>
-                                        {/* <div className = "form-container"> */}
                                         <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Product information:</h1>
                                         <Form.Item
                                             name={['product', 'key']}
@@ -172,12 +158,10 @@ export default function AddProduct () {
                                                 Submit
                                             </Button>
                                         </Col>
-                                        {/* </div> */}
                                         </Paper>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        {/* Formulation form */}
                                         <Col span={12} offset={6}>
                                         <Row gutter={10}>
 
@@ -187,7 +171,6 @@ export default function AddProduct () {
                                                 <>
 
                                                 {fields.map(({ key, name, fieldKey, ...restField }) => (
-                                                    // <Col md={{ span:12, offset:6}} xxl={{ span:6, offset:4 }}>
                                                     <Col xs={{span:24}} xxl={{ span:12 }} key={key}>
                                                         <Paper elevation={7} style={{ padding:"3em", marginTop:"2em", minWidth:'100%'}}>
                                                         <Button type="primary" style={{backgroundColor: "rgb(8, 105, 124)", borderColor:"rgb(8, 105, 124)", marginBottom:"1em"}} onClick={() => add()} block icon={<PlusOutlined />}>
