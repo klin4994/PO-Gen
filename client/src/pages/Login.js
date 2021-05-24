@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import ReactDOM, { useLocation } from 'react-dom';
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css';
@@ -7,7 +8,9 @@ import LoginFormContainer from '../components/LoginForm';
 
 export default function Login () {
      const history = useHistory();
+     console.log(history)
     async function onFinish (loginData) {
+      console.log('history', history)
       API.login(loginData)
         .then(response => {
           console.log(response)

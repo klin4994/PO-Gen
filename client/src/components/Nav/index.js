@@ -23,15 +23,9 @@ function Nav() {
       theme="dark"
       breakpoint="xxl"
       collapsedWidth="0"
-      onBreakpoint={broken => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
     >
       <Menu theme="dark">
-      <h3 style={{marginTop: "2em", color: "#13c2c2", fontFamily:"Arial", minWidth:"10em"}}>PO Generator</h3>
+      <h1 style={{marginTop: "2em", color: "#13c2c2", fontFamily:"Arial", minWidth:"10em"}}>PO Generator</h1>
       <Menu.Item key="0">
         <a style={navItem} href="/">Generate PO</a>
       </Menu.Item>

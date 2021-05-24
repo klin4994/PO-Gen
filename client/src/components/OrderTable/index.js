@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import {InfoCircleOutlined, EditTwoTone, FilePdfTwoTone, DeleteTwoTone} from '@ant-design/icons';
-import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select, Button } from 'antd';
+import { Tooltip,Table, Input, InputNumber, Popconfirm, Form, Typography, Select, Button, Row, Col } from 'antd';
 import API from "../../utils/API"
 import { jsPDF } from "jspdf";
 import _ from "lodash";
@@ -202,6 +202,7 @@ doc.setFont("helvetica", "normal");
       title: 'RM Code',
       dataIndex: 'key',
       width: '10%',
+      fixed: "left",
       editable: true,
       render: (key, row) => {
         return (
@@ -214,7 +215,7 @@ doc.setFont("helvetica", "normal");
     {
       title: 'Name and Description',
       dataIndex: 'name',
-      width: '25%',
+      width: '22%',
       editable: true,
     },
     {
@@ -226,14 +227,14 @@ doc.setFont("helvetica", "normal");
     {
       title: 'Quantity',
       dataIndex: 'quantity',
-      width: '10%',
+      width: '15%',
       editable: true,
       align:'right'
     },
     {
       title: 'Unit',
       dataIndex: 'unit',
-      width: '5%',
+      width: '8%',
       editable: true,
       align:'right'
     },   
@@ -244,7 +245,7 @@ doc.setFont("helvetica", "normal");
       editable: true,
       align:'right'
     },
- 
+
     {
       title: 'Total Price (AUD)',
       dataIndex: 'total_price',
@@ -257,8 +258,8 @@ doc.setFont("helvetica", "normal");
     {
       title: 'Actions',
       dataIndex: 'actions',
-      width: '15%',
-      fixed: 'right',
+      width: '10%',
+      fixed: "right",
       render: (_, record) => {
         const editable = isEditing(record);
         
@@ -301,9 +302,7 @@ doc.setFont("helvetica", "normal");
       },
     },
   ];
-  const logVendor = (value) => {
-    console.log(value)
-  }
+
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
       return col;
@@ -320,22 +319,29 @@ doc.setFont("helvetica", "normal");
     };
   });
   return (
-    
-    <Form form={form} component={false}>
-      <Table id="results_table"
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={false} 
-        style={{zIndex:"-1"}}
-      />
-    </Form>
+    <Row>
+      
+        <Form form={form} component={false}>
+        <Col >
+          <Table id="results_table"
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            bordered
+            dataSource={data}
+            columns={mergedColumns}
+            rowClassName="editable-row"
+            pagination={false} 
+            sticky
+            style={{zIndex:"-1", minWidth:"100%", padding:"1em, 1em"}}
+            scroll={{ x: 900 }}
+            
+          />
+      </Col>
+        </Form>
+    </Row>
     
   );
 };

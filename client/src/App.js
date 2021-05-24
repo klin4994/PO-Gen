@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import AuthContext from './components/AuthContext';
 import API from './utils/API';
 import { Layout } from "antd";
+import {GithubOutlined} from '@ant-design/icons';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated ] = useState(true);
@@ -19,11 +20,12 @@ function App() {
   // We check if user is already logged in, and if they are then we set isAuthenticated to true
   useEffect(() => {
     API.userLoggedIn().then(response => {
-      setIsAuthenticated(response.data.isAuthenticated)
+      // setIsAuthenticated(response.data.isAuthenticated)
+      setIsAuthenticated(true)
     })
   }, []);
 
-
+  const {Footer} = Layout;
   return (
     <AuthContext.Provider value={value}>
         <BrowserRouter>
@@ -47,11 +49,13 @@ function App() {
               <Route>
                 <NoMatch/>
               </Route>
-            </Switch>
+            </Switch> 
           </Layout>
       </BrowserRouter>
+      <Footer style={{ textAlign: 'center', fontSize:"1.5em"}}>Created by <GithubOutlined /><a href="https://github.com/klin4994"> klin4994</a></Footer>
     </AuthContext.Provider>
   );
 }
 
 export default App;
+
