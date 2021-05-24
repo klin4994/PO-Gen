@@ -335,8 +335,8 @@ doc.setFont("helvetica", "normal");
             rowClassName="editable-row"
             pagination={false} 
             sticky
-            style={{ minWidth:"100%"}}
-            // scroll={{ x: 1200 }}
+            style={{zIndex:"-1", minWidth:"100%", padding:"1em, 1em"}}
+            scroll={{ x: 900 }}
             
           />
       </Col>

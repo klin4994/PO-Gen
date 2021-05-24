@@ -6,7 +6,7 @@
 
 * 1. [Summary](#Summary)
 * 2. [Description](#Description)
-* 3. [User Story](#UserStory)
+* 3. [User-Story](#User-Story)
 * 4. [Link](#Link)
 * 5. [Tests](#Tests)
 * 6. [Screenshots](#Screenshots)
@@ -21,7 +21,7 @@
 <h1>Description</h1>
 <p>In a usual practical situation, the user will only be required to provide the type of product and the quantity as the only input,and the program handles the rest of the process including data extraction for all of the raw materials, calculation and PDF generation. As a result, the user will be able to obtain purchase order documents within a matter of seconds with minimum manual entry.
 <br>
-<h1>User Story</h1>
+<h1>User-Story</h1>
 <p>- As a procurement officer,</p>
 <p>- I want to minimize the need of manual entry in creating PO’s,</p>
 <p>- so I can be more productive and there is less chances for entry mistakes.</p>

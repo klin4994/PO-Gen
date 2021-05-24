@@ -171,7 +171,7 @@ export default function AddProduct () {
                                             <InputNumber min='0'/>
                                         </Form.Item>
 
-                                            <Button htmlType="submit" size="large" htmlType="submit" style={{fontSize:"1.4em", backgroundColor:"rgb(8, 105, 124)", color:"white", marginTop:"2em", borderColor: "rgb(8, 105, 124)", height:"2.5em", width:"100%"}}>
+                                            <Button htmlType="submit" size="large" htmlType="submit" style={{fontSize:"1.4em", backgroundColor:"rgb(8, 105, 124)", color:"white", borderColor: "rgb(8, 105, 124)", height:"2.5em", width:"100%"}}>
                                                 Complete and Submit
                                             </Button>
 
@@ -193,7 +193,7 @@ export default function AddProduct () {
                                                     // <Col md={{ span:12, offset:6}} xxl={{ span:6, offset:4 }}>
                                                     <Col xs={{span:24}} xxl={{ span:12 }} key={key}>
                                                         <Paper elevation={7} style={{ padding:"3em", marginTop:"2em", minWidth:'100%'}}>
-                                                        <Button type="primary" style={{backgroundColor: "#139cc2", borderColor:"#139cc2" }} onClick={() => add()} block icon={<PlusOutlined />}>
+                                                        <Button type="primary" style={{backgroundColor: "#001529", borderColor:"#001529" }} onClick={() => add()} block icon={<PlusOutlined />}>
                                                             Add Raw Material
                                                         </Button>
                                                             <Popconfirm title={"Are you sure? "}onConfirm={() => remove(name)} okText="Yes" cancelText="No" icon={<QuestionCircleOutlined style={{ color: 'red' }} />}>
@@ -232,8 +232,8 @@ export default function AddProduct () {
                                                             
                                                             <Form.Item
                                                             name={[name, 'unit']}
-                                                            label="PO Unit"
-                                                            tooltip="This is the unit rendered on PO. If the unit is weight, please enter 'kg'"
+                                                            label="Unit"
+                                                            tooltip="Note: weight in kg"
                                                             rules={[
                                                                 {
                                                                     required: true,
@@ -291,7 +291,7 @@ export default function AddProduct () {
                                                     </Col>
                                                 ))}
                                                     <Col xs={{span:24}} xxl={{ span:12 }}>
-                                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}  style={{fontWeight:"bold", color: "#139cc2", borderColor: "#139cc2"}} >
+                                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}  style={{fontWeight:"bold", color: "rgb(8, 105, 124)", borderColor: "rgb(8, 105, 124)"}} >
                                                         Add Raw Material
                                                     </Button>
                                                     </Col>

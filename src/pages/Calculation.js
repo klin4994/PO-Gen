@@ -143,7 +143,7 @@ function Calculation() {
               <Content style={{ marginTop:"3em"}}>
                   <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>
                     <Row >
-                    <Col span={14} offset={5}>
+                    <Col span={12} offset={6}>
                 <Paper variant="outlined" style={{padding: "3em 6em"}}> 
                   
                   <br/>
@@ -190,15 +190,13 @@ function Calculation() {
                           </Button>
                         </Form.Item>
                       </Col>
-                      <Col xxl={{offset:1}}>
-                        {!_.isEmpty(currentProduct)? <h2 style={{fontFamily:"Arial"}}> {currentProduct.name}</h2>:<></>}
-                      </Col>
+                    {!_.isEmpty(currentProduct)? <h2 style={{fontFamily:"Arial"}}> {currentProduct.name}</h2>:<></>}
             </Paper>
             </Col>
           </Row >
               </Form>
                   <Row style={{marginTop:"1%"}}>                  
-                  <Col xs={{span:22, offset:1 }} xxl={{span:14, offset:5 }} >
+                  <Col span={12} offset={6} >
                     <Paper style={{padding: "1em 1em"}}><OrderTable >{{currentProduct, vendors}} </OrderTable></Paper>
                   </Col>
                 </Row>

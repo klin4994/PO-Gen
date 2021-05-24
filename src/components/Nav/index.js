@@ -13,7 +13,7 @@ function Nav() {
   const { Sider } = Layout;
 
   const navItem ={
-    fontWeight: "bold", fontSize:"large", fontSize:"2em"
+    fontWeight: "bold", fontSize:"large"
   }
   return (
     <React.Fragment>
@@ -23,10 +23,9 @@ function Nav() {
       theme="dark"
       breakpoint="xxl"
       collapsedWidth="0"
-      width="20em"
     >
-      <h1 style={{marginTop: "2em", color: "#13c2c2", fontFamily:"Arial", minWidth:"10em", fontSize:"3em"}}>PO Generator</h1>
       <Menu theme="dark">
+      <h1 style={{marginTop: "2em", color: "#13c2c2", fontFamily:"Arial", minWidth:"10em"}}>PO Generator</h1>
       <Menu.Item key="0">
         <a style={navItem} href="/">Generate PO</a>
       </Menu.Item>

@@ -1,0 +1,16 @@
+.editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+}
+#results_table {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+thead[class*="ant-table-thead"] th{
+    background-color: rgb(8, 105, 124) !important;
+    color: rgb(243, 243, 243) !important;
+    font-size: large;
+  }
+/* .ant-table table { font-size: large; } */
