@@ -27,7 +27,7 @@
 <p>- so I can be more productive and there is less chances for entry mistakes.</p>
 <br>
 <h1>Link</h1>
-<p>Heroku application: https://nameless-lake-74511.herokuapp.com/ </p>
+<p>Heroku application: https://purchase-order-generator.herokuapp.com/</p>
 <br>
 <h1>Tests</h1>
 <p>Use the following credentials for user authentication while using the application:</p>
