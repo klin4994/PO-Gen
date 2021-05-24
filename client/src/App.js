@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     API.userLoggedIn().then(response => {
       // setIsAuthenticated(response.data.isAuthenticated)
-      setIsAuthenticated(true)
+      setIsAuthenticated(response.data.isAuthenticated)
     })
   }, []);
 
