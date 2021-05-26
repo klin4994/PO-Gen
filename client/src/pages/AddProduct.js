@@ -2,23 +2,15 @@ import React, { useState, useEffect }  from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import API from '../utils/API'
-import { Form, Input, InputNumber, Button, message, Tooltip, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
-import { MinusCircleOutlined, PlusOutlined, QuestionCircleOutlined, DeleteFilled, InfoCircleOutlined } from '@ant-design/icons';
+import { Form, Input, InputNumber, Button, message, Popconfirm, Radio, Layout, Row, Col, Select } from 'antd';
+import { PlusOutlined, QuestionCircleOutlined, DeleteFilled } from '@ant-design/icons';
 import Paper from '@material-ui/core/Paper';
 import ScrollUpButton from 'react-scroll-up-button'
 import _ from 'lodash';
 
 
 const { Content } = Layout;
-const { Option } = Select;
-const layout = {
-    labelCol: {
-      span: 6,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
+const { Option } = Select;;
 export default function AddProduct () {
 
     useEffect (() => {
@@ -49,10 +41,7 @@ export default function AddProduct () {
         types: {
           number: '${label} is not a valid number!',
           email: '${label} is not a valid email!'
-        },
-        // number: {
-        //     range: '${label} must be between ${min} and ${max}',
-        //   },
+        }
       };
       let coefficientTooltip = 
       <span>
@@ -62,11 +51,6 @@ export default function AddProduct () {
         For countable materials, divide by the dosage quantity in one package.<br/>
         E.g if 1 bottle per 20 capsules, enter 0.05;<br/>
       </span>
-      // Handles updating component state when the user types into the input field
-    //    function handleInputChange(event) {
-    //     const { name, value } = event.target;
-    //     setFormObject({...formObject, [name]: value})
-    //   };
     
     
         const onFinish = ({product, formulation, ...rest}) => {

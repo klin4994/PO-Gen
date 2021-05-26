@@ -19,11 +19,11 @@
 <p>This purchase order (PO) generator was designed with the intention of automating a part of my employment core responsibility as a procurement officer, in a pharmaceutical manufactuting company.</p>
 
 <h1>Description</h1>
-<p>In a usual practical situation, the user will only be required to provide the type of product and the quantity as the only input,and the program handles the rest of the process including data extraction for all of the raw materials, calculation and PDF generation. As a result, the user will be able to obtain purchase order documents within a matter of seconds with minimum manual entry.
+<p>In a usual practical situation, the user will only be required to provide the type of product and the quantity as the only input, and the program handles the rest of the process including data extraction for all of the raw materials, calculation and PDF generation. As a result, the user will be able to obtain purchase order documents within a matter of seconds with minimum manual entry.
 <br>
 <h1>User-Story</h1>
 <p>- As a procurement officer,</p>
-<p>- I want to minimize the need of manual entry in creating PO’s,</p>
+<p>- I want to minimize the time spent and the need of manual entry in creating PO’s,</p>
 <p>- so I can be more productive and there is less chances for entry mistakes.</p>
 <br>
 <h1>Link</h1>
@@ -45,6 +45,6 @@
 <img src="./client/public/images/Login-page-screenshot.PNG" alt="Login page screenshot"></img>
 <br></br>
 <h1>Questions</h1>
-<p><span>My Github profile: </span><a href="https://github.com/klin4994" class="col-12">https://github.com/klin4994</a></p>
+<p><span>My Github profile: </span><a href="https://github.com/kvlin" class="col-12">https://github.com/kvlin</a></p>
 <p><span>My Email address: </span><a href = "mailto: kevlin129@hotmail.com">kevlin129@hotmail.com</a></p>
 </p>

@@ -8,7 +8,7 @@ import Calculation from "./pages/Calculation";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import AuthContext from './components/AuthContext';
+import AuthContext from './utils/AuthContext';
 import API from './utils/API';
 import { Layout } from "antd";
 import {GithubOutlined} from '@ant-design/icons';
@@ -52,7 +52,7 @@ function App() {
             </Switch> 
           </Layout>
       </BrowserRouter>
-      <Footer style={{ textAlign: 'center', fontSize:"1.5em"}}>Created by <GithubOutlined /><a href="https://github.com/klin4994"> klin4994</a></Footer>
+      <Footer style={{ textAlign: 'center', fontSize:"1.5em"}}>Created by <GithubOutlined /><a href="https://github.com/kvlin"> kvlin</a></Footer>
     </AuthContext.Provider>
   );
 }

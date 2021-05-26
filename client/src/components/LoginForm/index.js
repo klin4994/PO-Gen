@@ -16,7 +16,7 @@ export default function  ({onFinish, onFinishFailed, ...props}) {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             style={{border:"solid #f1f1f1", padding:"3em", minWidth:"30%", marginTop: "3em"}}
-          >   <h1 style={{color: "rgb(8, 105, 124)", fontFamily:"Arial"}}>Login: </h1>
+          >   <strong style={{color: "rgb(8, 105, 124)", fontFamily:"Arial", fontSize:"1.5em" }}>Login:</strong>
             <Form.Item
               name="email"
               rules={[

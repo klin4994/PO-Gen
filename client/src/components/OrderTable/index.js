@@ -11,7 +11,6 @@ import 'jspdf-autotable'
 const {Option} = Select;
 
 export default function ({children}) {
- console.log(children[0].currentProduct)
   const [data, setData] = useState(children[0].currentProduct.formulation)
   useEffect (() => {
     setData(children[0].currentProduct.formulation)
@@ -336,7 +335,7 @@ doc.setFont("helvetica", "normal");
             pagination={false} 
             sticky
             style={{ minWidth:"100%"}}
-            // scroll={{ x: 1200 }}
+            scroll={{ x: 1100 }}
             
           />
       </Col>

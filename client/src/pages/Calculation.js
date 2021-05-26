@@ -1,20 +1,15 @@
 import React, {useState, useEffect, useRef, useContext} from "react";
-import {ProductList, ProductQtyInput, ProductListItem, SetProductBtn, ProductForm } from "../components/ProductList"
 import OrderTable from "../components/OrderTable"
 import API from "../utils/API"
-import AllProductsContext from '../components/AllProductsContext';
 import { Button, Form, Select, InputNumber, message, Divider, Layout, Space, Row, Col} from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import AuthContext from '../components/AuthContext'
 import _ from 'lodash';
 import Paper from '@material-ui/core/Paper';
 
 
 const { Content } = Layout;
 function Calculation() {
-    // const [allProducts, setAllProducts] = useState()
-    // const value = {allProducts, setAllProducts}
-    // Load data
+
     const layout = {
         labelCol: {
           span: 8,
@@ -38,7 +33,7 @@ function Calculation() {
     }, [])
     const qtyInput = useRef(null)
     const productSet = useRef(null)
-    // Overage 5%
+    // Overage 5%, ie. order extra qty to compensate for potential material loss during production
     const overage = 1.05;
     // Set products state
     const [products, setProducts] = useState([])
@@ -114,31 +109,8 @@ function Calculation() {
         )
           .catch(err => console.log(err));
     }
-
-    const handleAdd = () => {
-        const newRow = {
-          key: '',
-          name: '',
-          quantity: '',
-          unit: '',
-          unit_price: '',
-          total_price: '',
-          vendor_name:''
-        };
-        // cloning current product for setCurrentProduct to detect new object and trigger rerendering
-        const clone = obj => Object.assign({}, ...obj);
-        const addRmProduct = clone([currentProduct]);
-
-        addRmProduct.formulation = [...addRmProduct.formulation, {...newRow}]
-        // const currentRows = [...currentProduct.formulation]
-        setCurrentProduct(addRmProduct)
-      };
-      console.log(products)
-
-      // transition style
      
     return (
-        // <AllProductsContext.Provider value={value}>
             <Layout style={{ minHeight: '100vh',minWidth: '100vh' }}>
               <Content style={{ marginTop:"3em"}}>
                   <Form {...layout} onFinish={({selectedPt, selectedQty}) => {handleCalculation(selectedPt, selectedQty)}}>

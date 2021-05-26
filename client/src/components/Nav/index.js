@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { Menu, Layout} from "antd";
-import AuthContext from "../AuthContext";
+import AuthContext from "../../utils/AuthContext";
 import { useHistory } from "react-router-dom";
 import API from "../../utils/API";
 function Nav() {
