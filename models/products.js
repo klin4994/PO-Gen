@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const RMSchema = new Schema({
   key: {
@@ -29,13 +29,13 @@ const RMSchema = new Schema({
     type: String,
     trim: true
   }
-}, { _id : false })
+}, { _id: false })
 
 const PTSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "Users"
+    ref: 'Users'
   },
   key: {
     type: String
@@ -56,9 +56,8 @@ const PTSchema = new Schema({
     trim: true
   },
   formulation: [RMSchema]
-}, { collection: 'products' });
+}, { collection: 'products' })
 
-const Products = mongoose.model("Products", PTSchema);
+const Products = mongoose.model('Products', PTSchema)
 
-module.exports = Products;
-
+module.exports = Products

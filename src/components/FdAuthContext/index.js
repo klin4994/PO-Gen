@@ -1,2 +1,2 @@
-import React, { createContext } from "react";
-const AuthContext = createContext();
+import React, { createContext } from 'react'
+const AuthContext = createContext()

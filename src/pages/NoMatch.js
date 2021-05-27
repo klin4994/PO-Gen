@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react'
 
-function NoMatch() {
+function NoMatch () {
   return <h1>404 Page Not Found</h1>
-
 }
 
-export default NoMatch;
+export default NoMatch

@@ -1,11 +1,11 @@
-const router = require("express").Router();
-const productsController = require("../../controller/productsController");
+const router = require('express').Router()
+const productsController = require('../../controller/productsController')
 
 // Matches with "/api/products"
 router
-    .route("/")
-    .get(productsController.findAll)
-    .post(productsController.create);
+  .route('/')
+  .get(productsController.findAll)
+  .post(productsController.create)
 
 // Matches with "/api/products/:id"
 // router
@@ -14,4 +14,4 @@ router
 //     .put(productsController.update)
 //     .delete(productsController.remove);
 
-module.exports = router;
+module.exports = router

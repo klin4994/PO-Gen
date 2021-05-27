@@ -1,10 +1,8 @@
-const router = require("express").Router();
-const vendorsController = require("../../controller/vendorsController");
-
+const router = require('express').Router()
+const vendorsController = require('../../controller/vendorsController')
 
 router
-    .route("/")
-    .get(vendorsController.findAll)
+  .route('/')
+  .get(vendorsController.findAll)
 
-
-module.exports = router;
+module.exports = router
