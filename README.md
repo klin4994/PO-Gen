@@ -4,14 +4,14 @@
 <!-- Table of content -->
 <h2>Table of contents</h2>
 
-* 1. [Summary](#Summary)
-* 2. [Description](#Description)
-* 3. [User-Story](#User-Story)
-* 4. [Technologies](#Technologies)
-* 5. [Link](#Link)
-* 6. [Tests](#Tests)
-* 7. [Screenshots](#Screenshots)
-* 8. [Questions](#Questions) 
+1. [Summary](#Summary)
+2. [Description](#Description)
+3. [User Story](#User-Story)
+4. [Technologies used](#Technologies-used)
+5. [Link](#Link)
+6. [Tests](#Tests)
+7. [Screenshots](#Screenshots)
+8. [Questions](#Questions) 
 
 
 <br>
@@ -27,7 +27,7 @@
 <p>- I want to minimize the time spent and the need of manual entry in creating PO’s,</p>
 <p>- so I can be more productive and there is less chances for entry mistakes.</p>
 <br>
-<h1>Technologies used</h1>
+<h1>Technologies-used</h1>
 
 - <a href="https://www.educative.io/edpresso/what-is-mern-stack">M.E.R.N stack</a> (<a href="https://www.mongodb.com/">MongoDB</a>, <a href="https://expressjs.com/">ExpressJS</a>, <a href="https://reactjs.org/">ReactJS</a>, <a href="https://nodejs.org/en/about/">NodeJS</a>)</span>
 
