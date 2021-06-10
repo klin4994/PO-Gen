@@ -31,6 +31,8 @@
 
 - <a href="https://www.educative.io/edpresso/what-is-mern-stack">M.E.R.N stack</a> (<a href="https://www.mongodb.com/">MongoDB</a>, <a href="https://expressjs.com/">ExpressJS</a>, <a href="https://reactjs.org/">ReactJS</a>, <a href="https://nodejs.org/en/about/">NodeJS</a>)</span>
 
+- <span><a href="http://www.passportjs.org/">Passport.js </a> (User Authentication) </span>
+
 - <span><a href="https://ant.design/">Ant Design</a> (UI library)</span>
 
 - <span><a href="https://parall.ax/products/jspdf">jsPDF</a> (npm package for building PDF document template) </span>
