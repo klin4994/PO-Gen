@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { Products, Users, Vendors } = require('../models')
+const { Products, Users, Vendors, PurchaseOrders } = require('../models')
 
 mongoose.connect('mongodb://localhost/products_db'), {
   useNewUrlParser: true,
@@ -237,7 +237,16 @@ const vendorsSeed = [
     constact_number: '333-222-333'
   }
 
+  
 ]
+
+const poSeed = [
+  {
+    po_number:'000001'
+  },
+
+]
+
 Products.deleteMany({})
   .then(() => Products.collection.insertMany(productsSeed))
   .then(data => {
@@ -262,6 +271,17 @@ Users.deleteMany({})
 
 Vendors.deleteMany({})
   .then(() => Vendors.collection.insertMany(vendorsSeed))
+  .then(data => {
+    console.log(data.result.n + ' records inserted!')
+    process.exit(0)
+  })
+  .catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
+
+PurchaseOrders.deleteMany({})
+  .then(() => PurchaseOrders.collection.insertMany(poSeed))
   .then(data => {
     console.log(data.result.n + ' records inserted!')
     process.exit(0)
