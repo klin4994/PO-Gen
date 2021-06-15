@@ -10,10 +10,11 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
-    create: function (req, res) {
+    addPO: function (req, res) {
         POs
             .create (req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     }
+
 }

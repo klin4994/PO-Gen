@@ -57,7 +57,6 @@ function Calculation () {
     products.forEach(product => {
       // If the key matches, store properties in the selectProduct -> productSet.current.value
       if (product.key === selectedP) {
-        console.log('product.key')
         selectedProduct = product
         // Add new property (total_price) to every raw material
         selectedProduct.formulation.forEach(rm => {
@@ -98,11 +97,6 @@ function Calculation () {
       }
       )
       .catch(err => console.log(err))
-    
-      API.getLastPO()
-      .then(res => {
-        console.log(res.data)
-      })
   }
   return (
     <Layout style={{ minHeight: '100vh', minWidth: '100vh' }}>

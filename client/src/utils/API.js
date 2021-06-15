@@ -29,6 +29,10 @@ export default {
   },
   getLastPO:  function () {
     return axios.get('api/pos/last')
+  },
+  addPO: function (poData) {
+    return axios.post('/api/pos/create',poData)
   }
+
   
 }
