@@ -26,5 +26,9 @@ export default {
   // Get all vendors
   getVendors: function () {
     return axios.get('api/vendors')
+  },
+  getLastPO:  function () {
+    return axios.get('api/pos/last')
   }
+  
 }

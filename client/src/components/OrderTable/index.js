@@ -6,15 +6,23 @@ import { Tooltip, Table, Input, InputNumber, Popconfirm, Form, Typography, Selec
 import { jsPDF } from 'jspdf'
 import _ from 'lodash'
 import 'jspdf-autotable'
+import API from '../../utils/API'
 
 const { Option } = Select
 
 export default function ({ children }) {
   const [data, setData] = useState(children[0].currentProduct.formulation)
+  const [newPONumber, setNewPONumber] = useState(0)
   useEffect(() => {
     setData(children[0].currentProduct.formulation)
-  }, children)
-
+  }, [children])
+  useEffect(() =>{
+    API.getLastPO()
+    .then(res => {
+      setNewPONumber(res.data[0].po_number+1)
+    })
+  },[])
+  
   // Get vendor names in an array
   const vendorArray = _.map(children[0].vendors, vendor => { return _.pick(vendor, ['name', 'contact_email']) })
   const EditableCell = ({
@@ -64,9 +72,12 @@ export default function ({ children }) {
     setEditingKey(record.key)
   }
   // Current date
-
+  useEffect (() => {
+    console.log(newPONumber)
+  }, [newPONumber])
   // const newPdf = ({coefficient,vendor_email,vendor_name, ...rest}) => {
   const newPdf = (props) => {
+    
     console.log(data)
     console.log(props)
     // Remove RMs with different vendor than the one (row)where the "Generate PDF" icon was clicked on, this results in all RMs from that one vendor to be printed on one PO
@@ -91,6 +102,11 @@ export default function ({ children }) {
     const yyyy = today.getFullYear()
     today = dd + '/' + mm + '/' + yyyy
 
+    // Generate a new PO number
+    // const lastPO = await API.getLastPO()
+    // console.log(lastPO)
+    setNewPONumber(newPONumber+1)
+    
     // Initialize pdf
     const doc = new jsPDF()
 
@@ -110,7 +126,9 @@ export default function ({ children }) {
     doc.text(props.vendor_name, 25, 53)
 
     doc.text(`Order date: ${today}`, 110, 45)
-    doc.text('PO #: 12345678', 110, 53)
+
+    doc.text(`PO #: ${newPONumber}`, 110, 53)
+    
 
     doc.autoTable({
       head: [['Our Ref', 'Name', 'Quantity', 'Unit', 'Rate', 'Total Price']],
@@ -134,6 +152,7 @@ export default function ({ children }) {
     x.document.open()
     x.document.write(embed)
     x.document.close()
+
   }
 
   const cancel = () => {
@@ -294,7 +313,6 @@ export default function ({ children }) {
   })
   return (
     <Row>
-
       <Form form={form} component={false}>
         <Col>
           <Table
@@ -316,6 +334,5 @@ export default function ({ children }) {
         </Col>
       </Form>
     </Row>
-
   )
 };

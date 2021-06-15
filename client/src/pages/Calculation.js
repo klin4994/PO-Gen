@@ -55,10 +55,6 @@ function Calculation () {
     let selectedProduct
     // loops through all product to find the matching one by key and set as current product
     products.forEach(product => {
-      console.log('count')
-      console.log(products)
-      console.log(product.key)
-      console.log(selectedP)
       // If the key matches, store properties in the selectProduct -> productSet.current.value
       if (product.key === selectedP) {
         console.log('product.key')
@@ -102,8 +98,12 @@ function Calculation () {
       }
       )
       .catch(err => console.log(err))
+    
+      API.getLastPO()
+      .then(res => {
+        console.log(res.data)
+      })
   }
-
   return (
     <Layout style={{ minHeight: '100vh', minWidth: '100vh' }}>
       <Content style={{ marginTop: '3em' }}>

@@ -242,16 +242,19 @@ const vendorsSeed = [
 
 const poSeed = [
   {
-    po_number:'000001'
+    po_number: 000001
+  },
+  {
+    po_number: 000002
   },
 
 ]
+
 
 Products.deleteMany({})
   .then(() => Products.collection.insertMany(productsSeed))
   .then(data => {
     console.log(data.result.n + ' records inserted!')
-    process.exit(0)
   })
   .catch(err => {
     console.error(err)
@@ -262,7 +265,6 @@ Users.deleteMany({})
   .then(() => Users.collection.insertMany(usersSeed))
   .then(data => {
     console.log(data.result.n + ' records inserted!')
-    process.exit(0)
   })
   .catch(err => {
     console.error(err)
@@ -273,7 +275,6 @@ Vendors.deleteMany({})
   .then(() => Vendors.collection.insertMany(vendorsSeed))
   .then(data => {
     console.log(data.result.n + ' records inserted!')
-    process.exit(0)
   })
   .catch(err => {
     console.error(err)

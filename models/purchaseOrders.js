@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const POSchema = new Schema ({
     po_number:{
-        type: String,
+        type: Number,
         trim: true
     }
 }, { collection: 'purchase_orders' })
