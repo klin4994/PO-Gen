@@ -99,11 +99,11 @@ function Calculation () {
       .catch(err => console.log(err))
   }
   return (
-    <Layout style={{ minHeight: '100vh',maxWidth: '100vh'}}>
+    <Layout style={{ minHeight: '93vh', maxWidth: '100vh'}}>
       <Content style={{ marginTop: '3em' }}>
         <Form {...layout} onFinish={({ selectedPt, selectedQty }) => { handleCalculation(selectedPt, selectedQty) }}>
           <Row>
-            <Col sm={{ span: 18, offset: 3 }} xxl={{ span: 18, offset: 10 }}>
+            <Col xs={{ span: 22, offset: 1 }} lg={{ span: 18, offset: 3 }} xxl={{ span: 18, offset: 11 }}>
               <Paper variant='outlined' style={{ padding: '3em 6em' }}>
 
                 <br />
@@ -160,7 +160,7 @@ function Calculation () {
           </Row>
         </Form>
         <Row style={{ marginTop: '1%' }}>
-          <Col xs={{ span: 22, offset: 1 }} xxl={{ span: 24, offset: 7 }}>
+          <Col xs={{ span: 22, offset: 1 }} xxl={{ span: 24, offset: 8 }}>
             <Paper style={{ padding: '1em 1em' }}><OrderTable>{{ currentProduct, vendors }} </OrderTable></Paper>
           </Col>
         </Row>

@@ -70,7 +70,7 @@ export default function AddProduct () {
 
   return (
 
-    <Layout >
+    <Layout style={{ minHeight: '93vh', maxWidth: '100vh'}}>
       <Content style={{ marginTop: '3em' }}>
         <Form.Provider>
           <Form {...layout} name='new-product-form' onFinish={onFinish} autoComplete='off' validateMessages={validateMessages}>

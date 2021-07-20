@@ -32,7 +32,7 @@ export default function Login () {
   }
 
   return (
-    <Layout style={{ minHeight: '100vh', minWidth: '100vh' }}>
+    <Layout style={{ minHeight: '93vh', minWidth: '100vh' }}>
       <Content style={{
         padding: 24,
         margin: 0,
