@@ -3,18 +3,24 @@
     top: 100%;
     font-size: 12px;
 }
-#results_table {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+
+#results-table-wrapper {
+    min-width: 55vw;
+    max-width: 95vw;
+    margin: 2rem auto;
+}
+
+#results-table {
+    margin: 1rem 1rem 
 }
 thead[class*="ant-table-thead"] th{
     background-color: rgb(8, 105, 124) !important;
     color: rgb(243, 243, 243) !important;
-    font-size: large;
+    font-size: 1.1rem;
   }
 
 .ant-table-thead tr :first-child {
     z-index: 0;
-    color: #fab4a2;
+    color: #ff00005e;
 }
+

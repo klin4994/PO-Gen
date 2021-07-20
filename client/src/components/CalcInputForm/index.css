@@ -8,7 +8,6 @@
     margin: 2rem 1rem   
 }
 
-
 @media only screen and (max-width:670px) {
     #calc-input-form {
         min-width:95vw;

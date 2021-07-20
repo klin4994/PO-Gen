@@ -6,6 +6,7 @@ import { Tooltip, Table, Input, InputNumber, Popconfirm, Form, Typography, Selec
 import { jsPDF } from 'jspdf'
 import _ from 'lodash'
 import 'jspdf-autotable'
+import Paper from '@material-ui/core/Paper'
 import API from '../../utils/API'
 
 const { Option } = Select
@@ -306,11 +307,10 @@ export default function ({ children }) {
     }
   })
   return (
-    <Row>
+    <Paper id='results-table-wrapper'>
       <Form form={form} component={false}>
-        <Col className="ant-col-24">
           <Table
-            id='results_table'
+            id='results-table'
             components={{
               body: {
                 cell: EditableCell
@@ -324,8 +324,7 @@ export default function ({ children }) {
             style={{ minWidth: '100%' }}
             scroll={{ x: 995 }}
           />
-        </Col>
       </Form>
-    </Row>
+    </Paper>
   )
 };

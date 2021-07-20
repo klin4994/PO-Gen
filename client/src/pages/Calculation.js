@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import OrderTable from '../components/OrderTable'
 import CalcInputForm from '../components/CalcInputForm'
 import API from '../utils/API'
-import { Button, Form, Select, InputNumber, message, Divider, Layout, Space, Row, Col } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { message,Layout } from 'antd'
 import _ from 'lodash'
-import Paper from '@material-ui/core/Paper'
 
 const { Content } = Layout
 function Calculation () {
@@ -95,12 +93,8 @@ function Calculation () {
         }}/>
         {/* Result table, to be rendered only when there are valid results (after calculation) */}
         {!_.isEmpty(currentProduct) ?
-        <Row style={{ marginTop: '4%' }}>
-          <Col >
-            <Paper style={{ padding: '1em 1em'}}><OrderTable>{{ currentProduct, vendors }} </OrderTable></Paper>
-          </Col>
-        </Row> :
-        <></>
+            <OrderTable>{{ currentProduct, vendors }} </OrderTable>
+            :<></>
         }
     </Layout>
   )
