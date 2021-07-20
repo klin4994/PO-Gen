@@ -24,3 +24,10 @@
   display: flex;
 }
 
+.ant-layout-content {
+  max-width: 100vw !important;
+}
+
+#footer {
+  min-width: 100vw;
+}

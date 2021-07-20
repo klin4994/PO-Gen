@@ -1,5 +1,6 @@
 .login-form {
-    max-width: 300px;
+    min-width:400px;
+    max-width:600px;
     margin-left: auto;
     margin-right: auto;;
   }
@@ -24,3 +25,8 @@
     display: flex;
   }
   
+  @media only screen and (max-width: 500px) {
+    .login-form {
+      min-width:80vw;
+    }
+  }

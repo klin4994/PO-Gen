@@ -27,7 +27,7 @@ export default function Login () {
   }
 
   return (
-    <Layout style={{ minHeight: '93vh', minWidth: '100vh' }}>
+    <div style={{ minHeight: '93vh', maxWidth: '100vh', margin:"0 auto"}}>
       <Content style={{
         padding: 24,
         margin: 0,
@@ -36,6 +36,6 @@ export default function Login () {
       >
         <LoginFormContainer onFinish={onFinish} onFinishFailed={onFinishFailed} />
       </Content>
-    </Layout>
+    </div>
   )
 }

@@ -5,13 +5,12 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 export default function ({ onFinish, onFinishFailed, ...props }) {
   return (
     <>
-
       <Form
         name='basic'
         className='login-form'
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        style={{ padding: '3em', minWidth: '30%', 
+        style={{ padding: '2em', 
           marginTop: '3em',backgroundColor:"white", 
           boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px"}}
       >  <div style={{ marginBottom: '1em' }}><strong style={{ color: 'rgb(8, 105, 124)', fontFamily: 'Arial', fontSize: '1.5em'}}>Login:</strong></div>
