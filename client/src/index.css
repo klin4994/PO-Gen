@@ -8,5 +8,5 @@ body {
   text-align: center;
   font-size: 1.5rem;
   min-width:100vw;
-  min-height:7vh
+  max-height:7vh
 }

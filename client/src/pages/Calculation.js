@@ -22,6 +22,12 @@ function Calculation () {
       span: 5
     }
   }
+  const tailLayout2 = {
+    wrapperCol: {
+      offset: 1,
+      span: 20
+    }
+  }
 
   useEffect(() => {
     loadVendors()
@@ -102,9 +108,10 @@ function Calculation () {
     <Layout style={{ minHeight: '93vh', maxWidth: '100vh'}}>
       <Content style={{ marginTop: '3em' }}>
         <Form {...layout} onFinish={({ selectedPt, selectedQty }) => { handleCalculation(selectedPt, selectedQty) }}>
+          {/* input product information form */}
           <Row>
-            <Col xs={{ span: 22, offset: 1 }} md={{ span: 22, offset: 1 }} lg={{ span: 18, offset: 4 }} xxl={{ span: 18, offset: 11 }}>
-              <Paper variant='outlined' style={{ padding: '3em 6em' }}>
+            <Col xs={{ span: 22, offset: 1}} sm={{ span: 22, offset: 1 }} md={{ span: 16, offset: 2 }} lg={{ span: 16, offset: 5 }} xl={{ span: 16, offset: 8 }} xxl={{ span: 16, offset: 16 }}>
+              <Paper variant='outlined' style={{ padding: '1em 3em' }}>
 
                 <br />
                 <Col>
@@ -114,10 +121,11 @@ function Calculation () {
                       </Col>
                   </Row>
                   <Row>
-                    <Col xxl={{ offset: 1 }}>
+                    <Col offset={1} span={20}>
+                      
                         <Form.Item {...tailLayout} label='Product code:' name='selectedPt' style={{ fontFamily: 'Arial' }}>
                                 <Select
-                                  style={{ width: '12em' }}
+                                  style={{ width: '14em' }}
                                   dropdownMatchSelectWidth={false}
                                   dropdownRender={menu => (
                                       <div>
@@ -138,16 +146,18 @@ function Calculation () {
                                 </Select>
                               </Form.Item>
                       </Col>
-                    <Col xl={{ offset: 1 }} xxl={{ offset:1 }}>
+                      </Row>
+                      <Row>
+                    <Col offset={1} span={20}>
                         <Form.Item {...tailLayout} label='Package quantity:' name='selectedQty' tooltip='E.g for 5000 bottles/boxes of blisters, enter 5000.' style={{ fontFamily: 'Arial' }}>
-                                <InputNumber placeholder='Enter Qty' min='0' style={{ width: 250 }} />
+                                <InputNumber placeholder='Enter Qty' min='0' style={{ width: '14em' }} />
                               </Form.Item>
                       </Col>
                   </Row>
                 </Col>
-                <Col xxl={{ offset: 1 }}>
-                  <Form.Item>
-                    <Button size='large' htmlType='submit' style={{ right: '0', width: 'auto', display: 'block', backgroundColor: 'rgb(8, 105, 124)', color: 'white', borderColor: 'rgb(8, 105, 124)' }}>
+                <Col xxl={{ offset: 1 }} style={{display:'flex', justifyContent: 'center'}}>
+                  <Form.Item >
+                    <Button size='large' htmlType='submit' style={{  margin:"0 auto",  width: 'auto', backgroundColor: 'rgb(8, 105, 124)', color: 'white', borderColor: 'rgb(8, 105, 124)' }}>
                         Calculate
                             </Button>
                   </Form.Item>
@@ -159,9 +169,10 @@ function Calculation () {
             </Col>
           </Row>
         </Form>
+        {/* Result table, only renders when there is valid result (after calculation) */}
         {!_.isEmpty(currentProduct) ?
         <Row style={{ marginTop: '4%' }}>
-          <Col sm={{ span: 22, offset: 1 }} md={{ span: 22, offset: 1 }} lg={{ span: 20, offset: 3 }} xxl={{ span: 24, offset: 8 }}>
+          <Col sm={{ span: 22, offset: 1 }} md={{ span: 22, offset: 1 }} lg={{ span: 24, offset: 1 }} xl={{ span: 24, offset: 5 }} xxl={{ span: 24, offset: 12 }}>
             <Paper style={{ padding: '1em 1em' }}><OrderTable>{{ currentProduct, vendors }} </OrderTable></Paper>
           </Col>
         </Row> :

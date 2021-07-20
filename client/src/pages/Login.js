@@ -31,8 +31,7 @@ export default function Login () {
       <Content style={{
         padding: 24,
         margin: 0,
-        minHeight: 280,
-        background: '#fff'
+        minHeight: 280
       }}
       >
         <LoginFormContainer onFinish={onFinish} onFinishFailed={onFinishFailed} />

@@ -189,7 +189,7 @@ export default function ({ children }) {
     {
       title: 'RM Code',
       dataIndex: 'key',
-      width: '10%',
+      width: '11%',
       editable: true,
       render: (key, row) => {
         return (
@@ -234,7 +234,7 @@ export default function ({ children }) {
     },
 
     {
-      title: 'Total Price (AUD)',
+      title: 'Total (AUD)',
       dataIndex: 'total_price',
       inputType: 'number',
       width: '10%',
@@ -322,7 +322,7 @@ export default function ({ children }) {
             rowClassName='editable-row'
             pagination={false}
             style={{ minWidth: '100%' }}
-            scroll={{ x: 1100 }}
+            scroll={{ x: 995 }}
           />
         </Col>
       </Form>
