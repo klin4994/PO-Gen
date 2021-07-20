@@ -21,8 +21,8 @@ function App () {
   // We check if user is already logged in, and if they are then we set isAuthenticated to true
   useEffect(() => {
     API.userLoggedIn().then(response => {
-      // setIsAuthenticated(response.data.isAuthenticated)
-      setIsAuthenticated(true)
+      setIsAuthenticated(response.data.isAuthenticated)
+      // setIsAuthenticated(true)
     })
   }, [])
 
@@ -38,14 +38,15 @@ function App () {
                 ? <Calculation /> : <Login />}
             </Route>
             <Route exact path={['/login']}>
-              <Login />
+            {isAuthenticated
+                ? <Calculation /> : <Login />}
             </Route>
             <Route exact path={['/addproduct']}>
               {isAuthenticated
                 ? <AddProduct /> : <Login />}
             </Route>
             <Route exact path={['/logout']}>
-              <AddProduct />
+              <Login />
             </Route>
             <Route>
               <NoMatch />

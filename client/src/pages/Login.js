@@ -9,18 +9,13 @@ import { Layout } from 'antd'
 
 export default function Login () {
   const { Content } = Layout
+  // initialize history to store the visited link
   const history = useHistory()
-  console.log(history)
   async function onFinish (loginData) {
-    console.log('history', history)
     API.login(loginData)
       .then(response => {
-        console.log(response)
-        if (response.data._id) {
-          history.go(history.location.pathname)
-        } else {
-          console.log('Error logging in')
-        }
+        // Upon successful login, return to the the page that triggered the login
+        history.go(history.location.pathname)
       }).catch(err => {
         console.log(err)
       }
