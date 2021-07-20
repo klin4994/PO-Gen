@@ -75,7 +75,11 @@ export default function AddProduct () {
         <Form.Provider>
           <Form {...layout} name='new-product-form' onFinish={onFinish} autoComplete='off' validateMessages={validateMessages}>
             <Row>
-              <Col span={12} offset={6}>
+              {/* product information form   */}
+              <Col  xs={{ span: 20, offset: 2 }}
+              lg={{span: 18, offset: 4}} 
+              xl={{ span: 18, offset: 5 }} 
+              xxl={{ span: 18, offset: 14 }}>
                 {/* Product form */}
                 <Paper variant='outlined' style={{ padding: '3em 6em' }}>
                   <Col style={{ marginBottom: '1em' }}>
@@ -155,7 +159,10 @@ export default function AddProduct () {
             </Row>
             <Row>
               {/* Formulation form */}
-              <Col span={12} offset={6}>
+              <Col xs={{ span: 20, offset: 2 }}
+              lg={{span: 18, offset: 4}} 
+              xl={{ span: 18, offset: 5 }} 
+              xxl={{ span: 18, offset: 14 }}>
                 <Row gutter={10}>
 
                   <Form.List name='formulation'>

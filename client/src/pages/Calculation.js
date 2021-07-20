@@ -159,7 +159,7 @@ function Calculation () {
             </Col>
           </Row>
         </Form>
-        <Row style={{ marginTop: '1%' }}>
+        <Row style={{ marginTop: '4%' }}>
           <Col xs={{ span: 22, offset: 1 }} xxl={{ span: 24, offset: 8 }}>
             <Paper style={{ padding: '1em 1em' }}><OrderTable>{{ currentProduct, vendors }} </OrderTable></Paper>
           </Col>
