@@ -194,7 +194,7 @@ export default function ({ children }) {
       render: (key, row) => {
         return (
           <Tooltip title={`Coefficient: ${row.coefficient}`}> {key}
-            <InfoCircleOutlined />
+            &nbsp;<InfoCircleOutlined />
           </Tooltip>
         )
       }
