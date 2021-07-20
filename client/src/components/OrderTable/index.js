@@ -190,7 +190,6 @@ export default function ({ children }) {
       title: 'RM Code',
       dataIndex: 'key',
       width: '10%',
-      fixed: 'left',
       editable: true,
       render: (key, row) => {
         return (
@@ -322,7 +321,6 @@ export default function ({ children }) {
             columns={mergedColumns}
             rowClassName='editable-row'
             pagination={false}
-            sticky
             style={{ minWidth: '100%' }}
             scroll={{ x: 1100 }}
           />

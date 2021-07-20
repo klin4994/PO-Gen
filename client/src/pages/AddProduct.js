@@ -133,7 +133,7 @@ export default function AddProduct () {
                   </Form.Item>
                   <Form.Item
                     name={['product', 'qtyPerPack']}
-                    label='Dose per pack'
+                    label='Units per pack'
                     rules={[
                               {
                                 type: 'number',
