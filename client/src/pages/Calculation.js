@@ -110,7 +110,7 @@ function Calculation () {
         <Form {...layout} onFinish={({ selectedPt, selectedQty }) => { handleCalculation(selectedPt, selectedQty) }}>
           {/* input product information form */}
           <Row>
-            <Col xs={{ span: 22, offset: 1}} sm={{ span: 22, offset: 1 }} md={{ span: 16, offset: 2 }} lg={{ span: 16, offset: 5 }} xl={{ span: 16, offset: 8 }} xxl={{ span: 16, offset: 16 }}>
+            <Col xs={{ span: 22, offset: 1}} sm={{ span: 22, offset: 1 }} md={{ span: 18, offset: 3 }} lg={{ span: 16, offset: 5 }} xl={{ span: 16, offset: 8 }} xxl={{ span: 16, offset: 16 }}>
               <Paper variant='outlined' style={{ padding: '1em 3em' }}>
 
                 <br />
@@ -163,7 +163,7 @@ function Calculation () {
                   </Form.Item>
                 </Col>
                 <Col xxl={{ offset: 1 }}>
-                  {!_.isEmpty(currentProduct) ? <h2 style={{ fontFamily: 'Arial' }}> {currentProduct.name}</h2> : <></>}
+                  {!_.isEmpty(currentProduct) ? <h2 style={{ fontFamily: 'Arial' }}><strong>Product selected:</strong> {currentProduct.name}</h2> : <></>}
                 </Col>
               </Paper>
             </Col>
