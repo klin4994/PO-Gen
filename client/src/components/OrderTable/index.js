@@ -308,7 +308,7 @@ export default function ({ children }) {
   return (
     <Row>
       <Form form={form} component={false}>
-        <Col>
+        <Col className="ant-col-24">
           <Table
             id='results_table'
             components={{

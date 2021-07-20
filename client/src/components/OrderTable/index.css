@@ -17,4 +17,3 @@ thead[class*="ant-table-thead"] th{
 .ant-table-thead tr :first-child {
     z-index: 0;
 }
-/* .ant-table table { font-size: large; } */
