@@ -171,7 +171,7 @@ export default function AddProduct () {
                               <>
 
                             {fields.map(({ key, name, fieldKey, ...restField }) => (
-                               <Col xs={{ span: 24 }} xxl={{ span: 12 }} key={key}>
+                               <Col sm={{ span: 24 }} lg={{ span: 12 }} key={key}>
                                         <Paper elevation={7} style={{ padding: '3em', marginTop: '2em', minWidth: '100%' }}>
                                                 <Button type='primary' style={{ backgroundColor: '#139cc2', borderColor: '#139cc2' }} onClick={() => add()} block icon={<PlusOutlined />}>
                                                         Add Raw Material
@@ -269,7 +269,7 @@ export default function AddProduct () {
 
                                       </Col>
                              ))}
-                            <Col xs={{ span: 24 }} xxl={{ span: 12 }}>
+                            <Col xs={{ span: 24 }} lg={{ span: 12 }}>
                                <Button type='dashed' onClick={() => add()} block icon={<PlusOutlined />} style={{ fontWeight: 'bold', color: '#139cc2', borderColor: '#139cc2' }}>
                                         Add Raw Material
                                                     </Button>
