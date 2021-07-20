@@ -13,7 +13,7 @@ import AuthContext from './utils/AuthContext'
 import API from './utils/API'
 import { Layout } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
-
+import './index.css'
 function App () {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
   const value = { isAuthenticated, setIsAuthenticated }
@@ -30,7 +30,7 @@ function App () {
   return (
     <AuthContext.Provider value={value}>
       <BrowserRouter>
-        <Layout>
+        <Layout id="ant-layout">
           <Nav />
           <Switch>
             <Route exact path={['/']}>
@@ -53,7 +53,7 @@ function App () {
           </Switch>
         </Layout>
       </BrowserRouter>
-      <Footer style={{ textAlign: 'center', fontSize: '1.5em' }}>Created by <GithubOutlined /><a href='https://github.com/kvlin'> kvlin</a></Footer>
+      <Footer id="footer">Created by <GithubOutlined /><a href='https://github.com/kvlin'> kvlin</a></Footer>
     </AuthContext.Provider>
   )
 }
