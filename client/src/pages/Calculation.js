@@ -159,11 +159,14 @@ function Calculation () {
             </Col>
           </Row>
         </Form>
+        {!_.isEmpty(currentProduct) ?
         <Row style={{ marginTop: '4%' }}>
           <Col xs={{ span: 22, offset: 1 }} xxl={{ span: 24, offset: 8 }}>
             <Paper style={{ padding: '1em 1em' }}><OrderTable>{{ currentProduct, vendors }} </OrderTable></Paper>
           </Col>
-        </Row>
+        </Row> :
+        <></>
+        }
       </Content>
     </Layout>
   )
