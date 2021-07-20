@@ -3,7 +3,7 @@ import { Button, Form, Select, InputNumber, message, Divider, Layout, Space, Row
 import { PlusOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import Paper from '@material-ui/core/Paper'
-
+import './index.css'
 export default function CalcInputForm({products, currentProduct, onFinish}) {
 
     const layout = {
@@ -21,11 +21,11 @@ export default function CalcInputForm({products, currentProduct, onFinish}) {
         }
       }
     return (    
-        <Form {...layout} onFinish={onFinish}>
+        <Form id='calc-input-wrapper' {...layout} onFinish={onFinish}>
         {/* input product information form */}
         <Row>
         <Col >
-            <Paper variant='outlined' style={{ padding: '1em 3em', width: '800px'}}>
+            <Paper id='calc-input-form' variant='outlined' style={{ padding: '1em 3em'}}>
 
             <br />
             <Col>

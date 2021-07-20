@@ -9,20 +9,6 @@ import Paper from '@material-ui/core/Paper'
 
 const { Content } = Layout
 function Calculation () {
-  const layout = {
-    labelCol: {
-      span: 8
-    },
-    wrapperCol: {
-      span: 16
-    }
-  }
-  const tailLayout = {
-    wrapperCol: {
-      offset: 1,
-      span: 5
-    }
-  }
 
   useEffect(() => {
     loadVendors()
@@ -100,10 +86,14 @@ function Calculation () {
       .catch(err => console.log(err))
   }
   return (
+    // Page layout (except the side navbar and footer)
     <Layout style={{ minHeight: '93vh', maxWidth: '100vw'}}>
-      <CalcInputForm products= {products} currentProduct={currentProduct} onFinish={({ selectedPt, selectedQty }) => { handleCalculation(selectedPt, selectedQty) }}/>
-      <Content style={{ margin: '3em auto' }}>
-        {/* Result table, only renders when there is valid result (after calculation) */}
+      {/* Form that takes user input: product code and the quantity in packages */}
+      <CalcInputForm products= {products} 
+        currentProduct={currentProduct} 
+        onFinish={({ selectedPt, selectedQty }) => { handleCalculation(selectedPt, selectedQty) 
+        }}/>
+        {/* Result table, to be rendered only when there are valid results (after calculation) */}
         {!_.isEmpty(currentProduct) ?
         <Row style={{ marginTop: '4%' }}>
           <Col >
@@ -112,7 +102,6 @@ function Calculation () {
         </Row> :
         <></>
         }
-      </Content>
     </Layout>
   )
 }
