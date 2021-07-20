@@ -3,6 +3,14 @@ import { Menu, Layout } from 'antd'
 import AuthContext from '../../utils/AuthContext'
 import { useHistory } from 'react-router-dom'
 import API from '../../utils/API'
+import {
+  FileAddOutlined,
+  PlusOutlined,
+  LoginOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
+import './index.css'
+
 function Nav () {
   const history = useHistory()
   const { isAuthenticated } = useContext(AuthContext)
@@ -13,33 +21,42 @@ function Nav () {
   const { Sider } = Layout
 
   const navItem = {
-    fontWeight: 'bold', fontSize: 'large', fontSize: '2em'
+    margin: '10px'
   }
+  const navItemText = {
+    fontSize: '1.3rem',
+    marginLeft: '5px'
+  }
+  const logo = {
+    fontSize: '2.2rem',margin: '2rem 0.5rem 3rem 0.5rem'
+  }
+
   return (
     <>
-
       <Sider
-        style={{ position: 'fixed', zIndex: '2', height: '100vh' }}
-        theme='dark'
+        style={{ position: 'fixed', zIndex: '2', height: '100vh', backgroundColor:'white' }}
+        
         breakpoint='xxl'
         collapsedWidth='0'
         width='20em'
       >
-        <h1 style={{ marginTop: '2em', color: '#13c2c2', fontFamily: 'Arial', minWidth: '10em', fontSize: '3em' }}>PO Generator</h1>
-        <Menu theme='dark'>
-          <Menu.Item key='0'>
-            <a style={navItem} href='/'>Generate PO</a>
+        <Menu theme='light'  >
+          <Menu.Item style={logo} title="To Generate PO">
+            <a id='logo' style={{color:'rgb(8, 105, 124)'}} href='/'>PO Generator</a>
+          </Menu.Item >
+          <Menu.Item key='0' style={navItem} icon={<FileAddOutlined style={{fontSize: '1.3rem'}}/>}>
+            <a style={navItemText} href='/'>Generate PO</a>
           </Menu.Item>
-          <Menu.Item key='1'>
-            <a style={navItem} href='/addproduct'>Add Product</a>
+          <Menu.Item key='1' style={navItem} icon={<PlusOutlined style={{fontSize: '1.3rem'}}/>}>
+            <a style={navItemText} href='/addproduct'>Add Product</a>
           </Menu.Item>
 
           {isAuthenticated
-            ? <Menu.Item key='3' onClick={userLogOut}>
-              <a style={navItem} href='#'>Log Out</a>
+            ? <Menu.Item key='3' style={navItem} onClick={userLogOut} icon={<LogoutOutlined style={{fontSize: '1.3rem'}}/>}>
+              <a style={navItemText} href='#' >Log Out</a>
             </Menu.Item>
-            : <Menu.Item key='2'>
-              <a style={navItem} href='/login'>Log In</a>
+            : <Menu.Item key='2' style={navItem} icon={<LoginOutlined />}>
+              <a style={navItemText} href='/login' >Log In</a>
             </Menu.Item>}
 
         </Menu>
