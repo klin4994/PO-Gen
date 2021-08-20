@@ -39,7 +39,7 @@
 
 <br>
 <h1>Link</h1>
-<p>Heroku application: https://purchase-order-generator.herokuapp.com/</p>
+<p>Heroku application: https://purchase-order-generator-kl.herokuapp.com/</p>
 <br>
 <h1>Tests</h1>
 <p>Use the following credentials for user authentication while using the application:</p>

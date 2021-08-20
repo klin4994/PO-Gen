@@ -79,7 +79,8 @@ export default function AddProduct () {
               <Col  xs={{ span: 20, offset: 2 }}
               lg={{span: 18, offset: 4}} 
               xl={{ span: 18, offset: 5 }} 
-              xxl={{ span: 18, offset: 14 }}>
+              xxl={{ span: 18, offset: 7 }}
+              style={{maxWidth:"50rem"}}>
                 {/* Product form */}
                 <Paper variant='outlined' style={{ padding: '3em 6em' }}>
                   <Col style={{ marginBottom: '1em' }}>
@@ -162,7 +163,8 @@ export default function AddProduct () {
               <Col xs={{ span: 20, offset: 2 }}
               lg={{span: 18, offset: 4}} 
               xl={{ span: 18, offset: 5 }} 
-              xxl={{ span: 18, offset: 14 }}>
+              xxl={{ span: 18, offset: 7 }}
+              style={{maxWidth:"50rem"}}>
                 <Row gutter={10}>
 
                   <Form.List name='formulation'>
